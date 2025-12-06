@@ -17,10 +17,11 @@ const artworks = [
     collection: "Calm Interiors",
     size: '36" x 48"',
     medium: "Oil on Canvas",
-    price: "₹85,000",
+    price: "₹8,500",
     available: true,
     image: artwork1,
-    story: "Inspired by the quiet moments of dawn, this piece captures the serenity of light breaking through mist.",
+    story: "This painting was born on a morning I spent watching the sun rise over the Aravalli hills. There's a moment—just before the world wakes up—when everything is bathed in golden silence. I wanted to capture that stillness, that breath between night and day. The soft gradients represent the mist lifting slowly, revealing warmth beneath. When I painted this, I was thinking about how our homes should feel like that first light—gentle, welcoming, full of quiet hope.",
+    placement: "Perfect for bedrooms, meditation spaces, or above a reading nook where you seek calm.",
   },
   {
     id: 2,
@@ -28,10 +29,11 @@ const artworks = [
     collection: "Architecture Inspired",
     size: '40" x 50"',
     medium: "Acrylic on Canvas",
-    price: "₹72,000",
+    price: "₹7,200",
     available: true,
     image: artwork2,
-    story: "A meditation on the interplay of lines and forms in modern architecture.",
+    story: "Walking through the streets of Chandigarh, I found myself mesmerized by Le Corbusier's legacy—how concrete can feel both monumental and intimate. This piece is my conversation with those buildings. Each angular form represents the tension between function and beauty, between the human need for shelter and the desire to create something that transcends utility. The muted palette speaks to concrete weathered by time, while the subtle gold accents are the sunlight that transforms brutalism into poetry.",
+    placement: "Ideal for modern living rooms, architectural offices, or lobbies that celebrate contemporary design.",
   },
   {
     id: 3,
@@ -39,10 +41,11 @@ const artworks = [
     collection: "Abstract Emotions",
     size: '48" x 36"',
     medium: "Oil on Canvas",
-    price: "₹95,000",
+    price: "₹9,500",
     available: true,
     image: artwork3,
-    story: "The passion and energy of fire translated into sweeping brushstrokes and warm tones.",
+    story: "I painted this during a time of profound change in my life. Sitting by a bonfire one winter evening, I watched flames twist and reach upward—never the same shape twice, yet always fire. This piece channels that energy—the passion that consumes and creates simultaneously. Every brushstroke was spontaneous, urgent, alive. The warm oranges and deep crimsons represent transformation, while the darker undertones acknowledge that growth often comes from letting go.",
+    placement: "Makes a powerful statement in dining rooms, creative studios, or spaces meant for gathering and conversation.",
   },
   {
     id: 4,
@@ -50,10 +53,11 @@ const artworks = [
     collection: "Urban Stories",
     size: '30" x 40"',
     medium: "Oil on Canvas",
-    price: "₹1,20,000",
+    price: "₹10,000",
     available: false,
     image: paintingFeatured,
-    story: "A reflection on the changing seasons and the memories they evoke.",
+    story: "This painting came from a walk through Lodhi Garden in late November. The light was amber, leaves were falling, and I passed an elderly couple sitting on a bench, holding hands without speaking. That image stayed with me—how some moments are so full of meaning they don't need words. The warm, nostalgic tones reflect the bittersweet beauty of time passing, while the layered textures represent the accumulation of memories that make a place sacred.",
+    placement: "Beautiful in entryways, above fireplaces, or any space where you want to evoke warmth and nostalgia.",
   },
   {
     id: 5,
@@ -61,10 +65,11 @@ const artworks = [
     collection: "Urban Stories",
     size: '24" x 36"',
     medium: "Mixed Media",
-    price: "₹68,000",
+    price: "₹6,800",
     available: true,
     image: artwork1,
-    story: "Empty city streets at twilight, where shadows tell their own stories.",
+    story: "During the pandemic lockdowns, I stood on my balcony each evening watching streets that once teemed with life lie completely still. This piece captures that eerie, beautiful silence—the way empty spaces can feel both haunting and peaceful. I incorporated actual newspaper clippings and street textures into the canvas, grounding the abstraction in reality. It's a meditation on absence, on how we often only notice things when they're gone.",
+    placement: "Suits urban lofts, home offices, or corridors where contemplative pieces invite pause.",
   },
   {
     id: 6,
@@ -72,10 +77,11 @@ const artworks = [
     collection: "Architecture Inspired",
     size: '36" x 36"',
     medium: "Acrylic on Canvas",
-    price: "₹78,000",
+    price: "₹7,800",
     available: true,
     image: artwork2,
-    story: "The poetry found in brutalist architecture and its interplay with light.",
+    story: "Every architect dreams in concrete and light. This painting is my homage to those dreams—the blueprints that never got built, the sketches crumpled and discarded, the visions that exist only in imagination. The geometric forms float and intersect like thoughts in the early stages of design. Soft greys and unexpected pops of copper represent the raw potential of unfinished ideas, waiting to become spaces where life unfolds.",
+    placement: "Perfect for architect studios, minimalist living spaces, or above console tables in modern homes.",
   },
 ];
 
@@ -100,8 +106,10 @@ const Gallery = () => {
             <span className="block text-accent">& Limited Editions</span>
           </h1>
           <p className="text-lg text-muted-foreground font-sans leading-relaxed">
-            Each piece tells a story—of spaces, emotions, and the quiet moments 
-            that inspire creativity. Discover art that belongs in your home.
+            We don't just sell paintings—we sell stories. Each piece carries 
+            the emotions, memories, and moments that inspired its creation. 
+            When you bring one home, you're not just decorating a wall—you're 
+            adding a chapter to your space.
           </p>
         </div>
       </section>
@@ -167,30 +175,6 @@ const Gallery = () => {
         </div>
       </section>
 
-      {/* Commission Section */}
-      <section className="section-padding bg-secondary">
-        <div className="container-wide">
-          <div className="max-w-3xl mx-auto text-center">
-            <p className="text-xs uppercase tracking-[0.3em] text-accent font-sans mb-6">
-              Custom Art
-            </p>
-            <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl mb-6">
-              Commissioned Works
-            </h2>
-            <p className="text-muted-foreground font-sans text-lg leading-relaxed mb-10">
-              Looking for a piece created specifically for your space? 
-              I work closely with collectors to create custom paintings that 
-              reflect their vision and complement their interiors perfectly.
-            </p>
-            <Button variant="hero" size="lg" asChild>
-              <Link to="/contact">
-                Request Custom Painting
-                <ArrowRight size={16} />
-              </Link>
-            </Button>
-          </div>
-        </div>
-      </section>
 
       {/* Artwork Modal */}
       {selectedArtwork && (
@@ -244,12 +228,21 @@ const Gallery = () => {
                   </div>
                 </div>
 
-                <div className="mb-8">
-                  <h4 className="text-xs uppercase tracking-[0.2em] text-muted-foreground font-sans mb-3">
-                    The Story
+                <div className="mb-6">
+                  <h4 className="text-xs uppercase tracking-[0.2em] text-accent font-sans mb-3">
+                    The Story Behind This Piece
                   </h4>
-                  <p className="text-muted-foreground font-sans leading-relaxed">
+                  <p className="text-foreground/80 font-sans leading-relaxed text-sm">
                     {selectedArtwork.story}
+                  </p>
+                </div>
+
+                <div className="mb-8 p-4 bg-secondary rounded">
+                  <h4 className="text-xs uppercase tracking-[0.2em] text-muted-foreground font-sans mb-2">
+                    Where It Belongs
+                  </h4>
+                  <p className="text-muted-foreground font-sans leading-relaxed text-sm italic">
+                    {selectedArtwork.placement}
                   </p>
                 </div>
 
