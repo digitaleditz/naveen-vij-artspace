@@ -14,7 +14,207 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      artworks: {
+        Row: {
+          available: boolean
+          collection: string
+          created_at: string
+          design_inspiration: string | null
+          id: string
+          image_url: string | null
+          medium: string
+          mood: string | null
+          placement: string | null
+          price: number
+          size: string
+          story: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          available?: boolean
+          collection: string
+          created_at?: string
+          design_inspiration?: string | null
+          id?: string
+          image_url?: string | null
+          medium: string
+          mood?: string | null
+          placement?: string | null
+          price: number
+          size: string
+          story: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          available?: boolean
+          collection?: string
+          created_at?: string
+          design_inspiration?: string | null
+          id?: string
+          image_url?: string | null
+          medium?: string
+          mood?: string | null
+          placement?: string | null
+          price?: number
+          size?: string
+          story?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      inquiries: {
+        Row: {
+          artwork_id: string | null
+          created_at: string
+          email: string
+          id: string
+          inquiry_type: string
+          message: string
+          name: string
+          phone: string | null
+          user_id: string | null
+        }
+        Insert: {
+          artwork_id?: string | null
+          created_at?: string
+          email: string
+          id?: string
+          inquiry_type?: string
+          message: string
+          name: string
+          phone?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          artwork_id?: string | null
+          created_at?: string
+          email?: string
+          id?: string
+          inquiry_type?: string
+          message?: string
+          name?: string
+          phone?: string | null
+          user_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "inquiries_artwork_id_fkey"
+            columns: ["artwork_id"]
+            isOneToOne: false
+            referencedRelation: "artworks"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      orders: {
+        Row: {
+          artwork_id: string
+          created_at: string
+          id: string
+          notes: string | null
+          shipping_address: string | null
+          status: string
+          total_amount: number
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          artwork_id: string
+          created_at?: string
+          id?: string
+          notes?: string | null
+          shipping_address?: string | null
+          status?: string
+          total_amount: number
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          artwork_id?: string
+          created_at?: string
+          id?: string
+          notes?: string | null
+          shipping_address?: string | null
+          status?: string
+          total_amount?: number
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "orders_artwork_id_fkey"
+            columns: ["artwork_id"]
+            isOneToOne: false
+            referencedRelation: "artworks"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          avatar_url: string | null
+          city: string | null
+          created_at: string
+          full_name: string | null
+          id: string
+          phone: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          avatar_url?: string | null
+          city?: string | null
+          created_at?: string
+          full_name?: string | null
+          id?: string
+          phone?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          avatar_url?: string | null
+          city?: string | null
+          created_at?: string
+          full_name?: string | null
+          id?: string
+          phone?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      wishlists: {
+        Row: {
+          artwork_id: string
+          created_at: string
+          id: string
+          user_id: string
+        }
+        Insert: {
+          artwork_id: string
+          created_at?: string
+          id?: string
+          user_id: string
+        }
+        Update: {
+          artwork_id?: string
+          created_at?: string
+          id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "wishlists_artwork_id_fkey"
+            columns: ["artwork_id"]
+            isOneToOne: false
+            referencedRelation: "artworks"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
