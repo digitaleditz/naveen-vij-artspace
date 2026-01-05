@@ -8,6 +8,7 @@ import ScrollToTop from "./components/ScrollToTop";
 import Index from "./pages/Index";
 import Interiors from "./pages/Interiors";
 import Collection from "./pages/Collection";
+import ArtworkDetail from "./pages/ArtworkDetail";
 import About from "./pages/About";
 import Vision from "./pages/Vision";
 import Contact from "./pages/Contact";
@@ -29,6 +30,7 @@ const App = () => (
             <Route path="/" element={<Index />} />
             <Route path="/interiors" element={<Interiors />} />
             <Route path="/collection" element={<Collection />} />
+            <Route path="/artwork/:id" element={<ArtworkDetail />} />
             <Route path="/gallery" element={<Collection />} />
             <Route path="/about" element={<About />} />
             <Route path="/vision" element={<Vision />} />
