@@ -1,11 +1,9 @@
 import { useState } from "react";
 import { Layout } from "@/components/layout/Layout";
-import { Button } from "@/components/ui/button";
-import { Link, useNavigate } from "react-router-dom";
-import { ArrowRight, X, Heart } from "lucide-react";
-import { useArtworks, Artwork } from "@/hooks/useArtworks";
+import { Link } from "react-router-dom";
+import { Heart } from "lucide-react";
+import { useArtworks } from "@/hooks/useArtworks";
 import { useWishlist } from "@/hooks/useWishlist";
-import { useAuth } from "@/contexts/AuthContext";
 import artwork1 from "@/assets/artwork-1.jpg";
 import artwork2 from "@/assets/artwork-2.jpg";
 import artwork3 from "@/assets/artwork-3.jpg";
@@ -13,7 +11,6 @@ import paintingFeatured from "@/assets/painting-featured.jpg";
 
 const collections = ["All", "Architecture Inspired", "Urban Stories", "Calm Interiors", "Abstract Emotions"];
 
-// Fallback images for artworks
 const getArtworkImage = (imageUrl: string | null, index: number) => {
   if (imageUrl) {
     const images: Record<string, string> = {
@@ -30,11 +27,8 @@ const getArtworkImage = (imageUrl: string | null, index: number) => {
 
 const Collection = () => {
   const [activeCollection, setActiveCollection] = useState("All");
-  const [selectedArtwork, setSelectedArtwork] = useState<Artwork | null>(null);
   const { artworks, loading } = useArtworks();
   const { toggleWishlist, isInWishlist } = useWishlist();
-  const { user } = useAuth();
-  const navigate = useNavigate();
 
   const filteredArtworks = activeCollection === "All"
     ? artworks
@@ -43,35 +37,34 @@ const Collection = () => {
   return (
     <Layout>
       {/* Hero */}
-      <section className="pt-32 pb-16 container-wide">
-        <div className="max-w-3xl">
+      <section className="pt-32 pb-20 container-wide">
+        <div className="max-w-4xl">
           <p className="text-xs uppercase tracking-[0.3em] text-accent font-sans mb-6">
             The Collection
           </p>
-          <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl mb-6 leading-tight">
-            Visual Studies &
-            <span className="block text-accent">Architectural Emotions</span>
+          <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl xl:text-7xl mb-8 leading-[1.1]">
+            Visual Studies of
+            <span className="block text-accent">an Architect's Mind</span>
           </h1>
-          <p className="text-lg text-muted-foreground font-sans leading-relaxed">
+          <p className="text-lg md:text-xl text-muted-foreground font-sans leading-relaxed max-w-2xl">
             Each painting is a narrative of space—an exploration of light, form, 
-            and emotion that exists at the intersection of architecture and art. 
-            These are not merely decorative objects; they are stories waiting to 
-            find their home.
+            and emotion. These are not merely decorative objects; they are 
+            architectural emotions waiting to find their home.
           </p>
         </div>
       </section>
 
       {/* Filters */}
-      <section className="pb-8 container-wide">
+      <section className="pb-12 container-wide">
         <div className="flex flex-wrap gap-3">
           {collections.map((collection) => (
             <button
               key={collection}
               onClick={() => setActiveCollection(collection)}
-              className={`px-4 py-2 text-xs uppercase tracking-widest font-sans transition-all duration-300 ${
+              className={`px-5 py-2.5 text-xs uppercase tracking-[0.15em] font-sans transition-all duration-300 border ${
                 activeCollection === collection
-                  ? "bg-primary text-primary-foreground"
-                  : "bg-secondary text-secondary-foreground hover:bg-stone"
+                  ? "bg-charcoal text-cream border-charcoal"
+                  : "bg-transparent text-foreground border-border hover:border-accent hover:text-accent"
               }`}
             >
               {collection}
@@ -80,192 +73,100 @@ const Collection = () => {
         </div>
       </section>
 
-      {/* Gallery Grid */}
-      <section className="section-padding pt-8">
+      {/* Gallery Grid - Museum Style */}
+      <section className="pb-32">
         <div className="container-wide">
           {loading ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16">
               {[1, 2, 3, 4, 5, 6].map((i) => (
                 <div key={i} className="animate-pulse">
-                  <div className="aspect-[3/4] bg-secondary mb-4" />
-                  <div className="h-3 bg-secondary w-24 mb-2" />
-                  <div className="h-5 bg-secondary w-48 mb-1" />
+                  <div className="aspect-[3/4] bg-secondary mb-6" />
+                  <div className="h-3 bg-secondary w-24 mb-3" />
+                  <div className="h-6 bg-secondary w-48 mb-2" />
+                  <div className="h-4 bg-secondary w-full mb-4" />
                   <div className="h-4 bg-secondary w-20" />
                 </div>
               ))}
             </div>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16">
               {filteredArtworks.map((artwork, index) => (
-                <div
-                  key={artwork.id}
-                  className="group cursor-pointer"
-                  onClick={() => setSelectedArtwork(artwork)}
-                >
-                  <div className="aspect-[3/4] overflow-hidden image-reveal mb-4 bg-stone relative">
-                    <img
-                      src={getArtworkImage(artwork.image_url, index)}
-                      alt={artwork.title}
-                      className="w-full h-full object-cover"
-                    />
-                    {!artwork.available && (
-                      <div className="absolute top-4 left-4 bg-primary text-primary-foreground px-3 py-1 text-xs uppercase tracking-wider font-sans">
-                        Acquired
+                <article key={artwork.id} className="group">
+                  <Link to={`/artwork/${artwork.id}`} className="block">
+                    <div className="aspect-[3/4] overflow-hidden mb-6 bg-stone relative">
+                      <img
+                        src={getArtworkImage(artwork.image_url, index)}
+                        alt={artwork.title}
+                        className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                      />
+                      {!artwork.available && (
+                        <div className="absolute top-4 left-4 bg-charcoal text-cream px-3 py-1.5 text-xs uppercase tracking-wider font-sans">
+                          Acquired
+                        </div>
+                      )}
+                      {/* Hover Overlay */}
+                      <div className="absolute inset-0 bg-charcoal/0 group-hover:bg-charcoal/30 transition-all duration-500 flex items-center justify-center">
+                        <span className="text-cream text-xs uppercase tracking-[0.2em] font-sans opacity-0 group-hover:opacity-100 transition-opacity duration-500 border border-cream/50 px-6 py-3">
+                          Enter
+                        </span>
                       </div>
-                    )}
+                    </div>
+                  </Link>
+
+                  {/* Artwork Info */}
+                  <div className="relative">
                     <button
                       onClick={(e) => {
-                        e.stopPropagation();
+                        e.preventDefault();
                         toggleWishlist(artwork.id);
                       }}
-                      className="absolute top-4 right-4 p-2 bg-background/90 hover:bg-background transition-colors opacity-0 group-hover:opacity-100"
+                      className="absolute top-0 right-0 p-1 text-muted-foreground hover:text-accent transition-colors"
+                      aria-label={isInWishlist(artwork.id) ? "Remove from saved" : "Save artwork"}
                     >
                       <Heart
                         size={18}
-                        className={isInWishlist(artwork.id) ? "fill-accent text-accent" : "text-foreground"}
+                        className={isInWishlist(artwork.id) ? "fill-accent text-accent" : ""}
                       />
                     </button>
-                    <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/20 transition-all duration-500 flex items-center justify-center">
-                      <span className="text-primary-foreground text-xs uppercase tracking-widest font-sans opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                        View Story
-                      </span>
-                    </div>
+
+                    <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground font-sans mb-2">
+                      {artwork.collection}
+                    </p>
+                    <Link to={`/artwork/${artwork.id}`}>
+                      <h3 className="font-serif text-xl md:text-2xl group-hover:text-accent transition-colors mb-3 pr-8">
+                        {artwork.title}
+                      </h3>
+                    </Link>
+                    <p className="text-sm text-muted-foreground font-sans leading-relaxed mb-4 line-clamp-2">
+                      {artwork.story.split('.')[0]}.
+                    </p>
+                    <p className="font-sans text-accent tracking-wide">
+                      ₹{artwork.price.toLocaleString()}
+                    </p>
                   </div>
-                  <p className="text-xs uppercase tracking-[0.15em] text-muted-foreground font-sans mb-1">
-                    {artwork.collection}
-                  </p>
-                  <h3 className="font-serif text-xl group-hover:text-accent transition-colors mb-1">
-                    {artwork.title}
-                  </h3>
-                  <p className="text-sm font-sans text-accent">
-                    ₹{artwork.price.toLocaleString()}
-                  </p>
-                </div>
+                </article>
               ))}
             </div>
           )}
         </div>
       </section>
 
-      {/* Artwork Modal */}
-      {selectedArtwork && (
-        <div
-          className="fixed inset-0 z-50 bg-background/95 backdrop-blur-sm flex items-center justify-center p-4"
-          onClick={() => setSelectedArtwork(null)}
-        >
-          <div
-            className="bg-background max-w-5xl w-full max-h-[90vh] overflow-auto shadow-elevated"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="grid grid-cols-1 lg:grid-cols-2">
-              <div className="aspect-square lg:aspect-auto">
-                <img
-                  src={getArtworkImage(selectedArtwork.image_url, 0)}
-                  alt={selectedArtwork.title}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <div className="p-8 lg:p-12 relative">
-                <button
-                  onClick={() => setSelectedArtwork(null)}
-                  className="absolute top-4 right-4 text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  <X size={24} />
-                </button>
-
-                <p className="text-xs uppercase tracking-[0.2em] text-accent font-sans mb-4">
-                  {selectedArtwork.collection}
-                </p>
-                <h3 className="font-serif text-3xl mb-6">{selectedArtwork.title}</h3>
-                
-                <div className="space-y-4 mb-8 pb-8 border-b border-border">
-                  <div className="flex justify-between text-sm font-sans">
-                    <span className="text-muted-foreground">Size</span>
-                    <span>{selectedArtwork.size}</span>
-                  </div>
-                  <div className="flex justify-between text-sm font-sans">
-                    <span className="text-muted-foreground">Medium</span>
-                    <span>{selectedArtwork.medium}</span>
-                  </div>
-                  {selectedArtwork.mood && (
-                    <div className="flex justify-between text-sm font-sans">
-                      <span className="text-muted-foreground">Mood</span>
-                      <span>{selectedArtwork.mood}</span>
-                    </div>
-                  )}
-                  <div className="flex justify-between text-sm font-sans">
-                    <span className="text-muted-foreground">Status</span>
-                    <span className={selectedArtwork.available ? "text-green-600" : "text-muted-foreground"}>
-                      {selectedArtwork.available ? "Available" : "Acquired"}
-                    </span>
-                  </div>
-                </div>
-
-                <div className="mb-6">
-                  <h4 className="text-xs uppercase tracking-[0.2em] text-accent font-sans mb-3">
-                    The Story Behind This Vision
-                  </h4>
-                  <p className="text-foreground/80 font-sans leading-relaxed text-sm">
-                    {selectedArtwork.story}
-                  </p>
-                </div>
-
-                {selectedArtwork.design_inspiration && (
-                  <div className="mb-6 p-4 bg-cream border-l-2 border-accent">
-                    <h4 className="text-xs uppercase tracking-[0.2em] text-accent font-sans mb-2">
-                      Design Inspiration
-                    </h4>
-                    <p className="text-foreground/80 font-sans leading-relaxed text-sm italic">
-                      {selectedArtwork.design_inspiration}
-                    </p>
-                  </div>
-                )}
-
-                {selectedArtwork.placement && (
-                  <div className="mb-8 p-4 bg-secondary rounded">
-                    <h4 className="text-xs uppercase tracking-[0.2em] text-muted-foreground font-sans mb-2">
-                      Where It Belongs
-                    </h4>
-                    <p className="text-muted-foreground font-sans leading-relaxed text-sm italic">
-                      {selectedArtwork.placement}
-                    </p>
-                  </div>
-                )}
-
-                <div className="space-y-3">
-                  {selectedArtwork.available && (
-                    <>
-                      <div className="flex items-center justify-between mb-4">
-                        <span className="font-serif text-2xl text-accent">
-                          ₹{selectedArtwork.price.toLocaleString()}
-                        </span>
-                        <button
-                          onClick={() => toggleWishlist(selectedArtwork.id)}
-                          className="p-2 border border-border hover:border-accent transition-colors"
-                        >
-                          <Heart
-                            size={20}
-                            className={isInWishlist(selectedArtwork.id) ? "fill-accent text-accent" : "text-foreground"}
-                          />
-                        </button>
-                      </div>
-                      <Button variant="hero" size="lg" className="w-full" asChild>
-                        <Link to={`/contact?artwork=${encodeURIComponent(selectedArtwork.title)}`}>
-                          Acquire This Vision
-                          <ArrowRight size={16} />
-                        </Link>
-                      </Button>
-                      <p className="text-center text-xs text-muted-foreground font-sans">
-                        Request this work through our concierge service
-                      </p>
-                    </>
-                  )}
-                </div>
-              </div>
-            </div>
+      {/* Collection Philosophy */}
+      <section className="bg-cream section-padding">
+        <div className="container-wide">
+          <div className="max-w-3xl mx-auto text-center">
+            <p className="text-xs uppercase tracking-[0.3em] text-accent font-sans mb-6">
+              A Note on Collecting
+            </p>
+            <p className="font-serif text-2xl md:text-3xl leading-relaxed mb-8">
+              "Each painting carries within it the memory of spaces I've designed 
+              and dreams I've yet to build. When you acquire a work, you become 
+              part of that ongoing conversation between imagination and reality."
+            </p>
+            <p className="text-muted-foreground font-sans">— Naveen Vij</p>
           </div>
         </div>
-      )}
+      </section>
     </Layout>
   );
 };
