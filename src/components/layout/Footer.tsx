@@ -3,28 +3,31 @@ import { Instagram, Mail, Phone } from "lucide-react";
 
 export const Footer = () => {
   return (
-    <footer className="bg-charcoal text-cream">
+    <footer className="bg-charcoal text-cream relative overflow-hidden">
+      {/* Decorative accent line */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/50 to-transparent" />
+      
       <div className="container-wide section-padding">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-16 md:gap-12">
           {/* Brand */}
           <div className="md:col-span-2">
-            <h3 className="font-serif text-2xl mb-4">Naveen Vij</h3>
-            <p className="text-cream/60 font-sans text-sm leading-relaxed max-w-md mb-6">
+            <h3 className="font-serif text-3xl mb-6">Naveen Vij</h3>
+            <p className="text-cream/50 font-sans leading-relaxed max-w-md mb-8">
               Architect & Visual Storyteller — Creating spaces that speak 
               and paintings that inhabit. Where architecture meets art, 
               vision becomes tangible.
             </p>
-            <p className="text-xs uppercase tracking-[0.2em] text-cream/40 font-sans">
+            <p className="text-[10px] uppercase tracking-[0.3em] text-cream/30 font-sans">
               New Delhi, India
             </p>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-xs uppercase tracking-[0.2em] font-sans mb-6 text-cream/40">
+            <h4 className="text-[10px] uppercase tracking-[0.3em] font-sans mb-8 text-cream/40">
               Explore
             </h4>
-            <ul className="space-y-3">
+            <ul className="space-y-4">
               {[
                 { name: "The Architect", path: "/about" },
                 { name: "The Vision", path: "/vision" },
@@ -35,9 +38,10 @@ export const Footer = () => {
                 <li key={link.path}>
                   <Link
                     to={link.path}
-                    className="text-sm font-sans text-cream/60 hover:text-cream transition-colors"
+                    className="text-sm font-sans text-cream/50 hover:text-cream transition-colors duration-300 relative group"
                   >
                     {link.name}
+                    <span className="absolute -bottom-1 left-0 w-0 h-px bg-gold group-hover:w-full transition-all duration-300" />
                   </Link>
                 </li>
               ))}
@@ -46,25 +50,25 @@ export const Footer = () => {
 
           {/* Contact */}
           <div>
-            <h4 className="text-xs uppercase tracking-[0.2em] font-sans mb-6 text-cream/40">
+            <h4 className="text-[10px] uppercase tracking-[0.3em] font-sans mb-8 text-cream/40">
               Connect
             </h4>
-            <ul className="space-y-4">
+            <ul className="space-y-5">
               <li>
                 <a
                   href="mailto:hello@naveenvij.com"
-                  className="flex items-center gap-3 text-sm font-sans text-cream/60 hover:text-cream transition-colors"
+                  className="flex items-center gap-4 text-sm font-sans text-cream/50 hover:text-cream transition-colors group"
                 >
-                  <Mail size={16} />
+                  <Mail size={16} className="text-gold/70 group-hover:text-gold transition-colors" />
                   hello@naveenvij.com
                 </a>
               </li>
               <li>
                 <a
                   href="tel:+919876543210"
-                  className="flex items-center gap-3 text-sm font-sans text-cream/60 hover:text-cream transition-colors"
+                  className="flex items-center gap-4 text-sm font-sans text-cream/50 hover:text-cream transition-colors group"
                 >
-                  <Phone size={16} />
+                  <Phone size={16} className="text-gold/70 group-hover:text-gold transition-colors" />
                   +91 98765 43210
                 </a>
               </li>
@@ -73,9 +77,9 @@ export const Footer = () => {
                   href="https://instagram.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-3 text-sm font-sans text-cream/60 hover:text-cream transition-colors"
+                  className="flex items-center gap-4 text-sm font-sans text-cream/50 hover:text-cream transition-colors group"
                 >
-                  <Instagram size={16} />
+                  <Instagram size={16} className="text-gold/70 group-hover:text-gold transition-colors" />
                   @naveenvij.studio
                 </a>
               </li>
@@ -84,11 +88,11 @@ export const Footer = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="mt-16 pt-8 border-t border-cream/10 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-xs font-sans text-cream/40">
+        <div className="mt-20 pt-10 border-t border-cream/10 flex flex-col md:flex-row justify-between items-center gap-6">
+          <p className="text-xs font-sans text-cream/30">
             © {new Date().getFullYear()} Naveen Vij. All rights reserved.
           </p>
-          <p className="text-xs font-sans text-cream/40 italic">
+          <p className="text-xs font-sans text-cream/30 italic">
             "Architecture is frozen music; painting is its melody."
           </p>
         </div>

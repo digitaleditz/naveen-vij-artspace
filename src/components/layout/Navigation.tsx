@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { Menu, X, User } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useAuth } from "@/contexts/AuthContext";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 const navLinks = [
   { name: "Home", path: "/" },
@@ -30,61 +31,105 @@ export const Navigation = () => {
   return (
     <header className={cn(
       "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
-      isScrolled ? "bg-background/95 backdrop-blur-md shadow-soft py-4" : "bg-transparent py-6"
+      isScrolled 
+        ? "bg-background/95 backdrop-blur-md shadow-soft py-4" 
+        : "bg-transparent py-6"
     )}>
       <nav className="container-wide flex items-center justify-between">
-        <Link to="/" className="group">
+        {/* Logo */}
+        <Link to="/" className="group relative">
           <span className="font-serif text-xl md:text-2xl tracking-wide text-foreground">
             Naveen <span className="text-accent">Vij</span>
           </span>
+          <span className="absolute -bottom-1 left-0 w-0 h-px bg-accent transition-all duration-500 group-hover:w-full" />
         </Link>
 
-        <div className="hidden md:flex items-center gap-8">
+        {/* Desktop Nav */}
+        <div className="hidden lg:flex items-center gap-10">
           <ul className="flex items-center gap-8">
             {navLinks.map((link) => (
               <li key={link.path}>
                 <Link
                   to={link.path}
                   className={cn(
-                    "text-xs uppercase tracking-widest font-sans transition-all duration-300 line-animate pb-1",
-                    location.pathname === link.path ? "text-accent" : "text-foreground hover:text-accent"
+                    "text-[11px] uppercase tracking-[0.2em] font-sans transition-all duration-300 relative py-2",
+                    location.pathname === link.path 
+                      ? "text-accent" 
+                      : "text-foreground/80 hover:text-foreground"
                   )}
                 >
                   {link.name}
+                  <span className={cn(
+                    "absolute -bottom-0.5 left-0 h-px bg-accent transition-all duration-500",
+                    location.pathname === link.path ? "w-full" : "w-0 group-hover:w-full"
+                  )} />
                 </Link>
               </li>
             ))}
           </ul>
-          <Link
-            to={user ? "/profile" : "/auth"}
-            className="p-2 hover:text-accent transition-colors"
-          >
-            <User size={20} />
-          </Link>
+          
+          <div className="flex items-center gap-4 pl-4 border-l border-border">
+            <ThemeToggle />
+            <Link
+              to={user ? "/profile" : "/auth"}
+              className="p-2.5 hover:text-accent transition-colors rounded-full hover:bg-secondary"
+            >
+              <User size={18} />
+            </Link>
+          </div>
         </div>
 
-        <button
-          onClick={() => setIsOpen(!isOpen)}
-          className="md:hidden p-2 text-foreground hover:text-accent transition-colors"
-        >
-          {isOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
+        {/* Mobile Controls */}
+        <div className="flex lg:hidden items-center gap-3">
+          <ThemeToggle />
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="p-2 text-foreground hover:text-accent transition-colors"
+          >
+            {isOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
       </nav>
 
+      {/* Mobile Menu */}
       <div className={cn(
-        "md:hidden fixed inset-0 top-[72px] bg-background/98 backdrop-blur-lg transition-all duration-500",
+        "lg:hidden fixed inset-0 top-[72px] bg-background/98 backdrop-blur-lg transition-all duration-500",
         isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
       )}>
         <ul className="flex flex-col items-center justify-center h-full gap-8">
           {navLinks.map((link, index) => (
-            <li key={link.path} className={cn("transform transition-all duration-500", isOpen ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0")} style={{ transitionDelay: `${index * 100}ms` }}>
-              <Link to={link.path} className={cn("font-serif text-3xl tracking-wide transition-colors", location.pathname === link.path ? "text-accent" : "text-foreground hover:text-accent")}>
+            <li 
+              key={link.path} 
+              className={cn(
+                "transform transition-all duration-500",
+                isOpen ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
+              )} 
+              style={{ transitionDelay: `${index * 100}ms` }}
+            >
+              <Link 
+                to={link.path} 
+                className={cn(
+                  "font-serif text-3xl tracking-wide transition-colors",
+                  location.pathname === link.path 
+                    ? "text-accent" 
+                    : "text-foreground hover:text-accent"
+                )}
+              >
                 {link.name}
               </Link>
             </li>
           ))}
-          <li>
-            <Link to={user ? "/profile" : "/auth"} className="font-serif text-3xl tracking-wide text-foreground hover:text-accent">
+          <li 
+            className={cn(
+              "transform transition-all duration-500 pt-4 border-t border-border",
+              isOpen ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
+            )}
+            style={{ transitionDelay: `${navLinks.length * 100}ms` }}
+          >
+            <Link 
+              to={user ? "/profile" : "/auth"} 
+              className="font-serif text-2xl tracking-wide text-foreground hover:text-accent"
+            >
               {user ? "Profile" : "Sign In"}
             </Link>
           </li>

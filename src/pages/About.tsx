@@ -18,49 +18,59 @@ const About = () => {
   return (
     <Layout>
       {/* Hero */}
-      <section className="pt-32 pb-20 container-wide">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+      <section className="pt-40 pb-24 container-wide">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
           <div>
-            <p className="text-xs uppercase tracking-[0.3em] text-accent font-sans mb-6">
-              About the Artist
-            </p>
-            <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl mb-8 leading-tight">
+            <div className="inline-block mb-8">
+              <p className="text-[10px] uppercase tracking-[0.4em] text-accent font-sans">
+                About the Artist
+              </p>
+              <div className="section-divider mt-4 mx-0" />
+            </div>
+            <h1 className="font-serif text-5xl md:text-6xl lg:text-7xl mb-8 leading-[1.1]">
               Naveen Vij
             </h1>
-            <p className="text-xl text-muted-foreground font-sans leading-relaxed mb-6">
+            <p className="text-xl text-muted-foreground font-sans leading-relaxed mb-6 font-light">
               Architect. Interior Designer. Artist.
             </p>
-            <p className="text-muted-foreground font-sans leading-relaxed">
+            <p className="text-muted-foreground font-sans leading-relaxed text-lg">
               With over 25 years of experience shaping spaces and creating art, 
               Naveen Vij has developed a unique practice that bridges the worlds 
               of architecture, interior design, and fine art.
             </p>
           </div>
-          <div className="aspect-[4/5] overflow-hidden image-reveal">
-            <img
-              src={naveenPortrait}
-              alt="Naveen Vij"
-              className="w-full h-full object-cover"
-            />
+          <div className="relative">
+            <div className="aspect-[4/5] overflow-hidden image-reveal">
+              <img
+                src={naveenPortrait}
+                alt="Naveen Vij"
+                className="w-full h-full object-cover"
+              />
+            </div>
+            {/* Decorative frame */}
+            <div className="absolute -bottom-6 -right-6 w-full h-full border border-accent/20 -z-10" />
           </div>
         </div>
       </section>
 
       {/* Philosophy */}
-      <section className="section-padding bg-secondary">
+      <section className="section-padding bg-secondary/50">
         <div className="container-wide">
-          <div className="max-w-4xl mx-auto">
-            <p className="text-xs uppercase tracking-[0.3em] text-accent font-sans mb-6 text-center">
-              Philosophy
-            </p>
-            <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl mb-12 text-center">
-              Where Space Becomes Story
-            </h2>
+          <div className="max-w-5xl mx-auto">
+            <div className="text-center mb-16">
+              <p className="text-[10px] uppercase tracking-[0.4em] text-accent font-sans mb-4">
+                Philosophy
+              </p>
+              <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl mb-4">
+                Where Space Becomes Story
+              </h2>
+              <div className="section-divider mt-8" />
+            </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-              <div>
-                <h3 className="font-serif text-xl mb-4 text-accent">On Design</h3>
-                <p className="text-muted-foreground font-sans leading-relaxed">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
+              <div className="premium-card p-10">
+                <h3 className="font-serif text-2xl mb-6 text-accent">On Design</h3>
+                <p className="text-muted-foreground font-sans leading-relaxed text-lg italic">
                   "Every space has a soul waiting to be discovered. My role as a 
                   designer is not to impose a style, but to listen deeply—to the 
                   architecture, to the light, to the people who will inhabit it—
@@ -68,9 +78,9 @@ const About = () => {
                   could never have been any other way."
                 </p>
               </div>
-              <div>
-                <h3 className="font-serif text-xl mb-4 text-accent">On Art</h3>
-                <p className="text-muted-foreground font-sans leading-relaxed">
+              <div className="premium-card p-10">
+                <h3 className="font-serif text-2xl mb-6 text-accent">On Art</h3>
+                <p className="text-muted-foreground font-sans leading-relaxed text-lg italic">
                   "My paintings are extensions of my architectural thinking. They 
                   explore the same themes—light, form, negative space, emotion—but 
                   freed from the constraints of function. Art allows me to express 
@@ -86,17 +96,20 @@ const About = () => {
       {/* Bio */}
       <section className="section-padding">
         <div className="container-wide">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
-            <div className="aspect-[4/3] overflow-hidden image-reveal">
-              <img
-                src={heroInterior}
-                alt="Interior by Naveen Vij"
-                className="w-full h-full object-cover"
-              />
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
+            <div className="relative">
+              <div className="aspect-[4/3] overflow-hidden image-reveal">
+                <img
+                  src={heroInterior}
+                  alt="Interior by Naveen Vij"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="absolute -top-6 -left-6 w-full h-full border border-accent/20 -z-10" />
             </div>
-            <div>
-              <h2 className="font-serif text-3xl md:text-4xl mb-8">The Journey</h2>
-              <div className="space-y-6 text-muted-foreground font-sans leading-relaxed">
+            <div className="flex flex-col justify-center">
+              <h2 className="font-serif text-4xl md:text-5xl mb-10">The Journey</h2>
+              <div className="space-y-8 text-muted-foreground font-sans leading-relaxed text-lg">
                 <p>
                   Born and raised in Delhi, Naveen developed an early fascination with 
                   both the built environment and visual art. His architect father and 
@@ -125,35 +138,41 @@ const About = () => {
       {/* Timeline */}
       <section className="section-padding bg-cream">
         <div className="container-wide">
-          <div className="text-center mb-16">
-            <p className="text-xs uppercase tracking-[0.3em] text-accent font-sans mb-4">
+          <div className="text-center mb-20">
+            <p className="text-[10px] uppercase tracking-[0.4em] text-accent font-sans mb-4">
               Career
             </p>
-            <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl">
+            <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl">
               Milestones
             </h2>
+            <div className="section-divider mt-8" />
           </div>
 
-          <div className="max-w-3xl mx-auto">
+          <div className="max-w-4xl mx-auto">
             {milestones.map((milestone, index) => (
               <div
                 key={milestone.year}
-                className="flex gap-8 pb-12 relative"
+                className="flex gap-12 pb-16 relative group"
               >
                 {/* Line */}
                 {index < milestones.length - 1 && (
-                  <div className="absolute left-[60px] top-8 bottom-0 w-px bg-border" />
+                  <div className="absolute left-[80px] top-10 bottom-0 w-px bg-gradient-to-b from-accent/50 to-border" />
                 )}
                 
                 {/* Year */}
-                <div className="w-[120px] flex-shrink-0 text-right">
-                  <span className="font-serif text-xl text-accent">{milestone.year}</span>
+                <div className="w-[160px] flex-shrink-0 text-right">
+                  <span className="font-serif text-2xl text-accent group-hover:text-gold transition-colors">
+                    {milestone.year}
+                  </span>
                 </div>
                 
+                {/* Dot */}
+                <div className="absolute left-[77px] top-2 w-2 h-2 rounded-full bg-accent group-hover:scale-150 transition-transform" />
+                
                 {/* Content */}
-                <div>
-                  <h3 className="font-serif text-lg mb-2">{milestone.title}</h3>
-                  <p className="text-muted-foreground font-sans text-sm">
+                <div className="pt-0.5">
+                  <h3 className="font-serif text-xl mb-3">{milestone.title}</h3>
+                  <p className="text-muted-foreground font-sans">
                     {milestone.description}
                   </p>
                 </div>
@@ -164,23 +183,25 @@ const About = () => {
       </section>
 
       {/* CTA */}
-      <section className="section-padding bg-primary text-primary-foreground">
-        <div className="container-wide text-center">
-          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl mb-8">
+      <section className="section-padding bg-primary text-primary-foreground relative overflow-hidden">
+        {/* Decorative elements */}
+        <div className="absolute top-0 left-0 w-96 h-96 bg-accent/5 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 right-0 w-96 h-96 bg-accent/5 rounded-full blur-3xl" />
+        
+        <div className="container-wide text-center relative z-10">
+          <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl mb-8">
             Let's Create Something Beautiful
           </h2>
-          <p className="text-primary-foreground/70 font-sans text-lg mb-10 max-w-2xl mx-auto">
+          <p className="text-primary-foreground/60 font-sans text-lg mb-12 max-w-2xl mx-auto leading-relaxed">
             Whether you're envisioning a new interior or seeking a meaningful piece of art, 
             I'd love to hear your story.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button variant="gold" size="xl" asChild>
-              <Link to="/contact">
-                Get in Touch
-                <ArrowRight size={16} />
-              </Link>
-            </Button>
-          </div>
+          <Button variant="gold" size="xl" asChild>
+            <Link to="/contact">
+              Get in Touch
+              <ArrowRight size={16} />
+            </Link>
+          </Button>
         </div>
       </section>
     </Layout>
