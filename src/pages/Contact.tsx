@@ -28,16 +28,19 @@ const Contact = () => {
   return (
     <Layout>
       {/* Hero */}
-      <section className="pt-32 pb-16 container-wide">
-        <div className="max-w-3xl">
-          <p className="text-xs uppercase tracking-[0.3em] text-accent font-sans mb-6">
-            Get in Touch
-          </p>
-          <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl mb-6 leading-tight">
+      <section className="pt-40 pb-16 container-wide">
+        <div className="max-w-4xl">
+          <div className="inline-block mb-8">
+            <p className="text-[10px] uppercase tracking-[0.4em] text-accent font-sans">
+              Get in Touch
+            </p>
+            <div className="section-divider mt-4 mx-0" />
+          </div>
+          <h1 className="font-serif text-5xl md:text-6xl lg:text-7xl mb-8 leading-[1.1]">
             Let's Start a
-            <span className="block text-accent">Conversation</span>
+            <span className="block text-accent mt-2">Conversation</span>
           </h1>
-          <p className="text-lg text-muted-foreground font-sans leading-relaxed">
+          <p className="text-xl text-muted-foreground font-sans leading-relaxed font-light">
             Whether you're dreaming of a new interior, searching for the perfect artwork, 
             or simply want to connect—I'd love to hear from you.
           </p>
@@ -47,26 +50,26 @@ const Contact = () => {
       {/* Contact Section */}
       <section className="section-padding pt-8">
         <div className="container-wide">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 lg:gap-32">
             {/* Form */}
             <div>
-              <h2 className="font-serif text-2xl mb-8">Send a Message</h2>
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <h2 className="font-serif text-3xl mb-10">Send a Message</h2>
+              <form onSubmit={handleSubmit} className="space-y-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <div>
-                    <label className="text-xs uppercase tracking-widest font-sans text-muted-foreground mb-2 block">
+                    <label className="text-[10px] uppercase tracking-[0.3em] font-sans text-muted-foreground mb-3 block">
                       Name *
                     </label>
                     <Input
                       required
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="bg-transparent border-border focus:border-accent rounded-none h-12"
+                      className="bg-transparent border-border focus:border-accent rounded-none h-14 text-base"
                       placeholder="Your name"
                     />
                   </div>
                   <div>
-                    <label className="text-xs uppercase tracking-widest font-sans text-muted-foreground mb-2 block">
+                    <label className="text-[10px] uppercase tracking-[0.3em] font-sans text-muted-foreground mb-3 block">
                       Email *
                     </label>
                     <Input
@@ -74,51 +77,51 @@ const Contact = () => {
                       required
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="bg-transparent border-border focus:border-accent rounded-none h-12"
+                      className="bg-transparent border-border focus:border-accent rounded-none h-14 text-base"
                       placeholder="your@email.com"
                     />
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <div>
-                    <label className="text-xs uppercase tracking-widest font-sans text-muted-foreground mb-2 block">
+                    <label className="text-[10px] uppercase tracking-[0.3em] font-sans text-muted-foreground mb-3 block">
                       Phone
                     </label>
                     <Input
                       type="tel"
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      className="bg-transparent border-border focus:border-accent rounded-none h-12"
+                      className="bg-transparent border-border focus:border-accent rounded-none h-14 text-base"
                       placeholder="+91 98765 43210"
                     />
                   </div>
                   <div>
-                    <label className="text-xs uppercase tracking-widest font-sans text-muted-foreground mb-2 block">
+                    <label className="text-[10px] uppercase tracking-[0.3em] font-sans text-muted-foreground mb-3 block">
                       I'm Interested In
                     </label>
                     <select
                       value={formData.interest}
                       onChange={(e) => setFormData({ ...formData, interest: e.target.value })}
-                      className="w-full h-12 px-3 bg-transparent border border-border focus:border-accent outline-none font-sans text-sm"
+                      className="w-full h-14 px-4 bg-transparent border border-border focus:border-accent outline-none font-sans text-base transition-colors"
                     >
                       <option value="interior">Interior Design</option>
-                      <option value="art">Purchasing Artwork</option>
-                      <option value="commission">Custom Commission</option>
+                      <option value="art">Acquiring Artwork</option>
+                      <option value="collaboration">Collaboration</option>
                       <option value="other">Something Else</option>
                     </select>
                   </div>
                 </div>
 
                 <div>
-                  <label className="text-xs uppercase tracking-widest font-sans text-muted-foreground mb-2 block">
+                  <label className="text-[10px] uppercase tracking-[0.3em] font-sans text-muted-foreground mb-3 block">
                     Message *
                   </label>
                   <Textarea
                     required
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    className="bg-transparent border-border focus:border-accent rounded-none min-h-[160px] resize-none"
+                    className="bg-transparent border-border focus:border-accent rounded-none min-h-[180px] resize-none text-base"
                     placeholder="Tell me about your project or what you're looking for..."
                   />
                 </div>
@@ -131,86 +134,60 @@ const Contact = () => {
 
             {/* Contact Info */}
             <div>
-              <h2 className="font-serif text-2xl mb-8">Contact Information</h2>
+              <h2 className="font-serif text-3xl mb-10">Contact Information</h2>
               
-              <div className="space-y-8 mb-12">
-                <div className="flex gap-4">
-                  <div className="w-12 h-12 bg-secondary flex items-center justify-center flex-shrink-0">
-                    <Mail size={20} className="text-accent" />
+              <div className="space-y-10 mb-16">
+                {[
+                  { icon: Mail, label: "Email", value: "hello@naveenvij.com", href: "mailto:hello@naveenvij.com" },
+                  { icon: Phone, label: "Phone", value: "+91 98765 43210", href: "tel:+919876543210" },
+                  { icon: MapPin, label: "Studio", value: "Bandra West, Mumbai\nMaharashtra, India", href: null },
+                  { icon: Instagram, label: "Instagram", value: "@naveenvij.studio", href: "https://instagram.com" },
+                ].map((item) => (
+                  <div key={item.label} className="flex gap-6 group">
+                    <div className="w-14 h-14 bg-secondary border border-border flex items-center justify-center flex-shrink-0 group-hover:border-accent transition-colors">
+                      <item.icon size={20} className="text-accent" />
+                    </div>
+                    <div>
+                      <h3 className="font-sans text-[10px] uppercase tracking-[0.3em] text-muted-foreground mb-2">
+                        {item.label}
+                      </h3>
+                      {item.href ? (
+                        <a
+                          href={item.href}
+                          target={item.href.startsWith("http") ? "_blank" : undefined}
+                          rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                          className="font-sans text-lg hover:text-accent transition-colors whitespace-pre-line"
+                        >
+                          {item.value}
+                        </a>
+                      ) : (
+                        <p className="font-sans text-lg whitespace-pre-line">
+                          {item.value}
+                        </p>
+                      )}
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="font-sans text-xs uppercase tracking-widest text-muted-foreground mb-1">
-                      Email
-                    </h3>
-                    <a
-                      href="mailto:hello@naveenvij.com"
-                      className="font-sans text-lg hover:text-accent transition-colors"
-                    >
-                      hello@naveenvij.com
-                    </a>
-                  </div>
-                </div>
-
-                <div className="flex gap-4">
-                  <div className="w-12 h-12 bg-secondary flex items-center justify-center flex-shrink-0">
-                    <Phone size={20} className="text-accent" />
-                  </div>
-                  <div>
-                    <h3 className="font-sans text-xs uppercase tracking-widest text-muted-foreground mb-1">
-                      Phone
-                    </h3>
-                    <a
-                      href="tel:+919876543210"
-                      className="font-sans text-lg hover:text-accent transition-colors"
-                    >
-                      +91 98765 43210
-                    </a>
-                  </div>
-                </div>
-
-                <div className="flex gap-4">
-                  <div className="w-12 h-12 bg-secondary flex items-center justify-center flex-shrink-0">
-                    <MapPin size={20} className="text-accent" />
-                  </div>
-                  <div>
-                    <h3 className="font-sans text-xs uppercase tracking-widest text-muted-foreground mb-1">
-                      Studio
-                    </h3>
-                    <p className="font-sans text-lg">
-                      Bandra West, Mumbai<br />
-                      Maharashtra, India
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex gap-4">
-                  <div className="w-12 h-12 bg-secondary flex items-center justify-center flex-shrink-0">
-                    <Instagram size={20} className="text-accent" />
-                  </div>
-                  <div>
-                    <h3 className="font-sans text-xs uppercase tracking-widest text-muted-foreground mb-1">
-                      Instagram
-                    </h3>
-                    <a
-                      href="https://instagram.com"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="font-sans text-lg hover:text-accent transition-colors"
-                    >
-                      @naveenvij.studio
-                    </a>
-                  </div>
-                </div>
+                ))}
               </div>
 
-              <div className="p-8 bg-secondary">
-                <h3 className="font-serif text-xl mb-4">Studio Hours</h3>
-                <p className="text-muted-foreground font-sans text-sm leading-relaxed">
-                  Monday – Friday: 10:00 AM – 6:00 PM<br />
-                  Saturday: By Appointment<br />
-                  Sunday: Closed
-                </p>
-                <p className="text-muted-foreground font-sans text-sm mt-4">
+              <div className="premium-card p-10">
+                <h3 className="font-serif text-2xl mb-6">Studio Hours</h3>
+                <div className="space-y-2 text-muted-foreground font-sans leading-relaxed">
+                  <p className="flex justify-between">
+                    <span>Monday – Friday</span>
+                    <span>10:00 AM – 6:00 PM</span>
+                  </p>
+                  <p className="flex justify-between">
+                    <span>Saturday</span>
+                    <span>By Appointment</span>
+                  </p>
+                  <p className="flex justify-between">
+                    <span>Sunday</span>
+                    <span>Closed</span>
+                  </p>
+                </div>
+                <div className="section-divider my-6" />
+                <p className="text-muted-foreground font-sans text-sm italic">
                   Studio visits are welcome by prior appointment.
                 </p>
               </div>

@@ -33,16 +33,19 @@ export const FeaturedProjects = () => {
   return (
     <section className="section-padding">
       <div className="container-wide">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-20">
           <div>
-            <p className="text-xs uppercase tracking-[0.3em] text-accent font-sans mb-4">
-              Interior Design
-            </p>
-            <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl">
+            <div className="inline-block mb-6">
+              <p className="text-[10px] uppercase tracking-[0.4em] text-accent font-sans">
+                Interior Design
+              </p>
+              <div className="section-divider mt-4 mx-0" />
+            </div>
+            <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl">
               Featured Projects
             </h2>
           </div>
-          <Button variant="minimal" asChild>
+          <Button variant="minimal" asChild className="self-start md:self-auto">
             <Link to="/interiors">
               View All Projects
               <ArrowRight size={14} />
@@ -50,7 +53,7 @@ export const FeaturedProjects = () => {
           </Button>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10">
           {projects.map((project, index) => (
             <Link
               key={project.id}
@@ -58,18 +61,19 @@ export const FeaturedProjects = () => {
               className="group"
               style={{ animationDelay: `${index * 100}ms` }}
             >
-              <div className="aspect-[4/5] overflow-hidden image-reveal mb-6">
+              <div className="aspect-[4/5] overflow-hidden image-reveal mb-8 relative">
                 <img
                   src={project.image}
                   alt={project.title}
                   className="w-full h-full object-cover"
                 />
+                <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/10 transition-all duration-500" />
               </div>
               <div>
-                <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground font-sans mb-2">
+                <p className="text-[10px] uppercase tracking-[0.25em] text-muted-foreground font-sans mb-3">
                   {project.type} • {project.location}
                 </p>
-                <h3 className="font-serif text-xl md:text-2xl group-hover:text-accent transition-colors">
+                <h3 className="font-serif text-2xl md:text-3xl group-hover:text-accent transition-colors">
                   {project.title}
                 </h3>
               </div>
