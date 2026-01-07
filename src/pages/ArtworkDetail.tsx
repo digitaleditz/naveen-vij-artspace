@@ -1,10 +1,11 @@
-import { useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { Layout } from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Heart, MessageCircle, Play } from "lucide-react";
+import { ArrowLeft, Heart, MessageCircle, Play, ShoppingBag } from "lucide-react";
 import { useArtworks } from "@/hooks/useArtworks";
 import { useWishlist } from "@/hooks/useWishlist";
+import { useCart } from "@/contexts/CartContext";
+import { useToast } from "@/hooks/use-toast";
 import artwork1 from "@/assets/artwork-1.jpg";
 import artwork2 from "@/assets/artwork-2.jpg";
 import artwork3 from "@/assets/artwork-3.jpg";
@@ -29,8 +30,20 @@ const ArtworkDetail = () => {
   const { id } = useParams();
   const { artworks, loading } = useArtworks();
   const { toggleWishlist, isInWishlist } = useWishlist();
+  const { addToCart, isInCart } = useCart();
+  const { toast } = useToast();
 
   const artwork = artworks.find((a) => a.id === id);
+
+  const handleAddToCart = () => {
+    if (artwork) {
+      addToCart(artwork);
+      toast({
+        title: "Added to cart",
+        description: `${artwork.title} has been added to your selection.`,
+      });
+    }
+  };
   const artworkIndex = artworks.findIndex((a) => a.id === id);
 
   if (loading) {
@@ -141,10 +154,15 @@ const ArtworkDetail = () => {
                   ₹{artwork.price.toLocaleString()}
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
-                  <Button variant="hero" size="xl" className="flex-1" asChild>
-                    <Link to={`/contact?artwork=${encodeURIComponent(artwork.title)}&intent=acquire`}>
-                      Acquire This Vision
-                    </Link>
+                  <Button
+                    variant="hero"
+                    size="xl"
+                    className="flex-1"
+                    onClick={handleAddToCart}
+                    disabled={isInCart(artwork.id)}
+                  >
+                    <ShoppingBag size={18} className="mr-2" />
+                    {isInCart(artwork.id) ? "Added to Cart" : "Acquire This Vision"}
                   </Button>
                   <Button
                     variant="heroOutline"
