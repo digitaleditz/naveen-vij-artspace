@@ -14,6 +14,38 @@ export type Database = {
   }
   public: {
     Tables: {
+      admin_notifications: {
+        Row: {
+          created_at: string | null
+          id: string
+          order_id: string | null
+          read: boolean | null
+          type: string
+        }
+        Insert: {
+          created_at?: string | null
+          id?: string
+          order_id?: string | null
+          read?: boolean | null
+          type?: string
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          order_id?: string | null
+          read?: boolean | null
+          type?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "admin_notifications_order_id_fkey"
+            columns: ["order_id"]
+            isOneToOne: false
+            referencedRelation: "orders"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       artworks: {
         Row: {
           available: boolean
@@ -113,33 +145,42 @@ export type Database = {
         Row: {
           artwork_id: string
           created_at: string
+          estimated_delivery: string | null
           id: string
           notes: string | null
           shipping_address: string | null
+          shipping_status: string | null
           status: string
           total_amount: number
+          tracking_number: string | null
           updated_at: string
           user_id: string
         }
         Insert: {
           artwork_id: string
           created_at?: string
+          estimated_delivery?: string | null
           id?: string
           notes?: string | null
           shipping_address?: string | null
+          shipping_status?: string | null
           status?: string
           total_amount: number
+          tracking_number?: string | null
           updated_at?: string
           user_id: string
         }
         Update: {
           artwork_id?: string
           created_at?: string
+          estimated_delivery?: string | null
           id?: string
           notes?: string | null
           shipping_address?: string | null
+          shipping_status?: string | null
           status?: string
           total_amount?: number
+          tracking_number?: string | null
           updated_at?: string
           user_id?: string
         }
