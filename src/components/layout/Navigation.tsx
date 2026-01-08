@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, User } from "lucide-react";
+import { Menu, X, User, ShoppingBag } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useAuth } from "@/contexts/AuthContext";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { CartSheet } from "@/components/cart/CartSheet";
+import { useCart } from "@/contexts/CartContext";
 
 const navLinks = [
   { name: "Home", path: "/" },
@@ -19,6 +21,7 @@ export const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
   const { user } = useAuth();
+  const { items } = useCart();
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
@@ -70,6 +73,16 @@ export const Navigation = () => {
           
           <div className="flex items-center gap-4 pl-4 border-l border-border">
             <ThemeToggle />
+            <CartSheet>
+              <button className="p-2.5 hover:text-accent transition-colors rounded-full hover:bg-secondary relative">
+                <ShoppingBag size={18} />
+                {items.length > 0 && (
+                  <span className="absolute -top-1 -right-1 w-5 h-5 bg-accent text-accent-foreground text-xs rounded-full flex items-center justify-center">
+                    {items.length}
+                  </span>
+                )}
+              </button>
+            </CartSheet>
             <Link
               to={user ? "/profile" : "/auth"}
               className="p-2.5 hover:text-accent transition-colors rounded-full hover:bg-secondary"

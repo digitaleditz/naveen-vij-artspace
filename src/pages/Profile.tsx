@@ -341,7 +341,11 @@ const Profile = () => {
               ) : (
                 <div className="space-y-6">
                   {orders.map((order) => (
-                    <div key={order.id} className="flex gap-6 p-6 bg-secondary">
+                    <Link 
+                      key={order.id} 
+                      to={`/order/${order.id}`}
+                      className="flex gap-6 p-6 bg-secondary hover:bg-secondary/80 transition-colors group"
+                    >
                       <div className="w-24 h-24 flex-shrink-0 bg-stone overflow-hidden">
                         <img
                           src={order.artworks.image_url || "/placeholder.svg"}
@@ -350,7 +354,12 @@ const Profile = () => {
                         />
                       </div>
                       <div className="flex-1">
-                        <h3 className="font-serif text-lg mb-1">{order.artworks.title}</h3>
+                        <div className="flex items-center justify-between">
+                          <h3 className="font-serif text-lg mb-1 group-hover:text-accent transition-colors">
+                            {order.artworks.title}
+                          </h3>
+                          <ArrowRight size={16} className="text-muted-foreground group-hover:text-accent transition-colors" />
+                        </div>
                         <p className="text-sm text-muted-foreground font-sans mb-2">
                           Acquired on {new Date(order.created_at).toLocaleDateString("en-IN", {
                             year: "numeric",
@@ -371,7 +380,7 @@ const Profile = () => {
                           </span>
                         </div>
                       </div>
-                    </div>
+                    </Link>
                   ))}
                 </div>
               )}
