@@ -9,71 +9,71 @@ import heroInterior from "@/assets/hero-interior.jpg";
 
 const services = [
   {
-    title: "Residential Interiors",
-    description: "Complete home transformations from concept to completion",
-    features: ["Space Planning", "Material Selection", "Furniture Curation", "Art Integration"],
+    title: "Residential Architecture",
+    description: "Complete home design from foundation to finishing touches",
+    features: ["Master Planning", "Structural Design", "Interior Integration", "Landscape Design"],
   },
   {
-    title: "Commercial Spaces",
-    description: "Offices, cafés, restaurants and boutique retail designs",
-    features: ["Brand Integration", "Functional Flow", "Custom Fixtures", "Lighting Design"],
+    title: "Commercial Buildings",
+    description: "Offices, retail spaces, hospitality and institutional projects",
+    features: ["Concept Development", "Building Systems", "Sustainability", "Regulatory Compliance"],
   },
   {
-    title: "Renovation & Makeovers",
-    description: "Breathing new life into existing spaces",
-    features: ["Structure Assessment", "Modern Updates", "Budget Optimization", "Timeline Management"],
+    title: "Renovation & Restoration",
+    description: "Thoughtful transformation of existing structures",
+    features: ["Heritage Conservation", "Adaptive Reuse", "Modern Upgrades", "Structural Enhancement"],
   },
   {
     title: "Design Consultation",
-    description: "Expert guidance for your design decisions",
-    features: ["Style Direction", "Color Schemes", "Material Advice", "Vendor Recommendations"],
+    description: "Expert architectural guidance for your vision",
+    features: ["Feasibility Studies", "Design Direction", "Material Expertise", "Project Coordination"],
   },
 ];
 
 const process = [
-  { step: "01", title: "Discovery", description: "Understanding your vision, lifestyle, and aspirations" },
-  { step: "02", title: "Concept", description: "Crafting the aesthetic direction and material palette" },
-  { step: "03", title: "Visualization", description: "Bringing your space to life before construction" },
-  { step: "04", title: "Execution", description: "Meticulous site coordination and quality control" },
-  { step: "05", title: "Styling", description: "The finishing touches that make a house a home" },
+  { step: "01", title: "Envision", description: "Understanding your aspirations, site, and context" },
+  { step: "02", title: "Design", description: "Crafting the architectural concept and spatial narrative" },
+  { step: "03", title: "Develop", description: "Technical drawings, specifications and approvals" },
+  { step: "04", title: "Build", description: "Construction oversight and quality assurance" },
+  { step: "05", title: "Inhabit", description: "Final details that transform structure into sanctuary" },
 ];
 
 const projects = [
   {
     id: 1,
-    title: "Serene Residence",
+    title: "The Serene Villa",
     location: "Mumbai",
     type: "Residential",
-    description: "A minimal luxury apartment where clean lines meet warm textures",
+    description: "A contemporary residence where architectural form meets natural landscape",
     image: project1,
   },
   {
     id: 2,
-    title: "The Dining Room",
+    title: "Heritage House",
     location: "Delhi",
-    type: "Residential",
-    description: "An elegant space designed for intimate gatherings and celebrations",
+    type: "Restoration",
+    description: "Reviving colonial elegance with modern sensibilities",
     image: project2,
   },
   {
     id: 3,
-    title: "Artisan Café",
+    title: "Artisan Coffee Roastery",
     location: "Bangalore",
     type: "Commercial",
-    description: "A boutique café that celebrates craft coffee and local artistry",
+    description: "An industrial-inspired space celebrating craft and community",
     image: project3,
   },
   {
     id: 4,
-    title: "Skyline Penthouse",
+    title: "Skyline Residence",
     location: "Mumbai",
     type: "Residential",
-    description: "Panoramic views meet sophisticated interior design",
+    description: "A penthouse where architecture frames panoramic city views",
     image: heroInterior,
   },
 ];
 
-const Interiors = () => {
+const Architecture = () => {
   return (
     <Layout>
       {/* Hero */}
@@ -81,7 +81,7 @@ const Interiors = () => {
         <div className="absolute inset-0">
           <img
             src={heroInterior}
-            alt="Interior Design by Naveen Vij"
+            alt="Architecture by Naveen Vij"
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-background via-background/80 to-background/40" />
@@ -91,17 +91,17 @@ const Interiors = () => {
           <div className="max-w-2xl">
             <div className="inline-block mb-8">
               <p className="text-[10px] uppercase tracking-[0.4em] text-accent font-sans">
-                Interior Design Studio
+                Architecture Studio
               </p>
               <div className="section-divider mt-4 mx-0" />
             </div>
             <h1 className="font-serif text-5xl md:text-6xl lg:text-7xl mb-8 leading-[1.1]">
-              Interior Design
-              <span className="block mt-2">That Feels Like Art</span>
+              Architecture
+              <span className="block mt-2">As Living Art</span>
             </h1>
             <p className="text-xl text-muted-foreground font-sans leading-relaxed max-w-lg font-light">
-              Bespoke interiors that balance aesthetics with functionality, 
-              creating spaces that inspire and elevate everyday living.
+              From concept sketches to completed structures, we design buildings 
+              that tell stories, embrace their surroundings, and elevate the human experience.
             </p>
           </div>
         </div>
@@ -112,10 +112,10 @@ const Interiors = () => {
         <div className="container-wide">
           <div className="text-center mb-20">
             <p className="text-[10px] uppercase tracking-[0.4em] text-accent font-sans mb-4">
-              What We Offer
+              Full-Service Architecture
             </p>
             <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl">
-              Design Services
+              Our Expertise
             </h2>
             <div className="section-divider mt-8" />
           </div>
@@ -154,7 +154,7 @@ const Interiors = () => {
               How We Work
             </p>
             <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl">
-              The Design Process
+              The Design Journey
             </h2>
             <div className="section-divider mt-8" />
           </div>
@@ -183,7 +183,7 @@ const Interiors = () => {
         <div className="container-wide">
           <div className="text-center mb-20">
             <p className="text-[10px] uppercase tracking-[0.4em] text-accent font-sans mb-4">
-              Our Work
+              Selected Works
             </p>
             <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl">
               Project Portfolio
@@ -224,14 +224,15 @@ const Interiors = () => {
         
         <div className="container-wide text-center relative z-10">
           <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl mb-8">
-            Ready to Start Your Project?
+            Let's Build Something Remarkable
           </h2>
           <p className="text-primary-foreground/60 font-sans text-lg mb-12 max-w-2xl mx-auto leading-relaxed">
-            Let's discuss your vision and create a space that truly reflects your personality and lifestyle.
+            Whether you're envisioning a new home, renovating a heritage property, 
+            or planning a commercial space—let's create architecture that inspires.
           </p>
           <Button variant="gold" size="xl" asChild>
             <Link to="/contact">
-              Request a Consultation
+              Start a Conversation
               <ArrowRight size={16} />
             </Link>
           </Button>
@@ -241,4 +242,4 @@ const Interiors = () => {
   );
 };
 
-export default Interiors;
+export default Architecture;

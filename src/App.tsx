@@ -7,7 +7,7 @@ import { AuthProvider } from "@/contexts/AuthContext";
 import { CartProvider } from "@/contexts/CartContext";
 import ScrollToTop from "./components/ScrollToTop";
 import Index from "./pages/Index";
-import Interiors from "./pages/Interiors";
+import Architecture from "./pages/Architecture";
 import Collection from "./pages/Collection";
 import ArtworkDetail from "./pages/ArtworkDetail";
 import About from "./pages/About";
@@ -33,7 +33,8 @@ const App = () => (
             <ScrollToTop />
             <Routes>
               <Route path="/" element={<Index />} />
-              <Route path="/interiors" element={<Interiors />} />
+              <Route path="/architecture" element={<Architecture />} />
+              <Route path="/interiors" element={<Architecture />} />
               <Route path="/collection" element={<Collection />} />
               <Route path="/artwork/:id" element={<ArtworkDetail />} />
               <Route path="/gallery" element={<Collection />} />
