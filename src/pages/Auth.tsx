@@ -28,6 +28,12 @@ const Auth = () => {
 
   // Check admin status and redirect accordingly
   const checkAdminAndRedirect = async (userId: string) => {
+    // Update last visit
+    await supabase
+      .from("profiles")
+      .update({ last_visit: new Date().toISOString() })
+      .eq("user_id", userId);
+
     const { data } = await supabase
       .from("user_roles")
       .select("role")
