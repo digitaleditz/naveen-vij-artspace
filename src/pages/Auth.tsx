@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useAuth } from "@/contexts/AuthContext";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 import { z } from "zod";
 
 const authSchema = z.object({
@@ -25,11 +26,27 @@ const Auth = () => {
   const { toast } = useToast();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (user) {
+  // Check admin status and redirect accordingly
+  const checkAdminAndRedirect = async (userId: string) => {
+    const { data } = await supabase
+      .from("user_roles")
+      .select("role")
+      .eq("user_id", userId)
+      .eq("role", "admin")
+      .maybeSingle();
+
+    if (data) {
+      navigate("/admin");
+    } else {
       navigate("/");
     }
-  }, [user, navigate]);
+  };
+
+  useEffect(() => {
+    if (user) {
+      checkAdminAndRedirect(user.id);
+    }
+  }, [user]);
 
   const validateForm = () => {
     try {
@@ -70,12 +87,13 @@ const Auth = () => {
             : error.message,
           variant: "destructive",
         });
+        setLoading(false);
       } else {
         toast({
           title: "Welcome back",
           description: "You have successfully signed in.",
         });
-        navigate("/");
+        // Redirect handled by useEffect when user state updates
       }
     } else {
       const { error } = await signUp(email, password, fullName);
@@ -87,16 +105,15 @@ const Auth = () => {
             : error.message,
           variant: "destructive",
         });
+        setLoading(false);
       } else {
         toast({
           title: "Welcome",
           description: "Your account has been created successfully.",
         });
-        navigate("/");
+        // Redirect handled by useEffect when user state updates
       }
     }
-    
-    setLoading(false);
   };
 
   return (
