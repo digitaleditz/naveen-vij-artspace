@@ -4,24 +4,21 @@ import { ChevronLeft, ChevronRight, Quote } from "lucide-react";
 const testimonials = [
   {
     id: 1,
-    quote: "Naveen transformed our apartment into something we never imagined possible. Every corner now feels intentional, artistic, and deeply personal.",
-    author: "Priya & Arjun Mehta",
-    role: "Residential Client, Mumbai",
-    type: "Interior Design",
-  },
-  {
-    id: 2,
     quote: "His painting 'Urban Geometry' has become the centerpiece of our living room. It's not just art—it's a conversation starter and a source of daily inspiration.",
     author: "Vikram Sharma",
     role: "Art Collector, Delhi",
-    type: "Art Purchase",
+  },
+  {
+    id: 2,
+    quote: "Acquiring a piece from Naveen felt like bringing home a piece of architecture that exists beyond walls. The painting transforms our space completely.",
+    author: "Priya & Arjun Mehta",
+    role: "Collectors, Mumbai",
   },
   {
     id: 3,
-    quote: "Working with Naveen on our café design was an incredible experience. He understood our brand's soul and created a space that our customers fall in love with.",
-    author: "Anjali Kapoor",
-    role: "Founder, The Artisan Café",
-    type: "Commercial Design",
+    quote: "There's something deeply meditative about his work. The architectural discipline behind each brushstroke creates a sense of calm that fills the entire room.",
+    author: "Dr. Anjali Kapoor",
+    role: "Art Patron, Bangalore",
   },
 ];
 
@@ -43,10 +40,16 @@ export const TestimonialsSection = () => {
       <div className="absolute bottom-0 right-0 w-96 h-96 bg-accent/5 rounded-full blur-3xl" />
       
       <div className="container-wide relative z-10">
+        <div className="text-center mb-12">
+          <p className="text-[10px] uppercase tracking-[0.4em] text-accent font-sans mb-4">
+            Collectors Speak
+          </p>
+        </div>
+
         <div className="max-w-5xl mx-auto text-center">
           <Quote className="w-16 h-16 mx-auto mb-12 text-accent opacity-40" />
           
-          <div className="relative min-h-[320px] flex items-center justify-center">
+          <div className="relative min-h-[280px] flex items-center justify-center">
             {testimonials.map((testimonial, index) => (
               <div
                 key={testimonial.id}

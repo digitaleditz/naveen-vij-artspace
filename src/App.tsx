@@ -7,11 +7,9 @@ import { AuthProvider } from "@/contexts/AuthContext";
 import { CartProvider } from "@/contexts/CartContext";
 import ScrollToTop from "./components/ScrollToTop";
 import Index from "./pages/Index";
-import Architecture from "./pages/Architecture";
 import Collection from "./pages/Collection";
 import ArtworkDetail from "./pages/ArtworkDetail";
-import About from "./pages/About";
-import Vision from "./pages/Vision";
+import TheArchitect from "./pages/TheArchitect";
 import Contact from "./pages/Contact";
 import Auth from "./pages/Auth";
 import Profile from "./pages/Profile";
@@ -38,13 +36,11 @@ const App = () => (
             <ScrollToTop />
             <Routes>
               <Route path="/" element={<Index />} />
-              <Route path="/architecture" element={<Architecture />} />
-              <Route path="/interiors" element={<Architecture />} />
               <Route path="/collection" element={<Collection />} />
               <Route path="/artwork/:id" element={<ArtworkDetail />} />
               <Route path="/gallery" element={<Collection />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/vision" element={<Vision />} />
+              <Route path="/the-architect" element={<TheArchitect />} />
+              <Route path="/about" element={<TheArchitect />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/auth" element={<Auth />} />
               <Route path="/profile" element={<Profile />} />
