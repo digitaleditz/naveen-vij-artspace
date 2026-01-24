@@ -13,31 +13,31 @@ export const CTASection = () => {
         <div className="max-w-4xl mx-auto text-center">
           <div className="inline-block mb-8">
             <p className="text-[10px] uppercase tracking-[0.4em] text-accent font-sans">
-              Begin the Conversation
+              Acquire a Story
             </p>
             <div className="section-divider mt-4" />
           </div>
           
           <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl mb-10 leading-tight">
-            Let's Create Something Meaningful
+            Every Painting Awaits Its Home
           </h2>
           
           <p className="text-muted-foreground font-sans text-lg leading-relaxed mb-14 max-w-2xl mx-auto">
-            Whether you're envisioning a new space, seeking to acquire a piece 
-            that speaks to you, or simply wish to understand the philosophy 
-            behind the work—I'd be honored to connect.
+            When you acquire a piece, you're not just buying art—you're inviting 
+            a story into your space. A narrative of light, form, and emotion 
+            that will grow with you over time.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-5 justify-center">
             <Button variant="hero" size="xl" asChild>
-              <Link to="/contact">
-                Start a Conversation
+              <Link to="/collection">
+                View the Collection
                 <ArrowRight size={16} />
               </Link>
             </Button>
             <Button variant="heroOutline" size="xl" asChild>
-              <Link to="/collection">
-                Explore the Collection
+              <Link to="/contact">
+                Commission a Piece
               </Link>
             </Button>
           </div>

@@ -13,9 +13,9 @@ export const Footer = () => {
           <div className="md:col-span-2">
             <h3 className="font-serif text-3xl mb-6">Naveen Vij</h3>
             <p className="text-cream/50 font-sans leading-relaxed max-w-md mb-8">
-              Architect & Visual Storyteller — Creating spaces that speak 
-              and paintings that inhabit. Where architecture meets art, 
-              vision becomes tangible.
+              Artist & Visual Storyteller — Creating paintings that speak 
+              of space, light, and emotion. Each canvas carries the 
+              discipline of architecture and the freedom of art.
             </p>
             <p className="text-[10px] uppercase tracking-[0.3em] text-cream/30 font-sans">
               New Delhi, India
@@ -29,10 +29,8 @@ export const Footer = () => {
             </h4>
             <ul className="space-y-4">
               {[
-                { name: "The Architect", path: "/about" },
-                { name: "The Vision", path: "/vision" },
                 { name: "The Collection", path: "/collection" },
-                { name: "Interiors", path: "/interiors" },
+                { name: "The Architect", path: "/the-architect" },
                 { name: "Contact", path: "/contact" },
               ].map((link) => (
                 <li key={link.path}>
@@ -93,7 +91,7 @@ export const Footer = () => {
             © {new Date().getFullYear()} Naveen Vij. All rights reserved.
           </p>
           <p className="text-xs font-sans text-cream/30 italic">
-            "Architecture is frozen music; painting is its melody."
+            "Every painting is an unbuilt building—a space that exists only in feeling."
           </p>
         </div>
       </div>

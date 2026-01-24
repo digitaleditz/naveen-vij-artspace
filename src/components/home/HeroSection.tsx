@@ -1,20 +1,27 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ArrowDown } from "lucide-react";
 import heroInterior from "@/assets/hero-interior.jpg";
 
 export const HeroSection = () => {
+  const scrollToArtExperience = () => {
+    const artSection = document.getElementById("art-experience");
+    if (artSection) {
+      artSection.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0">
         <img
           src={heroInterior}
-          alt="Architectural space designed by Naveen Vij"
+          alt="Artistic space"
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-background via-background/80 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-t from-background/50 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-background via-background/85 to-background/40" />
+        <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent" />
       </div>
 
       {/* Content */}
@@ -22,31 +29,31 @@ export const HeroSection = () => {
         <div className="max-w-2xl">
           <div className="inline-block mb-8 animate-fade-up opacity-0 stagger-1">
             <p className="text-[10px] uppercase tracking-[0.4em] text-accent font-sans">
-              Architect • Designer • Artist
+              Visual Storyteller
             </p>
             <div className="section-divider mt-4 mx-0" />
           </div>
           
           <h1 className="font-serif text-5xl md:text-6xl lg:text-7xl leading-[1.05] mb-8 animate-fade-up opacity-0 stagger-2">
-            Architecture, Art
-            <span className="block text-accent mt-2">& Stories</span>
+            Paintings from
+            <span className="block text-accent mt-2">an Architect's Mind</span>
           </h1>
           
           <p className="text-xl md:text-2xl text-muted-foreground font-sans leading-relaxed mb-12 max-w-lg animate-fade-up opacity-0 stagger-3 font-light">
-            Designing spaces. Painting emotions. Each creation is a narrative 
-            of light, form, and the poetry of inhabitation.
+            Each canvas carries the discipline of architecture and the 
+            freedom of pure expression. Stories of space, light, and emotion.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-5 animate-fade-up opacity-0 stagger-4">
             <Button variant="hero" size="xl" asChild>
-              <Link to="/vision">
-                Explore the Vision
+              <Link to="/collection">
+                Explore the Collection
                 <ArrowRight size={16} />
               </Link>
             </Button>
             <Button variant="heroOutline" size="xl" asChild>
-              <Link to="/collection">
-                View the Collection
+              <Link to="/the-architect">
+                Meet the Artist
               </Link>
             </Button>
           </div>
@@ -54,14 +61,19 @@ export const HeroSection = () => {
       </div>
 
       {/* Scroll Indicator */}
-      <div className="absolute bottom-12 left-1/2 -translate-x-1/2 animate-float">
+      <button 
+        onClick={scrollToArtExperience}
+        className="absolute bottom-12 left-1/2 -translate-x-1/2 animate-float cursor-pointer group"
+      >
         <div className="flex flex-col items-center gap-3">
-          <span className="text-[9px] uppercase tracking-[0.3em] text-muted-foreground font-sans">
-            Scroll
+          <span className="text-[9px] uppercase tracking-[0.3em] text-muted-foreground font-sans group-hover:text-accent transition-colors">
+            Enter the Gallery
           </span>
-          <div className="w-px h-16 bg-gradient-to-b from-accent via-accent/50 to-transparent" />
+          <div className="w-10 h-10 rounded-full border border-accent/30 flex items-center justify-center group-hover:border-accent transition-colors">
+            <ArrowDown size={16} className="text-accent animate-bounce" />
+          </div>
         </div>
-      </div>
+      </button>
     </section>
   );
 };
