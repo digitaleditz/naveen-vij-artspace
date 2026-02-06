@@ -12,7 +12,7 @@ export const HeroSection = () => {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden">
+    <section className="relative h-screen flex items-center overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0">
         <img
@@ -25,33 +25,33 @@ export const HeroSection = () => {
       </div>
 
       {/* Content */}
-      <div className="container-wide relative z-10 pt-32 pb-24">
-        <div className="max-w-2xl">
-          <div className="inline-block mb-8 animate-fade-up opacity-0 stagger-1">
+      <div className="container-wide relative z-10 pt-24 pb-20">
+        <div className="max-w-xl lg:max-w-2xl">
+          <div className="inline-block mb-6 animate-fade-up opacity-0 stagger-1">
             <p className="text-[10px] uppercase tracking-[0.4em] text-accent font-sans">
               Visual Storyteller
             </p>
-            <div className="section-divider mt-4 mx-0" />
+            <div className="section-divider mt-3 mx-0" />
           </div>
           
-          <h1 className="font-serif text-5xl md:text-6xl lg:text-7xl leading-[1.05] mb-8 animate-fade-up opacity-0 stagger-2">
+          <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[1.05] mb-6 animate-fade-up opacity-0 stagger-2">
             Paintings from
-            <span className="block text-accent mt-2">an Architect's Mind</span>
+            <span className="block text-accent mt-1">an Architect's Mind</span>
           </h1>
           
-          <p className="text-xl md:text-2xl text-muted-foreground font-sans leading-relaxed mb-12 max-w-lg animate-fade-up opacity-0 stagger-3 font-light">
+          <p className="text-lg md:text-xl lg:text-2xl text-muted-foreground font-sans leading-relaxed mb-10 max-w-lg animate-fade-up opacity-0 stagger-3 font-light">
             Each canvas carries the discipline of architecture and the 
             freedom of pure expression. Stories of space, light, and emotion.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-5 animate-fade-up opacity-0 stagger-4">
-            <Button variant="hero" size="xl" asChild>
+          <div className="flex flex-col sm:flex-row gap-4 animate-fade-up opacity-0 stagger-4">
+            <Button variant="hero" size="lg" asChild>
               <Link to="/collection">
                 Explore the Collection
                 <ArrowRight size={16} />
               </Link>
             </Button>
-            <Button variant="heroOutline" size="xl" asChild>
+            <Button variant="heroOutline" size="lg" asChild>
               <Link to="/the-architect">
                 Meet the Artist
               </Link>
@@ -63,14 +63,14 @@ export const HeroSection = () => {
       {/* Scroll Indicator */}
       <button 
         onClick={scrollToArtExperience}
-        className="absolute bottom-12 left-1/2 -translate-x-1/2 animate-float cursor-pointer group"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-float cursor-pointer group"
       >
-        <div className="flex flex-col items-center gap-3">
+        <div className="flex flex-col items-center gap-2">
           <span className="text-[9px] uppercase tracking-[0.3em] text-muted-foreground font-sans group-hover:text-accent transition-colors">
             Enter the Gallery
           </span>
-          <div className="w-10 h-10 rounded-full border border-accent/30 flex items-center justify-center group-hover:border-accent transition-colors">
-            <ArrowDown size={16} className="text-accent animate-bounce" />
+          <div className="w-9 h-9 rounded-full border border-accent/30 flex items-center justify-center group-hover:border-accent transition-colors">
+            <ArrowDown size={14} className="text-accent animate-bounce" />
           </div>
         </div>
       </button>
