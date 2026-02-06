@@ -5,6 +5,8 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "@/contexts/AuthContext";
 import { CartProvider } from "@/contexts/CartContext";
+import { InitialLoader } from "@/components/InitialLoader";
+import { RouteTransition } from "@/components/RouteTransition";
 import ScrollToTop from "./components/ScrollToTop";
 import Index from "./pages/Index";
 import Collection from "./pages/Collection";
@@ -32,29 +34,33 @@ const App = () => (
         <TooltipProvider>
           <Toaster />
           <Sonner />
-          <BrowserRouter>
-            <ScrollToTop />
-            <Routes>
-              <Route path="/" element={<Index />} />
-              <Route path="/collection" element={<Collection />} />
-              <Route path="/artwork/:id" element={<ArtworkDetail />} />
-              <Route path="/gallery" element={<Collection />} />
-              <Route path="/the-architect" element={<TheArchitect />} />
-              <Route path="/about" element={<TheArchitect />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="/auth" element={<Auth />} />
-              <Route path="/profile" element={<Profile />} />
-              <Route path="/checkout" element={<Checkout />} />
-              <Route path="/order/:orderId" element={<OrderTracking />} />
-              <Route path="/admin" element={<AdminDashboard />} />
-              <Route path="/admin/orders" element={<AdminOrders />} />
-              <Route path="/admin/artworks" element={<AdminArtworks />} />
-              <Route path="/admin/customers" element={<AdminCustomers />} />
-              <Route path="/admin/analytics" element={<AdminAnalytics />} />
-              <Route path="/admin/inquiries" element={<AdminInquiries />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </BrowserRouter>
+          <InitialLoader>
+            <BrowserRouter>
+              <ScrollToTop />
+              <RouteTransition>
+                <Routes>
+                  <Route path="/" element={<Index />} />
+                  <Route path="/collection" element={<Collection />} />
+                  <Route path="/artwork/:id" element={<ArtworkDetail />} />
+                  <Route path="/gallery" element={<Collection />} />
+                  <Route path="/the-architect" element={<TheArchitect />} />
+                  <Route path="/about" element={<TheArchitect />} />
+                  <Route path="/contact" element={<Contact />} />
+                  <Route path="/auth" element={<Auth />} />
+                  <Route path="/profile" element={<Profile />} />
+                  <Route path="/checkout" element={<Checkout />} />
+                  <Route path="/order/:orderId" element={<OrderTracking />} />
+                  <Route path="/admin" element={<AdminDashboard />} />
+                  <Route path="/admin/orders" element={<AdminOrders />} />
+                  <Route path="/admin/artworks" element={<AdminArtworks />} />
+                  <Route path="/admin/customers" element={<AdminCustomers />} />
+                  <Route path="/admin/analytics" element={<AdminAnalytics />} />
+                  <Route path="/admin/inquiries" element={<AdminInquiries />} />
+                  <Route path="*" element={<NotFound />} />
+                </Routes>
+              </RouteTransition>
+            </BrowserRouter>
+          </InitialLoader>
         </TooltipProvider>
       </CartProvider>
     </AuthProvider>

@@ -36,20 +36,20 @@ export const TestimonialsSection = () => {
   return (
     <section className="section-padding bg-primary text-primary-foreground relative overflow-hidden">
       {/* Decorative elements */}
-      <div className="absolute top-0 left-0 w-96 h-96 bg-accent/5 rounded-full blur-3xl" />
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-accent/5 rounded-full blur-3xl" />
+      <div className="absolute top-0 left-0 w-80 h-80 bg-accent/5 rounded-full blur-3xl" />
+      <div className="absolute bottom-0 right-0 w-80 h-80 bg-accent/5 rounded-full blur-3xl" />
       
       <div className="container-wide relative z-10">
-        <div className="text-center mb-12">
+        <div className="text-center mb-10">
           <p className="text-[10px] uppercase tracking-[0.4em] text-accent font-sans mb-4">
             Collectors Speak
           </p>
         </div>
 
-        <div className="max-w-5xl mx-auto text-center">
-          <Quote className="w-16 h-16 mx-auto mb-12 text-accent opacity-40" />
+        <div className="max-w-4xl mx-auto text-center">
+          <Quote className="w-12 h-12 mx-auto mb-8 text-accent opacity-40" />
           
-          <div className="relative min-h-[280px] flex items-center justify-center">
+          <div className="relative min-h-[220px] flex items-center justify-center">
             {testimonials.map((testimonial, index) => (
               <div
                 key={testimonial.id}
@@ -59,12 +59,12 @@ export const TestimonialsSection = () => {
                     : "opacity-0 translate-y-8 pointer-events-none"
                 }`}
               >
-                <p className="font-serif text-2xl md:text-3xl lg:text-4xl leading-relaxed mb-12 italic font-light">
+                <p className="font-serif text-xl md:text-2xl lg:text-3xl leading-relaxed mb-8 italic font-light">
                   "{testimonial.quote}"
                 </p>
                 
                 <div>
-                  <p className="font-sans text-lg mb-2">{testimonial.author}</p>
+                  <p className="font-sans text-base mb-1">{testimonial.author}</p>
                   <p className="text-[10px] uppercase tracking-[0.3em] text-primary-foreground/50">
                     {testimonial.role}
                   </p>
@@ -74,24 +74,24 @@ export const TestimonialsSection = () => {
           </div>
 
           {/* Navigation */}
-          <div className="flex items-center justify-center gap-6 mt-12">
+          <div className="flex items-center justify-center gap-5 mt-10">
             <button
               onClick={prev}
-              className="w-14 h-14 rounded-full border border-primary-foreground/20 flex items-center justify-center hover:border-accent hover:text-accent transition-all duration-300"
+              className="w-11 h-11 rounded-full border border-primary-foreground/20 flex items-center justify-center hover:border-accent hover:text-accent transition-all duration-300"
               aria-label="Previous testimonial"
             >
-              <ChevronLeft size={22} />
+              <ChevronLeft size={18} />
             </button>
             
-            <div className="flex gap-3">
+            <div className="flex gap-2">
               {testimonials.map((_, index) => (
                 <button
                   key={index}
                   onClick={() => setCurrentIndex(index)}
-                  className={`h-2 rounded-full transition-all duration-500 ${
+                  className={`h-1.5 rounded-full transition-all duration-500 ${
                     index === currentIndex
-                      ? "w-10 bg-accent"
-                      : "w-2 bg-primary-foreground/30 hover:bg-primary-foreground/50"
+                      ? "w-8 bg-accent"
+                      : "w-1.5 bg-primary-foreground/30 hover:bg-primary-foreground/50"
                   }`}
                   aria-label={`Go to testimonial ${index + 1}`}
                 />
@@ -100,10 +100,10 @@ export const TestimonialsSection = () => {
             
             <button
               onClick={next}
-              className="w-14 h-14 rounded-full border border-primary-foreground/20 flex items-center justify-center hover:border-accent hover:text-accent transition-all duration-300"
+              className="w-11 h-11 rounded-full border border-primary-foreground/20 flex items-center justify-center hover:border-accent hover:text-accent transition-all duration-300"
               aria-label="Next testimonial"
             >
-              <ChevronRight size={22} />
+              <ChevronRight size={18} />
             </button>
           </div>
         </div>

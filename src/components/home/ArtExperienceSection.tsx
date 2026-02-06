@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, ArrowLeft, Play } from "lucide-react";
 import { useArtworks } from "@/hooks/useArtworks";
+import { Skeleton } from "@/components/ui/skeleton";
 import artwork1 from "@/assets/artwork-1.jpg";
 import artwork2 from "@/assets/artwork-2.jpg";
 import artwork3 from "@/assets/artwork-3.jpg";
@@ -65,7 +66,6 @@ export const ArtExperienceSection = () => {
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        // Activate when section is mostly visible
         const shouldBeActive = entry.isIntersecting && entry.intersectionRatio > 0.6;
         setIsActive(shouldBeActive);
         
@@ -87,20 +87,17 @@ export const ArtExperienceSection = () => {
       if (!section || totalArtworks === 0) return;
 
       const rect = section.getBoundingClientRect();
-      // Check if section is properly centered in viewport
       const isCentered = rect.top <= 100 && rect.bottom >= window.innerHeight - 100;
 
       if (!isCentered || !isActive) return;
 
-      // Allow exit if at boundaries and trying to scroll past
       if (e.deltaY < 0 && hasReachedStart && currentIndex === 0) {
-        return; // Allow scroll up to exit
+        return;
       }
       if (e.deltaY > 0 && hasReachedEnd && currentIndex === totalArtworks - 1) {
-        return; // Allow scroll down to exit
+        return;
       }
 
-      // Accumulate scroll delta for smooth threshold
       accumulatedDelta.current += e.deltaY;
 
       const threshold = 80;
@@ -111,26 +108,23 @@ export const ArtExperienceSection = () => {
         if (accumulatedDelta.current > 0) {
           const moved = goToNext();
           if (!moved && currentIndex === totalArtworks - 1) {
-            // At end, need to scroll twice to exit
             if (hasReachedEnd) {
               accumulatedDelta.current = 0;
-              return; // Let browser handle scroll
+              return;
             }
           }
         } else {
           const moved = goToPrev();
           if (!moved && currentIndex === 0) {
-            // At start, need to scroll twice to exit
             if (hasReachedStart) {
               accumulatedDelta.current = 0;
-              return; // Let browser handle scroll
+              return;
             }
           }
         }
         
         accumulatedDelta.current = 0;
       } else {
-        // Still accumulating, prevent default scroll
         e.preventDefault();
       }
     };
@@ -159,15 +153,25 @@ export const ArtExperienceSection = () => {
 
   if (loading) {
     return (
-      <section className="h-screen flex items-center justify-center bg-secondary/30">
-        <div className="animate-pulse text-muted-foreground">Loading artworks...</div>
+      <section className="h-[90vh] flex items-center justify-center bg-secondary/30">
+        <div className="container-wide grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+          <div className="order-2 lg:order-1 space-y-6">
+            <Skeleton className="h-4 w-24" />
+            <Skeleton className="h-12 w-3/4" />
+            <Skeleton className="h-20 w-full" />
+            <Skeleton className="h-12 w-40" />
+          </div>
+          <div className="order-1 lg:order-2">
+            <Skeleton className="aspect-[3/4] w-full max-h-[60vh]" />
+          </div>
+        </div>
       </section>
     );
   }
 
   if (displayArtworks.length === 0) {
     return (
-      <section className="h-screen flex items-center justify-center bg-secondary/30">
+      <section className="h-[90vh] flex items-center justify-center bg-secondary/30">
         <div className="text-muted-foreground">No artworks available</div>
       </section>
     );
@@ -178,10 +182,10 @@ export const ArtExperienceSection = () => {
   return (
     <section 
       ref={sectionRef}
-      className="h-screen bg-background relative overflow-hidden"
+      className="h-[90vh] bg-background relative overflow-hidden"
     >
       {/* Progress indicator */}
-      <div className="absolute top-8 left-1/2 -translate-x-1/2 z-20 flex items-center gap-3">
+      <div className="absolute top-6 left-1/2 -translate-x-1/2 z-20 flex items-center gap-3">
         {displayArtworks.map((_, index) => (
           <button
             key={index}
@@ -204,7 +208,7 @@ export const ArtExperienceSection = () => {
 
       {/* Scroll hint */}
       {currentIndex === 0 && isActive && (
-        <div className="absolute top-20 left-1/2 -translate-x-1/2 z-20">
+        <div className="absolute top-14 left-1/2 -translate-x-1/2 z-20">
           <p className="text-[9px] uppercase tracking-[0.3em] text-muted-foreground/60 font-sans animate-pulse">
             Scroll to explore
           </p>
@@ -213,33 +217,33 @@ export const ArtExperienceSection = () => {
 
       {/* Main content with transition */}
       <div className="h-full flex items-center">
-        <div className="container-wide grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center py-20">
+        <div className="container-wide grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 items-center py-16">
           {/* Left side - Content */}
           <div className="order-2 lg:order-1">
             <div 
               key={currentArtwork.id}
               className="animate-fade-in"
             >
-              <div className="inline-block mb-6">
+              <div className="inline-block mb-4">
                 <p className="text-[10px] uppercase tracking-[0.4em] text-accent font-sans">
                   {currentArtwork.collection}
                 </p>
-                <div className="section-divider mt-3 mx-0" />
+                <div className="section-divider mt-2 mx-0" />
               </div>
 
-              <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl mb-8 leading-tight">
+              <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl mb-6 leading-tight">
                 {currentArtwork.title}
               </h2>
 
-              <p className="text-muted-foreground font-sans leading-relaxed text-lg mb-10 max-w-lg font-light italic">
-                "{currentArtwork.story.slice(0, 150)}..."
+              <p className="text-muted-foreground font-sans leading-relaxed text-base lg:text-lg mb-8 max-w-lg font-light italic">
+                "{currentArtwork.story.slice(0, 120)}..."
               </p>
 
               {/* Video thumbnail */}
-              <div className="mb-10 group cursor-pointer">
+              <div className="mb-8 group cursor-pointer">
                 <div className="flex items-center gap-4 text-muted-foreground hover:text-foreground transition-colors">
-                  <div className="w-14 h-14 rounded-full border border-accent/30 flex items-center justify-center group-hover:border-accent group-hover:bg-accent/10 transition-all">
-                    <Play size={18} className="text-accent ml-0.5" />
+                  <div className="w-12 h-12 rounded-full border border-accent/30 flex items-center justify-center group-hover:border-accent group-hover:bg-accent/10 transition-all">
+                    <Play size={16} className="text-accent ml-0.5" />
                   </div>
                   <div>
                     <p className="text-sm font-sans font-medium">Watch the Story</p>
@@ -248,14 +252,14 @@ export const ArtExperienceSection = () => {
                 </div>
               </div>
 
-              <div className="flex flex-col sm:flex-row gap-4">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
                 <Button variant="hero" size="lg" asChild>
                   <Link to={`/artwork/${currentArtwork.id}`}>
                     Acquire This Piece
                     <ArrowRight size={16} />
                   </Link>
                 </Button>
-                <p className="text-accent font-serif text-2xl self-center">
+                <p className="text-accent font-serif text-xl lg:text-2xl">
                   ₹{currentArtwork.price.toLocaleString("en-IN")}
                 </p>
               </div>
@@ -263,12 +267,12 @@ export const ArtExperienceSection = () => {
           </div>
 
           {/* Right side - Artwork Image */}
-          <div className="order-1 lg:order-2 relative">
+          <div className="order-1 lg:order-2 relative flex justify-center lg:justify-end">
             <div 
               key={`image-${currentArtwork.id}`}
-              className="animate-fade-in"
+              className="animate-fade-in relative"
             >
-              <div className="aspect-[3/4] overflow-hidden image-reveal">
+              <div className="aspect-[3/4] max-h-[55vh] lg:max-h-[65vh] overflow-hidden image-reveal">
                 <img
                   src={getArtworkImage(currentArtwork.image_url, currentIndex)}
                   alt={currentArtwork.title}
@@ -276,21 +280,21 @@ export const ArtExperienceSection = () => {
                 />
               </div>
               {/* Decorative frame */}
-              <div className="absolute -bottom-4 -right-4 w-full h-full border border-accent/20 -z-10 hidden lg:block" />
+              <div className="absolute -bottom-3 -right-3 w-full h-full border border-accent/20 -z-10 hidden lg:block" />
             </div>
           </div>
         </div>
       </div>
 
       {/* Navigation arrows */}
-      <div className="absolute bottom-12 left-1/2 -translate-x-1/2 flex items-center gap-6 z-20">
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-6 z-20">
         <button
           onClick={() => goToPrev()}
           disabled={currentIndex === 0}
-          className="w-12 h-12 rounded-full border border-border flex items-center justify-center hover:border-accent hover:text-accent transition-all disabled:opacity-30 disabled:cursor-not-allowed"
+          className="w-10 h-10 rounded-full border border-border flex items-center justify-center hover:border-accent hover:text-accent transition-all disabled:opacity-30 disabled:cursor-not-allowed"
           aria-label="Previous artwork"
         >
-          <ArrowLeft size={18} />
+          <ArrowLeft size={16} />
         </button>
         <span className="text-sm font-sans text-muted-foreground tabular-nums">
           {currentIndex + 1} / {totalArtworks}
@@ -298,16 +302,16 @@ export const ArtExperienceSection = () => {
         <button
           onClick={() => goToNext()}
           disabled={currentIndex === totalArtworks - 1}
-          className="w-12 h-12 rounded-full border border-border flex items-center justify-center hover:border-accent hover:text-accent transition-all disabled:opacity-30 disabled:cursor-not-allowed"
+          className="w-10 h-10 rounded-full border border-border flex items-center justify-center hover:border-accent hover:text-accent transition-all disabled:opacity-30 disabled:cursor-not-allowed"
           aria-label="Next artwork"
         >
-          <ArrowRight size={18} />
+          <ArrowRight size={16} />
         </button>
       </div>
 
       {/* Exit hint when at the end */}
       {currentIndex === totalArtworks - 1 && hasReachedEnd && (
-        <div className="absolute bottom-28 left-1/2 -translate-x-1/2 z-20">
+        <div className="absolute bottom-20 left-1/2 -translate-x-1/2 z-20">
           <p className="text-[9px] uppercase tracking-[0.3em] text-muted-foreground/60 font-sans animate-fade-in">
             Scroll again to continue
           </p>
@@ -315,7 +319,7 @@ export const ArtExperienceSection = () => {
       )}
 
       {/* View all link */}
-      <div className="absolute bottom-12 right-8 z-20 hidden lg:block">
+      <div className="absolute bottom-8 right-6 lg:right-12 z-20 hidden lg:block">
         <Link 
           to="/collection"
           className="text-[11px] uppercase tracking-[0.2em] text-muted-foreground hover:text-accent transition-colors font-sans flex items-center gap-2"
