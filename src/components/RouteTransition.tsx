@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
-import { motion, AnimatePresence } from "framer-motion";
+import { PageLoader } from "@/components/ui/PageLoader";
 
 interface RouteTransitionProps {
   children: React.ReactNode;
@@ -16,10 +16,10 @@ export const RouteTransition = ({ children }: RouteTransitionProps) => {
       setIsTransitioning(true);
       prevPathRef.current = location.pathname;
       
-      // Short transition overlay
+      // Reset after a short delay to allow PageLoader's minDuration to control timing
       const timer = setTimeout(() => {
         setIsTransitioning(false);
-      }, 400);
+      }, 100);
 
       return () => clearTimeout(timer);
     }
@@ -27,26 +27,7 @@ export const RouteTransition = ({ children }: RouteTransitionProps) => {
 
   return (
     <>
-      <AnimatePresence>
-        {isTransitioning && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-[90] bg-background/80 backdrop-blur-sm flex items-center justify-center"
-          >
-            <motion.div
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.8, opacity: 0 }}
-              className="text-center"
-            >
-              <div className="w-8 h-8 border-2 border-accent border-t-transparent rounded-full animate-spin mx-auto" />
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <PageLoader isLoading={isTransitioning} minDuration={1500} />
       {children}
     </>
   );
