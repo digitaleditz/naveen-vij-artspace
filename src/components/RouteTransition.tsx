@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
-import { PageLoader } from "@/components/ui/PageLoader";
+import { motion, AnimatePresence } from "framer-motion";
 
 interface RouteTransitionProps {
   children: React.ReactNode;
@@ -8,26 +8,45 @@ interface RouteTransitionProps {
 
 export const RouteTransition = ({ children }: RouteTransitionProps) => {
   const location = useLocation();
-  const [isLoading, setIsLoading] = useState(false);
-  const [prevPath, setPrevPath] = useState(location.pathname);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const prevPathRef = useRef(location.pathname);
 
   useEffect(() => {
-    if (prevPath !== location.pathname) {
-      setIsLoading(true);
-      setPrevPath(location.pathname);
+    if (prevPathRef.current !== location.pathname) {
+      setIsTransitioning(true);
+      prevPathRef.current = location.pathname;
       
-      // Simulate loading time for route transition
+      // Short transition overlay
       const timer = setTimeout(() => {
-        setIsLoading(false);
-      }, 100);
+        setIsTransitioning(false);
+      }, 400);
 
       return () => clearTimeout(timer);
     }
-  }, [location.pathname, prevPath]);
+  }, [location.pathname]);
 
   return (
     <>
-      <PageLoader isLoading={isLoading} minDuration={600} />
+      <AnimatePresence>
+        {isTransitioning && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 z-[90] bg-background/80 backdrop-blur-sm flex items-center justify-center"
+          >
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.8, opacity: 0 }}
+              className="text-center"
+            >
+              <div className="w-8 h-8 border-2 border-accent border-t-transparent rounded-full animate-spin mx-auto" />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
       {children}
     </>
   );
