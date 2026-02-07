@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const ArtistIcon = () => (
@@ -139,22 +139,25 @@ interface PageLoaderProps {
 
 export const PageLoader = ({ isLoading, minDuration = 800 }: PageLoaderProps) => {
   const [showLoader, setShowLoader] = useState(isLoading);
-  const [startTime] = useState(Date.now());
+  const startTimeRef = useRef<number>(Date.now());
 
   useEffect(() => {
-    if (!isLoading) {
-      const elapsed = Date.now() - startTime;
-      const remaining = Math.max(0, minDuration - elapsed);
-      
-      const timer = setTimeout(() => {
-        setShowLoader(false);
-      }, remaining);
-      
-      return () => clearTimeout(timer);
-    } else {
+    // When a new load starts, reset the timer so minDuration is enforced per-load.
+    if (isLoading) {
+      startTimeRef.current = Date.now();
       setShowLoader(true);
+      return;
     }
-  }, [isLoading, minDuration, startTime]);
+
+    const elapsed = Date.now() - startTimeRef.current;
+    const remaining = Math.max(0, minDuration - elapsed);
+
+    const timer = window.setTimeout(() => {
+      setShowLoader(false);
+    }, remaining);
+
+    return () => window.clearTimeout(timer);
+  }, [isLoading, minDuration]);
 
   return (
     <AnimatePresence>
