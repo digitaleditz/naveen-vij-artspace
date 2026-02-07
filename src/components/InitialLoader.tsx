@@ -25,7 +25,7 @@ export const InitialLoader = ({ children }: InitialLoaderProps) => {
 
   return (
     <>
-      <PageLoader isLoading={isInitialLoad} minDuration={1200} />
+      <PageLoader isLoading={isInitialLoad} minDuration={3000} />
       {children}
     </>
   );

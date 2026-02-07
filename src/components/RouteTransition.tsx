@@ -27,7 +27,7 @@ export const RouteTransition = ({ children }: RouteTransitionProps) => {
 
   return (
     <>
-      <PageLoader isLoading={isTransitioning} minDuration={1500} />
+      <PageLoader isLoading={isTransitioning} minDuration={2500} />
       {children}
     </>
   );
