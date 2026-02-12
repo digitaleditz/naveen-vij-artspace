@@ -135,9 +135,10 @@ const ArtistIcon = () => (
 interface PageLoaderProps {
   isLoading: boolean;
   minDuration?: number;
+  showBranding?: boolean;
 }
 
-export const PageLoader = ({ isLoading, minDuration = 800 }: PageLoaderProps) => {
+export const PageLoader = ({ isLoading, minDuration = 800, showBranding = false }: PageLoaderProps) => {
   const [showLoader, setShowLoader] = useState(isLoading);
   const startTimeRef = useRef<number>(Date.now());
 
@@ -170,24 +171,26 @@ export const PageLoader = ({ isLoading, minDuration = 800 }: PageLoaderProps) =>
         >
           <ArtistIcon />
           
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5, duration: 0.5 }}
-            className="mt-8 text-center"
-          >
-            <p className="font-serif text-xl text-foreground">
-              Naveen <span className="text-accent">Vij</span>
-            </p>
-            <motion.p
-              className="text-[10px] uppercase tracking-[0.4em] text-muted-foreground mt-3"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: [0.4, 1, 0.4] }}
-              transition={{ duration: 1.5, repeat: Infinity }}
+          {showBranding && (
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5, duration: 0.5 }}
+              className="mt-8 text-center"
             >
-              Preparing the gallery
-            </motion.p>
-          </motion.div>
+              <p className="font-serif text-xl text-foreground">
+                Naveen <span className="text-accent">Vij</span>
+              </p>
+              <motion.p
+                className="text-[10px] uppercase tracking-[0.4em] text-muted-foreground mt-3"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: [0.4, 1, 0.4] }}
+                transition={{ duration: 1.5, repeat: Infinity }}
+              >
+                Preparing the gallery
+              </motion.p>
+            </motion.div>
+          )}
 
           {/* Minimal loading bar */}
           <motion.div
