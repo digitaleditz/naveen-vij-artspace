@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, User, ShoppingBag } from "lucide-react";
+import { Menu, X, User, ShoppingBag, Shield } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useAuth } from "@/contexts/AuthContext";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { CartSheet } from "@/components/cart/CartSheet";
 import { useCart } from "@/contexts/CartContext";
+import { useAdmin } from "@/hooks/useAdmin";
 
 const navLinks = [
   { name: "Home", path: "/" },
@@ -20,6 +21,7 @@ export const Navigation = () => {
   const location = useLocation();
   const { user } = useAuth();
   const { items } = useCart();
+  const { isAdmin } = useAdmin();
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
@@ -87,6 +89,15 @@ export const Navigation = () => {
             >
               <User size={18} />
             </Link>
+            {isAdmin && (
+              <Link
+                to="/admin"
+                className="p-2.5 hover:text-accent transition-colors rounded-full hover:bg-secondary"
+                title="Admin Panel"
+              >
+                <Shield size={18} />
+              </Link>
+            )}
           </div>
         </div>
 
@@ -154,6 +165,22 @@ export const Navigation = () => {
               {user ? "Profile" : "Sign In"}
             </Link>
           </li>
+          {isAdmin && (
+            <li 
+              className={cn(
+                "transform transition-all duration-500",
+                isOpen ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
+              )}
+              style={{ transitionDelay: `${(navLinks.length + 1) * 100}ms` }}
+            >
+              <Link 
+                to="/admin" 
+                className="font-serif text-2xl tracking-wide text-accent hover:text-foreground flex items-center gap-2"
+              >
+                <Shield size={20} /> Admin Panel
+              </Link>
+            </li>
+          )}
         </ul>
       </div>
     </header>
