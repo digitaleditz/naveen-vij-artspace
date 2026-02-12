@@ -114,10 +114,10 @@ export const Navigation = () => {
 
       {/* Mobile Menu */}
       <div className={cn(
-        "lg:hidden fixed inset-0 top-[72px] bg-background/98 backdrop-blur-lg transition-all duration-500",
+        "lg:hidden fixed inset-0 top-[72px] bg-background backdrop-blur-none transition-all duration-500 z-50 overflow-y-auto",
         isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
       )}>
-        <ul className="flex flex-col items-center justify-center h-full gap-8">
+        <ul className="flex flex-col items-center py-12 gap-8">
           {navLinks.map((link, index) => (
             <li 
               key={link.path} 
