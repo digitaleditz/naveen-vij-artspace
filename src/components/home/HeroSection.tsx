@@ -29,19 +29,19 @@ export const HeroSection = () => {
         <div className="max-w-xl lg:max-w-2xl">
           <div className="inline-block mb-6 animate-fade-up opacity-0 stagger-1">
             <p className="text-[10px] uppercase tracking-[0.4em] text-accent font-sans">
-              Visual Storyteller
+              Artist · Architect · Visual Storyteller
             </p>
             <div className="section-divider mt-3 mx-0" />
           </div>
           
           <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[1.05] mb-6 animate-fade-up opacity-0 stagger-2">
-            Paintings from
-            <span className="block text-accent mt-1">an Architect's Mind</span>
+            Where Art
+            <span className="block text-accent mt-1">Meets Architecture</span>
           </h1>
           
           <p className="text-lg md:text-xl lg:text-2xl text-muted-foreground font-sans leading-relaxed mb-10 max-w-lg animate-fade-up opacity-0 stagger-3 font-light">
-            Each canvas carries the discipline of architecture and the 
-            freedom of pure expression. Stories of space, light, and emotion.
+            Painting, sculpture, murals—each work driven by curiosity, play, 
+            and an instinctive engagement with space, material, and narrative.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 animate-fade-up opacity-0 stagger-4">
