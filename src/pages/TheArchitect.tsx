@@ -6,12 +6,11 @@ import naveenPortrait from "@/assets/naveen-portrait.jpg";
 import heroInterior from "@/assets/hero-interior.jpg";
 
 const milestones = [
-  { year: "1998", title: "Architecture Degree", description: "Graduated from School of Planning and Architecture" },
-  { year: "2003", title: "Design Practice", description: "Established architectural practice in Mumbai" },
-  { year: "2010", title: "Canvas Awakens", description: "First solo painting exhibition - where architecture met canvas" },
-  { year: "2015", title: "Recognition", description: "Multiple awards for design excellence" },
-  { year: "2020", title: "The Fusion", description: "Full transition to art as primary expression" },
-  { year: "Present", title: "Visual Stories", description: "Creating paintings that speak of space and emotion" },
+  { year: "1982", title: "Architecture Graduate", description: "Graduated from Chandigarh College of Architecture" },
+  { year: "1983", title: "Design Studio", description: "Established a design studio bridging architecture and visual art" },
+  { year: "Pioneer", title: "3D Visualisation", description: "Recognised as a pioneer in introducing sketching and 3D visualisation within India's architectural fraternity" },
+  { year: "Ongoing", title: "Multidisciplinary Practice", description: "Expanding across painting, sculpture, murals, product design, and architecture" },
+  { year: "Present", title: "New Terrains", description: "Each canvas becomes a new terrain of discovery—driven by curiosity, play, and reinvention" },
 ];
 
 const TheArchitect = () => {
@@ -31,12 +30,13 @@ const TheArchitect = () => {
               Naveen Vij
             </h1>
             <p className="text-xl text-muted-foreground font-sans leading-relaxed mb-6 font-light italic">
-              "I paint what I once built in my mind."
+              "Each canvas becomes a new terrain of discovery."
             </p>
             <p className="text-muted-foreground font-sans leading-relaxed text-lg">
-              An artist whose paintings emerge from the disciplined mind of an architect. 
-              Each canvas is a meditation on space, light, and the poetry of form—
-              architectural emotions translated into color and texture.
+              An artist whose practice extends across painting, sculpture, murals, 
+              product design, and architecture. At the core of his work lies a deeply 
+              personal visual inquiry driven by curiosity, play, and an instinctive 
+              engagement with space, material, and narrative.
             </p>
           </div>
           <div className="relative">
@@ -61,28 +61,28 @@ const TheArchitect = () => {
                 The Foundation
               </p>
               <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl mb-4">
-                An Architect's Eye
+                Where Art Meets Architecture
               </h2>
               <div className="section-divider mt-8" />
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
               <div className="premium-card p-10">
-                <h3 className="font-serif text-2xl mb-6 text-accent">Why Architecture Matters</h3>
+                <h3 className="font-serif text-2xl mb-6 text-accent">The Architectural Eye</h3>
                 <p className="text-muted-foreground font-sans leading-relaxed text-lg">
-                  Twenty-five years of designing spaces taught me to see the world differently. 
-                  Architecture trained my eye for proportion, my sensitivity to light, 
-                  my understanding of how emptiness can be as powerful as presence. 
-                  These lessons now live in every brushstroke.
+                  Recognised as a pioneer in introducing sketching and three-dimensional 
+                  visualisation within the architectural fraternity of India, his profound 
+                  understanding of perspective remains central to his artistic language, 
+                  lending his works a distinctive spatial depth and structure.
                 </p>
               </div>
               <div className="premium-card p-10">
-                <h3 className="font-serif text-2xl mb-6 text-accent">Why I Paint</h3>
+                <h3 className="font-serif text-2xl mb-6 text-accent">Art & Space in Dialogue</h3>
                 <p className="text-muted-foreground font-sans leading-relaxed text-lg">
-                  Painting freed me from the constraints of function and physics. 
-                  On canvas, I can build impossible spaces, capture emotions that 
-                  have no floor plan, and express what architecture sometimes cannot—
-                  the purely personal, the abstract, the deeply felt.
+                  His paintings frequently inhabit the architectural environments he conceives, 
+                  creating a seamless dialogue between art and space, where each informs and 
+                  enriches the other. His art continuously explores new forms of expression, 
+                  often dissolving the boundaries between artistic imagination and functional design.
                 </p>
               </div>
             </div>
@@ -98,7 +98,7 @@ const TheArchitect = () => {
               <div className="aspect-[4/3] overflow-hidden image-reveal">
                 <img
                   src={heroInterior}
-                  alt="Early architectural work by Naveen Vij"
+                  alt="Naveen Vij's artistic environment"
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -108,21 +108,20 @@ const TheArchitect = () => {
               <h2 className="font-serif text-4xl md:text-5xl mb-10">The Journey</h2>
               <div className="space-y-8 text-muted-foreground font-sans leading-relaxed text-lg">
                 <p>
-                  Born in Delhi to an architect father and artist mother, my path 
-                  was perhaps inevitable—a life spent at the intersection of 
-                  structure and expression, logic and intuition.
+                  After graduating from the Chandigarh College of Architecture in 1982, 
+                  Naveen established a design studio that evolved alongside his parallel 
+                  and increasingly significant journey as a visual artist.
                 </p>
                 <p>
-                  After years of designing homes, offices, and public spaces, 
-                  I found myself increasingly drawn to a personal form of creation. 
-                  What began as sketches for clients evolved into a consuming 
-                  passion for painting.
+                  His diverse and ever-evolving oeuvre ranges from evocative abstract 
+                  compositions and nostalgic old-world streetscapes to satirical realist 
+                  works marked by wit and quiet humour.
                 </p>
                 <p>
-                  Today, my canvases carry forward everything I learned as an 
-                  architect: the respect for negative space, the choreography 
-                  of light, the understanding that what you leave out matters 
-                  as much as what you put in.
+                  At times his work reveals a childlike spontaneity and freedom; at others, 
+                  the precision and discipline of his architectural training. This constant 
+                  shift in tone and expression reflects an artist driven by reinvention, 
+                  for whom each canvas becomes a new terrain of discovery.
                 </p>
               </div>
             </div>
@@ -138,15 +137,15 @@ const TheArchitect = () => {
               Philosophy
             </p>
             <blockquote className="font-serif text-3xl md:text-4xl lg:text-5xl leading-tight mb-8 text-foreground">
-              "Every painting is an unbuilt building—
+              "At the core of his work lies
               <span className="block mt-2 text-accent">
-                a space that exists only in feeling."
+                a deeply personal visual inquiry."
               </span>
             </blockquote>
             <p className="text-muted-foreground font-sans leading-relaxed text-lg max-w-2xl mx-auto">
-              My work explores the emotional architecture of memory, the structural 
-              poetry of color, and the sacred geometry hidden in everyday moments. 
-              Each piece invites you to inhabit a space that exists beyond the physical.
+              Driven by curiosity, play, and an instinctive engagement with space, 
+              material, and narrative—his art continuously explores new forms of expression, 
+              often dissolving the boundaries between artistic imagination and functional design.
             </p>
           </div>
         </div>

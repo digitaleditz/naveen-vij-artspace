@@ -13,9 +13,9 @@ export const Footer = () => {
           <div className="md:col-span-2">
             <h3 className="font-serif text-2xl md:text-3xl mb-5">Naveen Vij</h3>
             <p className="text-cream/50 font-sans text-sm leading-relaxed max-w-md mb-6">
-              Artist & Visual Storyteller — Creating paintings that speak 
-              of space, light, and emotion. Each canvas carries the 
-              discipline of architecture and the freedom of art.
+              Artist & Visual Storyteller — His practice extends across painting, 
+              sculpture, murals, product design, and architecture. Driven by curiosity, 
+              play, and an instinctive engagement with space, material, and narrative.
             </p>
             <p className="text-[10px] uppercase tracking-[0.3em] text-cream/30 font-sans">
               New Delhi, India
