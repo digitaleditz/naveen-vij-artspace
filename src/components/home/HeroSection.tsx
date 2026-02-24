@@ -29,7 +29,7 @@ export const HeroSection = () => {
         <div className="max-w-xl lg:max-w-2xl">
           <div className="inline-block mb-6 animate-fade-up opacity-0 stagger-1">
             <p className="text-[10px] uppercase tracking-[0.4em] text-accent font-sans">
-              Artist · Architect · Chronic Overthinker
+              Artist · Architect · Eternal Daydreamer
             </p>
             <div className="section-divider mt-3 mx-0" />
           </div>
@@ -41,7 +41,7 @@ export const HeroSection = () => {
           
           <p className="text-lg md:text-xl lg:text-2xl text-muted-foreground font-sans leading-relaxed mb-10 max-w-lg animate-fade-up opacity-0 stagger-3 font-light">
             Paintings, sculptures, murals—each one born from curiosity, 
-            a healthy disregard for staying in one lane, and way too much coffee.
+            a gentle refusal to stay in one lane, and way too much chai.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 animate-fade-up opacity-0 stagger-4">

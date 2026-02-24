@@ -13,9 +13,9 @@ export const Footer = () => {
           <div className="md:col-span-2">
             <h3 className="font-serif text-2xl md:text-3xl mb-5">Naveen Vij</h3>
             <p className="text-cream/50 font-sans text-sm leading-relaxed max-w-md mb-6">
-              Artist, architect, and professional overthinker. His practice extends 
-              across painting, sculpture, murals, and the occasional existential 
-              crisis about empty walls. Based in Delhi, fuelled by chai.
+              Artist, architect, and a man who simply can't stop creating. His practice 
+              extends across painting, sculpture, murals, and a quiet obsession 
+              with making every wall worth looking at. Based in Delhi, fuelled by chai.
             </p>
             <p className="text-[10px] uppercase tracking-[0.3em] text-cream/30 font-sans">
               New Delhi, India
