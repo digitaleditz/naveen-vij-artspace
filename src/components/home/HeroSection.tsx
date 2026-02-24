@@ -60,20 +60,6 @@ export const HeroSection = () => {
         </div>
       </div>
 
-      {/* Scroll Indicator */}
-      <button 
-        onClick={scrollToArtExperience}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-float cursor-pointer group"
-      >
-        <div className="flex flex-col items-center gap-2">
-          <span className="text-[9px] uppercase tracking-[0.3em] text-muted-foreground font-sans group-hover:text-accent transition-colors">
-            Enter the Gallery
-          </span>
-          <div className="w-9 h-9 rounded-full border border-accent/30 flex items-center justify-center group-hover:border-accent transition-colors">
-            <ArrowDown size={14} className="text-accent animate-bounce" />
-          </div>
-        </div>
-      </button>
     </section>
   );
 };
