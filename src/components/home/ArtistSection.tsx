@@ -84,7 +84,7 @@ export const ArtistSection = () => {
                 The Artist & His Creations
               </h3>
               <p className="text-muted-foreground font-sans text-sm mt-2 max-w-md mx-auto">
-                Proof that he actually paints these himself. No AI involved. Just coffee, chaos, and a lot of turpentine.
+                Proof that he actually paints these himself. No AI involved. Just chai, chaos, and a lot of turpentine.
               </p>
             </div>
 
