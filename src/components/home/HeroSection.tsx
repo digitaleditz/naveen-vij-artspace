@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, ArrowDown } from "lucide-react";
+import { AdminEditableImage } from "@/components/AdminEditableImage";
 import heroInterior from "@/assets/hero-interior.jpg";
 
 export const HeroSection = () => {
@@ -15,10 +16,11 @@ export const HeroSection = () => {
     <section className="relative h-screen flex items-center overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0">
-        <img
+        <AdminEditableImage
           src={heroInterior}
           alt="Artistic space"
           className="w-full h-full object-cover"
+          assetKey="hero-background"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-background via-background/85 to-background/40" />
         <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent" />

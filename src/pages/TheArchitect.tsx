@@ -2,6 +2,7 @@ import { Layout } from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
+import { AdminEditableImage } from "@/components/AdminEditableImage";
 import naveenPortrait from "@/assets/naveen-portrait.jpg";
 import heroInterior from "@/assets/hero-interior.jpg";
 
@@ -41,10 +42,11 @@ const TheArchitect = () => {
           </div>
           <div className="relative">
             <div className="aspect-[4/5] overflow-hidden image-reveal">
-              <img
+              <AdminEditableImage
                 src={naveenPortrait}
                 alt="Naveen Vij"
                 className="w-full h-full object-cover"
+                assetKey="architect-portrait"
               />
             </div>
             <div className="absolute -bottom-6 -right-6 w-full h-full border border-accent/20 -z-10" />
@@ -96,10 +98,11 @@ const TheArchitect = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
             <div className="relative">
               <div className="aspect-[4/3] overflow-hidden image-reveal">
-                <img
+                <AdminEditableImage
                   src={heroInterior}
                   alt="Naveen Vij's artistic environment"
                   className="w-full h-full object-cover"
+                  assetKey="architect-journey"
                 />
               </div>
               <div className="absolute -top-6 -left-6 w-full h-full border border-accent/20 -z-10" />
