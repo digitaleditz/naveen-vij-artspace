@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { useArtistMoments } from "@/hooks/useArtistMoments";
 import { ArrowRight } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
+import { AdminEditableImage } from "@/components/AdminEditableImage";
 import naveenPortrait from "@/assets/naveen-portrait.jpg";
 
 export const ArtistSection = () => {
@@ -46,10 +47,11 @@ export const ArtistSection = () => {
           {/* Portrait */}
           <div className="relative">
             <div className="aspect-[4/5] overflow-hidden">
-              <img
+              <AdminEditableImage
                 src={naveenPortrait}
                 alt="Naveen Vij in his studio"
                 className="w-full h-full object-cover"
+                assetKey="naveen-portrait"
               />
             </div>
             <div className="absolute -bottom-4 -left-4 bg-background border border-border px-6 py-4">
@@ -92,10 +94,17 @@ export const ArtistSection = () => {
               {moments.map((moment) => (
                 <div key={moment.id} className="group">
                   <div className="aspect-square overflow-hidden mb-4 bg-muted">
-                    <img
+                    <AdminEditableImage
                       src={moment.image_url}
                       alt={`Naveen Vij with ${moment.painting_name}`}
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      assetKey={`moment-${moment.id}`}
+                      dbUpdate={{
+                        table: "artist_moments",
+                        id: moment.id,
+                        column: "image_url",
+                        storageBucket: "artist-moments",
+                      }}
                     />
                   </div>
                   <h4 className="font-serif text-xl mb-1 group-hover:text-accent transition-colors">
