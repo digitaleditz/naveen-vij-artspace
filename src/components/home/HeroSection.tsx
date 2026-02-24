@@ -29,7 +29,7 @@ export const HeroSection = () => {
         <div className="max-w-xl lg:max-w-2xl">
           <div className="inline-block mb-6 animate-fade-up opacity-0 stagger-1">
             <p className="text-[10px] uppercase tracking-[0.4em] text-accent font-sans">
-              Artist · Architect · Visual Storyteller
+              Artist · Architect · Chronic Overthinker
             </p>
             <div className="section-divider mt-3 mx-0" />
           </div>
@@ -40,8 +40,8 @@ export const HeroSection = () => {
           </h1>
           
           <p className="text-lg md:text-xl lg:text-2xl text-muted-foreground font-sans leading-relaxed mb-10 max-w-lg animate-fade-up opacity-0 stagger-3 font-light">
-            Painting, sculpture, murals—each work driven by curiosity, play, 
-            and an instinctive engagement with space, material, and narrative.
+            Paintings, sculptures, murals—each one born from curiosity, 
+            a healthy disregard for staying in one lane, and way too much coffee.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 animate-fade-up opacity-0 stagger-4">

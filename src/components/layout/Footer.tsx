@@ -13,9 +13,9 @@ export const Footer = () => {
           <div className="md:col-span-2">
             <h3 className="font-serif text-2xl md:text-3xl mb-5">Naveen Vij</h3>
             <p className="text-cream/50 font-sans text-sm leading-relaxed max-w-md mb-6">
-              Artist & Visual Storyteller — His practice extends across painting, 
-              sculpture, murals, product design, and architecture. Driven by curiosity, 
-              play, and an instinctive engagement with space, material, and narrative.
+              Artist, architect, and professional overthinker. His practice extends 
+              across painting, sculpture, murals, and the occasional existential 
+              crisis about empty walls. Based in Delhi, fuelled by chai.
             </p>
             <p className="text-[10px] uppercase tracking-[0.3em] text-cream/30 font-sans">
               New Delhi, India
@@ -91,7 +91,7 @@ export const Footer = () => {
             © {new Date().getFullYear()} Naveen Vij. All rights reserved.
           </p>
           <p className="text-xs font-sans text-cream/30 italic">
-            "Every painting is an unbuilt building—a space that exists only in feeling."
+            "Every painting is an unbuilt building — and honestly, that's cheaper."
           </p>
         </div>
       </div>
