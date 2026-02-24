@@ -47,12 +47,13 @@ const Collection = () => {
           </div>
           <h1 className="font-serif text-5xl md:text-6xl lg:text-7xl mb-10 leading-[1.05]">
             Visual Studies of
-            <span className="block text-accent mt-2">an Architect's Mind</span>
+            <span className="block text-accent mt-2">a Restless Mind</span>
           </h1>
           <p className="text-xl text-muted-foreground font-sans leading-relaxed max-w-3xl font-light">
-            Each painting is a narrative of space—an exploration of light, form, 
-            and emotion. These are not merely decorative objects; they are 
-            architectural emotions waiting to find their home.
+            Each painting is what happens when an architect picks up a brush 
+            instead of a blueprint. These aren't just decorative objects—they're 
+            architectural emotions, spatial arguments, and occasionally, 
+            beautiful accidents.
           </p>
         </div>
       </section>
@@ -162,15 +163,15 @@ const Collection = () => {
         <div className="container-wide relative z-10">
           <div className="max-w-4xl mx-auto text-center">
             <p className="text-[10px] uppercase tracking-[0.4em] text-accent font-sans mb-8">
-              A Note on Collecting
+              Fair Warning
             </p>
             <p className="font-serif text-3xl md:text-4xl leading-relaxed mb-10 italic">
               "Each painting carries within it the memory of spaces I've designed 
-              and dreams I've yet to build. When you acquire a work, you become 
-              part of that ongoing conversation between imagination and reality."
+              and dreams I've yet to build. When you take one home, you're 
+              essentially adopting a piece of my imagination. No returns on that."
             </p>
             <div className="section-divider" />
-            <p className="text-muted-foreground font-sans mt-8">— Naveen Vij</p>
+            <p className="text-muted-foreground font-sans mt-8">— Naveen Vij, probably smiling</p>
           </div>
         </div>
       </section>

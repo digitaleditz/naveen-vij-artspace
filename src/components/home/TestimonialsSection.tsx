@@ -42,7 +42,7 @@ export const TestimonialsSection = () => {
       <div className="container-wide relative z-10">
         <div className="text-center mb-10">
           <p className="text-[10px] uppercase tracking-[0.4em] text-accent font-sans mb-4">
-            Collectors Speak
+            Don't Take Our Word For It
           </p>
         </div>
 

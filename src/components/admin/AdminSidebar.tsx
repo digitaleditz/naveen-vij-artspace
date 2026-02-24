@@ -6,6 +6,7 @@ import {
   Users,
   BarChart3,
   MessageSquare,
+  Camera,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -16,6 +17,7 @@ const navItems = [
   { id: "customers", label: "Customers", icon: Users, path: "/admin/customers" },
   { id: "analytics", label: "Analytics", icon: BarChart3, path: "/admin/analytics" },
   { id: "inquiries", label: "Inquiries", icon: MessageSquare, path: "/admin/inquiries" },
+  { id: "moments", label: "Artist Moments", icon: Camera, path: "/admin/moments" },
 ];
 
 export const AdminSidebar = () => {

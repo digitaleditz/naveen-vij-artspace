@@ -13,19 +13,19 @@ export const CTASection = () => {
         <div className="max-w-3xl mx-auto text-center">
           <div className="inline-block mb-6">
             <p className="text-[10px] uppercase tracking-[0.4em] text-accent font-sans">
-              Acquire a Story
+              Take One Home
             </p>
             <div className="section-divider mt-3" />
           </div>
           
           <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl mb-8 leading-tight">
-            Every Painting Awaits Its Home
+            Your Walls Deserve Better Than Bare
           </h2>
           
           <p className="text-muted-foreground font-sans text-base md:text-lg leading-relaxed mb-10 max-w-xl mx-auto">
-            When you acquire a piece, you're not just buying art—you're inviting 
-            a story into your space. A narrative of light, form, and emotion 
-            that will grow with you over time.
+            When you bring home a piece, you're not just decorating—you're 
+            starting a conversation. One that involves light, emotion, and 
+            probably a few compliments from your guests.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
