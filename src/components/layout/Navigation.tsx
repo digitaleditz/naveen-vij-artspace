@@ -35,7 +35,7 @@ export const Navigation = () => {
     <header className={cn(
       "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
       isScrolled 
-        ? "bg-background/95 backdrop-blur-md shadow-soft py-4" 
+        ? "bg-background/70 backdrop-blur-2xl border-b border-border/20 shadow-[0_1px_24px_-6px_hsl(var(--foreground)/0.06)] py-3" 
         : "bg-transparent py-6"
     )}>
       <nav className="container-wide flex items-center justify-between">

@@ -25,9 +25,10 @@ export const ArtExperienceSection = () => {
 
   const [emblaRef, emblaApi] = useEmblaCarousel({
     align: "start",
-    loop: false,
-    dragFree: false,
+    loop: true,
+    dragFree: true,
     containScroll: "trimSnaps",
+    skipSnaps: false,
   });
 
   const scrollPrev = useCallback(() => emblaApi?.scrollPrev(), [emblaApi]);
@@ -80,7 +81,7 @@ export const ArtExperienceSection = () => {
   }
 
   return (
-    <section className="py-12 md:py-20 bg-background relative overflow-hidden">
+    <section className="py-12 md:py-20 bg-background relative overflow-hidden select-none">
       {/* Section header */}
       <div className="container-wide mb-8 md:mb-12 flex items-end justify-between">
         <div>
@@ -114,7 +115,7 @@ export const ArtExperienceSection = () => {
 
       {/* Carousel */}
       <div className="container-wide">
-        <div ref={emblaRef} className="overflow-hidden cursor-grab active:cursor-grabbing">
+        <div ref={emblaRef} className="overflow-hidden cursor-grab active:cursor-grabbing touch-pan-y">
           <div className="flex gap-4 md:gap-6">
             {displayArtworks.map((artwork, index) => (
               <div
