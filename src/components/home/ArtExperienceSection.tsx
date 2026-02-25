@@ -24,7 +24,7 @@ export const ArtExperienceSection = () => {
   const [isPaused, setIsPaused] = useState(false);
   const animationRef = useRef<number>();
   const scrollPos = useRef(0);
-  const speed = 0.5; // px per frame
+  const speed = 0.6; // px per frame
 
   const displayArtworks = artworks?.slice(0, 6) || [];
 
