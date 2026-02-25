@@ -32,6 +32,7 @@ export const AdminEditableImage = ({
   const [isHovered, setIsHovered] = useState(false);
   const [uploading, setUploading] = useState(false);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+  const [confirmedUrl, setConfirmedUrl] = useState<string | null>(null);
   const [objectPosition, setObjectPosition] = useState("center");
   const [scale, setScale] = useState(1);
   const [showControls, setShowControls] = useState(false);
@@ -110,6 +111,7 @@ export const AdminEditableImage = ({
     }
 
     onImageUpdate?.(publicUrl);
+    setConfirmedUrl(publicUrl);
     toast({ title: "Image updated!", description: "Looking sharp ✨" });
     setPreviewUrl(null);
     setShowControls(false);
@@ -132,7 +134,7 @@ export const AdminEditableImage = ({
     setObjectPosition(positions[(idx + 1) % positions.length]);
   };
 
-  const displaySrc = previewUrl || src;
+  const displaySrc = previewUrl || confirmedUrl || src;
 
   return (
     <div
