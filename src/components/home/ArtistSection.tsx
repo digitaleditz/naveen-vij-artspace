@@ -94,9 +94,9 @@ export const ArtistSection = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {moments.map((moment) => (
-                <div key={moment.id} className="group relative overflow-hidden cursor-pointer">
+                <div key={moment.id} className="group relative cursor-pointer p-2 border border-border/50 rounded-sm bg-card/40">
                   {/* Image fills the entire card */}
-                  <div className="aspect-[3/4] overflow-hidden rounded-sm">
+                  <div className="aspect-[3/4] overflow-hidden relative">
                     <AdminEditableImage
                       src={moment.image_url}
                       alt={`Naveen Vij with ${moment.painting_name}`}
