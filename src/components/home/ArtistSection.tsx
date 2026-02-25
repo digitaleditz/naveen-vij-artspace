@@ -95,7 +95,6 @@ export const ArtistSection = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {moments.map((moment) => (
                 <div key={moment.id} className="group relative cursor-pointer p-2 border border-border/50 rounded-sm bg-card/40">
-                  {/* Image fills the entire card */}
                   <div className="aspect-[3/4] overflow-hidden relative">
                     <AdminEditableImage
                       src={moment.image_url}
@@ -111,22 +110,22 @@ export const ArtistSection = () => {
                     />
                     {/* Dark overlay on hover */}
                     <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                    {/* Permanent subtle gradient for title */}
+                    {/* Gradient for title */}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
-                  </div>
 
-                  {/* Title always visible */}
-                  <div className="absolute inset-x-0 bottom-0 p-5 sm:p-6">
-                    <h4 className="font-serif text-lg sm:text-xl text-white leading-snug">
-                      {moment.painting_name}
-                    </h4>
-                  </div>
+                    {/* Title pinned to bottom of image */}
+                    <div className="absolute inset-x-0 bottom-0 p-4 sm:p-5">
+                      <h4 className="font-serif text-lg sm:text-xl text-white leading-snug">
+                        {moment.painting_name}
+                      </h4>
+                    </div>
 
-                  {/* Description on hover - centered */}
-                  <div className="absolute inset-0 flex items-center justify-center p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                    <p className="text-white/90 font-sans text-sm sm:text-base leading-relaxed text-center max-w-[85%]">
-                      {moment.description}
-                    </p>
+                    {/* Description on hover - centered */}
+                    <div className="absolute inset-0 flex items-center justify-center p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                      <p className="text-white/90 font-sans text-sm sm:text-base leading-relaxed text-center max-w-[85%]">
+                        {moment.description}
+                      </p>
+                    </div>
                   </div>
                 </div>
               ))}
