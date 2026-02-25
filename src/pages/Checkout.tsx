@@ -8,7 +8,7 @@ import { useCart } from "@/contexts/CartContext";
 import { useAuth } from "@/contexts/AuthContext";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
-import { ArrowLeft, ArrowRight, Check, ShoppingBag, Package, CreditCard } from "lucide-react";
+import { ArrowLeft, ArrowRight, Check, ShoppingBag, Package } from "lucide-react";
 import { z } from "zod";
 import artwork1 from "@/assets/artwork-1.jpg";
 import artwork2 from "@/assets/artwork-2.jpg";
@@ -204,7 +204,7 @@ const Checkout = () => {
               {[
                 { id: "cart", label: "Cart", icon: ShoppingBag },
                 { id: "details", label: "Details", icon: Package },
-                { id: "payment", label: "Payment", icon: CreditCard },
+                { id: "payment", label: "Payment", icon: Package },
               ].map((s, i) => (
                 <div key={s.id} className="flex items-center">
                   <div
@@ -488,14 +488,11 @@ const Checkout = () => {
 
               <div className="p-8 bg-accent/5 border border-accent/20 mb-8">
                 <h3 className="font-serif text-lg mb-4">Payment Method</h3>
-                <p className="text-muted-foreground font-sans text-sm mb-4">
-                  This is a demo checkout. In production, this would connect to a secure payment gateway.
-                </p>
-                <div className="flex items-center gap-3 p-4 bg-background border border-border">
-                  <CreditCard size={24} className="text-accent" />
+                <div className="flex items-center gap-3 p-4 bg-background border border-accent/30">
+                  <Package size={24} className="text-accent" />
                   <div>
-                    <p className="font-sans text-sm font-medium">Mock Payment</p>
-                    <p className="text-xs text-muted-foreground">Click below to simulate payment</p>
+                    <p className="font-sans text-sm font-medium">Pay on Delivery</p>
+                    <p className="text-xs text-muted-foreground">Pay when your artwork is delivered to your doorstep</p>
                   </div>
                 </div>
               </div>
@@ -517,7 +514,7 @@ const Checkout = () => {
                 onClick={handleProcessPayment}
                 disabled={processing}
               >
-                {processing ? "Processing..." : `Complete Purchase • ₹${total.toLocaleString()}`}
+                {processing ? "Placing Order..." : `Place Order • ₹${total.toLocaleString()}`}
               </Button>
             </div>
           )}
