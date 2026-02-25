@@ -36,10 +36,13 @@ export const HeroSection = () => {
             <div className="section-divider mt-3 mx-0" />
           </div>
 
-          <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[1.05] mb-6 animate-fade-up opacity-0 stagger-2">
+          <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[1.05] mb-3 animate-fade-up opacity-0 stagger-2">
             Where Art
             <span className="block text-accent mt-1">Meets Architecture</span>
           </h1>
+          <p className="font-serif text-lg sm:text-xl md:text-2xl lg:text-3xl italic text-muted-foreground font-light mb-6 animate-fade-up opacity-0 stagger-2">
+            Or is it vice versa?
+          </p>
 
           <p className="text-lg md:text-xl lg:text-2xl text-muted-foreground font-sans leading-relaxed mb-10 max-w-lg animate-fade-up opacity-0 stagger-3 font-light">
             Paintings, sculptures, murals, each one born from curiosity, a gentle refusal to stay in one lane, and way
