@@ -150,7 +150,7 @@
   }
 
   .image-reveal::after {
-    @apply content-[''] absolute inset-0 bg-gradient-to-t from-background/20 to-transparent opacity-0 transition-opacity duration-500;
+    @apply content-[''] absolute inset-0 bg-gradient-to-t from-background/20 to-transparent opacity-0 transition-opacity duration-500 pointer-events-none z-10;
   }
 
   .image-reveal:hover::after {
