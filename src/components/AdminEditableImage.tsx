@@ -36,12 +36,13 @@ export const AdminEditableImage = ({
   const [objectPosition, setObjectPosition] = useState("center");
   const [scale, setScale] = useState(1);
   const [showControls, setShowControls] = useState(false);
+  const [assetLoaded, setAssetLoaded] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const pendingFileRef = useRef<File | null>(null);
 
-  // Load saved override from site_assets on mount (for non-dbUpdate images)
+  // Load saved override from site_assets on mount (for ALL users, not just admin)
   useEffect(() => {
-    if (dbUpdate || !isAdmin) return;
+    if (dbUpdate) { setAssetLoaded(true); return; }
     const loadSavedAsset = async () => {
       const { data } = await supabase
         .from("site_assets" as any)
@@ -51,12 +52,19 @@ export const AdminEditableImage = ({
       if (data && (data as any).image_url) {
         setConfirmedUrl((data as any).image_url);
       }
+      setAssetLoaded(true);
     };
     loadSavedAsset();
-  }, [assetKey, dbUpdate, isAdmin]);
+  }, [assetKey, dbUpdate]);
+
+  // Don't render until we've checked the DB for overrides
+  const displaySrcFinal = confirmedUrl || src;
 
   if (!isAdmin) {
-    return <img src={confirmedUrl || src} alt={alt} className={className} />;
+    if (!assetLoaded) {
+      return <div className={className} style={{ background: 'transparent' }} />;
+    }
+    return <img src={displaySrcFinal} alt={alt} className={className} />;
   }
 
   const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
