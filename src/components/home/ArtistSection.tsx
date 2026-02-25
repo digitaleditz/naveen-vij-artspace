@@ -100,7 +100,7 @@ export const ArtistSection = () => {
                     <AdminEditableImage
                       src={moment.image_url}
                       alt={`Naveen Vij with ${moment.painting_name}`}
-                      className="w-full h-full object-cover transition-all duration-700 group-hover:scale-[1.03]"
+                      className="w-full h-full object-cover"
                       assetKey={`moment-${moment.id}`}
                       dbUpdate={{
                         table: "artist_moments",
@@ -109,21 +109,19 @@ export const ArtistSection = () => {
                         storageBucket: "artist-moments",
                       }}
                     />
-                    {/* Permanent subtle gradient at bottom for text legibility */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent rounded-sm" />
-                    {/* Hover overlay */}
-                    <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-sm" />
+                    {/* Gradient for text legibility */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
                   </div>
 
-                  {/* Text overlay pinned to bottom */}
+                  {/* Text overlay */}
                   <div className="absolute inset-x-0 bottom-0 p-5 sm:p-6">
                     <p className="text-[9px] uppercase tracking-[0.3em] text-white/50 font-sans mb-1.5">
                       With Painting
                     </p>
-                    <h4 className="font-serif text-lg sm:text-xl text-white leading-snug mb-2">
+                    <h4 className="font-serif text-lg sm:text-xl text-white leading-snug mb-1.5">
                       {moment.painting_name}
                     </h4>
-                    <p className="text-white/60 font-sans text-xs sm:text-sm leading-relaxed max-h-0 group-hover:max-h-24 overflow-hidden transition-all duration-500 ease-out">
+                    <p className="text-white/60 font-sans text-xs sm:text-sm leading-relaxed">
                       {moment.description}
                     </p>
                   </div>
