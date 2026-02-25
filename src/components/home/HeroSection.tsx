@@ -35,16 +35,15 @@ export const HeroSection = () => {
             </p>
             <div className="section-divider mt-3 mx-0" />
           </div>
-          
+
           <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[1.05] mb-6 animate-fade-up opacity-0 stagger-2">
             Where Art
             <span className="block text-accent mt-1">Meets Architecture</span>
-            <span className="block text-2xl sm:text-3xl md:text-4xl text-muted-foreground mt-2 font-light italic">Or is it vice versa?</span>
           </h1>
-          
+
           <p className="text-lg md:text-xl lg:text-2xl text-muted-foreground font-sans leading-relaxed mb-10 max-w-lg animate-fade-up opacity-0 stagger-3 font-light">
-            Paintings, sculptures, murals—each one born from curiosity, 
-            a gentle refusal to stay in one lane, and way too much chai.
+            Paintings, sculptures, murals, each one born from curiosity, a gentle refusal to stay in one lane, and way
+            too much chai.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 animate-fade-up opacity-0 stagger-4">
@@ -55,14 +54,11 @@ export const HeroSection = () => {
               </Link>
             </Button>
             <Button variant="heroOutline" size="lg" asChild>
-              <Link to="/the-architect">
-                Meet the Artist
-              </Link>
+              <Link to="/the-architect">Meet the Artist</Link>
             </Button>
           </div>
         </div>
       </div>
-
     </section>
   );
 };
