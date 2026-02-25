@@ -116,7 +116,7 @@ export const ArtExperienceSection = () => {
       {/* Carousel */}
       <div className="container-wide">
         <div ref={emblaRef} className="overflow-hidden cursor-grab active:cursor-grabbing touch-pan-y">
-          <div className="flex gap-4 md:gap-6">
+          <div className="flex gap-6 md:gap-10">
             {displayArtworks.map((artwork, index) => (
               <div
                 key={artwork.id}
