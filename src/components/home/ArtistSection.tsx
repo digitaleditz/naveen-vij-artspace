@@ -100,7 +100,7 @@ export const ArtistSection = () => {
                     <AdminEditableImage
                       src={moment.image_url}
                       alt={`Naveen Vij with ${moment.painting_name}`}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover transition-all duration-500 group-hover:blur-[3px] group-hover:scale-[1.02]"
                       assetKey={`moment-${moment.id}`}
                       dbUpdate={{
                         table: "artist_moments",
@@ -109,19 +109,22 @@ export const ArtistSection = () => {
                         storageBucket: "artist-moments",
                       }}
                     />
-                    {/* Gradient for text legibility */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
+                    {/* Dark overlay on hover */}
+                    <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    {/* Permanent subtle gradient for title */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
                   </div>
 
-                  {/* Text overlay */}
+                  {/* Title always visible */}
                   <div className="absolute inset-x-0 bottom-0 p-5 sm:p-6">
-                    <p className="text-[9px] uppercase tracking-[0.3em] text-white/50 font-sans mb-1.5">
-                      With Painting
-                    </p>
-                    <h4 className="font-serif text-lg sm:text-xl text-white leading-snug mb-1.5">
+                    <h4 className="font-serif text-lg sm:text-xl text-white leading-snug">
                       {moment.painting_name}
                     </h4>
-                    <p className="text-white/60 font-sans text-xs sm:text-sm leading-relaxed">
+                  </div>
+
+                  {/* Description on hover - centered */}
+                  <div className="absolute inset-0 flex items-center justify-center p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    <p className="text-white/90 font-sans text-sm sm:text-base leading-relaxed text-center max-w-[85%]">
                       {moment.description}
                     </p>
                   </div>
