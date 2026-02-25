@@ -67,33 +67,35 @@ export const ArtistSection = () => {
 
         {/* Moments with paintings */}
         {loading ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[1, 2, 3].map((i) => (
-              <div key={i}>
-                <Skeleton className="aspect-square mb-4" />
-                <Skeleton className="h-5 w-32 mb-2" />
-                <Skeleton className="h-4 w-full" />
+              <div key={i} className="rounded-lg overflow-hidden">
+                <Skeleton className="aspect-[4/5]" />
               </div>
             ))}
           </div>
         ) : moments.length > 0 ? (
           <>
-            <div className="text-center mb-12">
-              <p className="text-[10px] uppercase tracking-[0.4em] text-accent font-sans mb-3">
-                Caught in the Act
-              </p>
-              <h3 className="font-serif text-2xl md:text-3xl">
-                The Artist & His Creations
-              </h3>
-              <p className="text-muted-foreground font-sans text-sm mt-2 max-w-md mx-auto">
-                Proof that he actually paints these himself. No AI involved. Just chai, chaos, and a lot of turpentine.
-              </p>
+            <div className="flex items-center gap-6 mb-10">
+              <div className="h-px flex-1 bg-border" />
+              <div className="text-center">
+                <p className="text-[10px] uppercase tracking-[0.4em] text-accent font-sans mb-1">
+                  Caught in the Act
+                </p>
+                <h3 className="font-serif text-2xl md:text-3xl">
+                  The Artist & His Creations
+                </h3>
+              </div>
+              <div className="h-px flex-1 bg-border" />
             </div>
+            <p className="text-muted-foreground font-sans text-sm text-center max-w-md mx-auto mb-12">
+              Proof that he actually paints these himself. No AI involved. Just chai, chaos, and a lot of turpentine.
+            </p>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {moments.map((moment) => (
-                <div key={moment.id} className="group">
-                  <div className="aspect-square overflow-hidden mb-4 bg-muted">
+                <div key={moment.id} className="group relative rounded-lg overflow-hidden bg-card border border-border/50 shadow-soft hover:shadow-elevated transition-all duration-500">
+                  <div className="aspect-[4/5] overflow-hidden">
                     <AdminEditableImage
                       src={moment.image_url}
                       alt={`Naveen Vij with ${moment.painting_name}`}
@@ -107,12 +109,15 @@ export const ArtistSection = () => {
                       }}
                     />
                   </div>
-                  <h4 className="font-serif text-xl mb-1 group-hover:text-accent transition-colors">
-                    {moment.painting_name}
-                  </h4>
-                  <p className="text-muted-foreground font-sans text-sm leading-relaxed">
-                    {moment.description}
-                  </p>
+                  {/* Gradient overlay with text */}
+                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent p-6 pt-16 translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
+                    <h4 className="font-serif text-xl text-white mb-1">
+                      {moment.painting_name}
+                    </h4>
+                    <p className="text-white/70 font-sans text-sm leading-relaxed line-clamp-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
+                      {moment.description}
+                    </p>
+                  </div>
                 </div>
               ))}
             </div>
