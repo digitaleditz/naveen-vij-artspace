@@ -92,14 +92,15 @@ export const ArtistSection = () => {
               Proof that he actually paints these himself. No AI involved. Just chai, chaos, and a lot of turpentine.
             </p>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {moments.map((moment) => (
-                <div key={moment.id} className="group relative rounded-lg overflow-hidden bg-card border border-border/50 shadow-soft hover:shadow-elevated transition-all duration-500">
-                  <div className="aspect-[4/5] overflow-hidden">
+                <div key={moment.id} className="group relative overflow-hidden cursor-pointer">
+                  {/* Image fills the entire card */}
+                  <div className="aspect-[3/4] overflow-hidden rounded-sm">
                     <AdminEditableImage
                       src={moment.image_url}
                       alt={`Naveen Vij with ${moment.painting_name}`}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      className="w-full h-full object-cover transition-all duration-700 group-hover:scale-[1.03]"
                       assetKey={`moment-${moment.id}`}
                       dbUpdate={{
                         table: "artist_moments",
@@ -108,13 +109,21 @@ export const ArtistSection = () => {
                         storageBucket: "artist-moments",
                       }}
                     />
+                    {/* Permanent subtle gradient at bottom for text legibility */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent rounded-sm" />
+                    {/* Hover overlay */}
+                    <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-sm" />
                   </div>
-                  {/* Gradient overlay with text */}
-                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent p-6 pt-16 translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
-                    <h4 className="font-serif text-xl text-white mb-1">
+
+                  {/* Text overlay pinned to bottom */}
+                  <div className="absolute inset-x-0 bottom-0 p-5 sm:p-6">
+                    <p className="text-[9px] uppercase tracking-[0.3em] text-white/50 font-sans mb-1.5">
+                      With Painting
+                    </p>
+                    <h4 className="font-serif text-lg sm:text-xl text-white leading-snug mb-2">
                       {moment.painting_name}
                     </h4>
-                    <p className="text-white/70 font-sans text-sm leading-relaxed line-clamp-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
+                    <p className="text-white/60 font-sans text-xs sm:text-sm leading-relaxed max-h-0 group-hover:max-h-24 overflow-hidden transition-all duration-500 ease-out">
                       {moment.description}
                     </p>
                   </div>
