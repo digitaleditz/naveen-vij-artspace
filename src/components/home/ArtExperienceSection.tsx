@@ -1,10 +1,9 @@
-import { useState, useCallback, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, ArrowLeft } from "lucide-react";
 import { useArtworks } from "@/hooks/useArtworks";
 import { Skeleton } from "@/components/ui/skeleton";
-import useEmblaCarousel from "embla-carousel-react";
 import artwork1 from "@/assets/artwork-1.jpg";
 import artwork2 from "@/assets/artwork-2.jpg";
 import artwork3 from "@/assets/artwork-3.jpg";
@@ -21,41 +20,39 @@ const getArtworkImage = (imageUrl: string | null, index: number): string => {
 
 export const ArtExperienceSection = () => {
   const { artworks, loading } = useArtworks();
-  const [selectedIndex, setSelectedIndex] = useState(0);
-
-  const [emblaRef, emblaApi] = useEmblaCarousel({
-    align: "start",
-    loop: true,
-    dragFree: true,
-    containScroll: "trimSnaps",
-    skipSnaps: false,
-  });
-
-  const scrollPrev = useCallback(() => emblaApi?.scrollPrev(), [emblaApi]);
-  const scrollNext = useCallback(() => emblaApi?.scrollNext(), [emblaApi]);
-
-  const [canScrollPrev, setCanScrollPrev] = useState(false);
-  const [canScrollNext, setCanScrollNext] = useState(false);
-
-  const onSelect = useCallback(() => {
-    if (!emblaApi) return;
-    setSelectedIndex(emblaApi.selectedScrollSnap());
-    setCanScrollPrev(emblaApi.canScrollPrev());
-    setCanScrollNext(emblaApi.canScrollNext());
-  }, [emblaApi]);
-
-  useEffect(() => {
-    if (!emblaApi) return;
-    onSelect();
-    emblaApi.on("select", onSelect);
-    emblaApi.on("reInit", onSelect);
-    return () => {
-      emblaApi.off("select", onSelect);
-      emblaApi.off("reInit", onSelect);
-    };
-  }, [emblaApi, onSelect]);
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [isPaused, setIsPaused] = useState(false);
+  const animationRef = useRef<number>();
+  const scrollPos = useRef(0);
+  const speed = 0.5; // px per frame
 
   const displayArtworks = artworks?.slice(0, 6) || [];
+
+  // Duplicate for seamless loop
+  const loopArtworks = [...displayArtworks, ...displayArtworks];
+
+  useEffect(() => {
+    const container = scrollRef.current;
+    if (!container || displayArtworks.length === 0) return;
+
+    const animate = () => {
+      if (!isPaused && container) {
+        scrollPos.current += speed;
+        // Reset when we've scrolled past the first set
+        const halfWidth = container.scrollWidth / 2;
+        if (scrollPos.current >= halfWidth) {
+          scrollPos.current = 0;
+        }
+        container.style.transform = `translateX(-${scrollPos.current}px)`;
+      }
+      animationRef.current = requestAnimationFrame(animate);
+    };
+
+    animationRef.current = requestAnimationFrame(animate);
+    return () => {
+      if (animationRef.current) cancelAnimationFrame(animationRef.current);
+    };
+  }, [isPaused, displayArtworks.length]);
 
   if (loading) {
     return (
@@ -83,98 +80,61 @@ export const ArtExperienceSection = () => {
   return (
     <section className="py-12 md:py-20 bg-background relative overflow-hidden select-none">
       {/* Section header */}
-      <div className="container-wide mb-8 md:mb-12 flex items-end justify-between">
-        <div>
-          <p className="text-[10px] uppercase tracking-[0.4em] text-accent font-sans mb-3">
-            Curated Collection
-          </p>
-          <div className="section-divider mt-1 mx-0 mb-4" />
-          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl">
-            Experience the Art
-          </h2>
-        </div>
-        <div className="hidden md:flex items-center gap-3">
-          <button
-            onClick={scrollPrev}
-            disabled={!canScrollPrev}
-            className="w-10 h-10 rounded-full border border-border flex items-center justify-center hover:border-accent hover:text-accent transition-all disabled:opacity-30 disabled:cursor-not-allowed"
-            aria-label="Previous"
-          >
-            <ArrowLeft size={16} />
-          </button>
-          <button
-            onClick={scrollNext}
-            disabled={!canScrollNext}
-            className="w-10 h-10 rounded-full border border-border flex items-center justify-center hover:border-accent hover:text-accent transition-all disabled:opacity-30 disabled:cursor-not-allowed"
-            aria-label="Next"
-          >
-            <ArrowRight size={16} />
-          </button>
-        </div>
+      <div className="container-wide mb-8 md:mb-12">
+        <p className="text-[10px] uppercase tracking-[0.4em] text-accent font-sans mb-3">
+          Curated Collection
+        </p>
+        <div className="section-divider mt-1 mx-0 mb-4" />
+        <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl">
+          Experience the Art
+        </h2>
       </div>
 
-      {/* Carousel */}
-      <div className="container-wide">
-        <div ref={emblaRef} className="overflow-hidden cursor-grab active:cursor-grabbing touch-pan-y">
-          <div className="flex gap-6 md:gap-10">
-            {displayArtworks.map((artwork, index) => (
-              <div
-                key={artwork.id}
-                className="min-w-0 shrink-0 basis-[80%] sm:basis-[55%] md:basis-[40%] lg:basis-[30%]"
-              >
-                <Link to={`/artwork/${artwork.id}`} className="group block">
-                  {/* Image */}
-                  <div className="aspect-[3/4] overflow-hidden rounded-sm mb-4 relative">
-                    <img
-                      src={getArtworkImage(artwork.image_url, index)}
-                      alt={artwork.title}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                    />
-                    {/* Hover overlay */}
-                    <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/10 transition-colors duration-500" />
-                  </div>
+      {/* Infinite scroll marquee */}
+      <div
+        className="overflow-hidden"
+        onMouseEnter={() => setIsPaused(true)}
+        onMouseLeave={() => setIsPaused(false)}
+      >
+        <div ref={scrollRef} className="flex gap-8 md:gap-12 will-change-transform">
+          {loopArtworks.map((artwork, index) => (
+            <div
+              key={`${artwork.id}-${index}`}
+              className="shrink-0 w-[75vw] sm:w-[50vw] md:w-[35vw] lg:w-[28vw] xl:w-[22vw]"
+            >
+              <Link to={`/artwork/${artwork.id}`} className="group block">
+                {/* Image */}
+                <div className="aspect-[3/4] overflow-hidden rounded-sm mb-4 relative">
+                  <img
+                    src={getArtworkImage(artwork.image_url, index % displayArtworks.length)}
+                    alt={artwork.title}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    draggable={false}
+                  />
+                  <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/10 transition-colors duration-500" />
+                </div>
 
-                  {/* Info */}
-                  <div className="space-y-1.5">
-                    <p className="text-[9px] uppercase tracking-[0.3em] text-accent font-sans">
-                      {artwork.collection}
+                {/* Info */}
+                <div className="space-y-1.5">
+                  <p className="text-[9px] uppercase tracking-[0.3em] text-accent font-sans">
+                    {artwork.collection}
+                  </p>
+                  <h3 className="font-serif text-lg md:text-xl group-hover:text-accent transition-colors duration-300 leading-snug">
+                    {artwork.title}
+                  </h3>
+                  <div className="flex items-center justify-between pt-2">
+                    <p className="text-accent font-serif text-lg">
+                      ₹{artwork.price.toLocaleString("en-IN")}
                     </p>
-                    <h3 className="font-serif text-lg md:text-xl group-hover:text-accent transition-colors duration-300 leading-snug">
-                      {artwork.title}
-                    </h3>
-                    <p className="text-muted-foreground text-sm font-light italic line-clamp-2 leading-relaxed">
-                      "{artwork.story.slice(0, 80)}..."
-                    </p>
-                    <div className="flex items-center justify-between pt-2">
-                      <p className="text-accent font-serif text-lg">
-                        ₹{artwork.price.toLocaleString("en-IN")}
-                      </p>
-                      <span className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground group-hover:text-accent transition-colors flex items-center gap-1.5">
-                        View <ArrowRight size={10} />
-                      </span>
-                    </div>
+                    <span className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground group-hover:text-accent transition-colors flex items-center gap-1.5">
+                      View <ArrowRight size={10} />
+                    </span>
                   </div>
-                </Link>
-              </div>
-            ))}
-          </div>
+                </div>
+              </Link>
+            </div>
+          ))}
         </div>
-      </div>
-
-      {/* Progress dots */}
-      <div className="flex justify-center gap-2 mt-8 md:mt-12">
-        {displayArtworks.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => emblaApi?.scrollTo(index)}
-            className={`h-1 rounded-full transition-all duration-500 ${
-              index === selectedIndex
-                ? "w-8 bg-accent"
-                : "w-2 bg-muted-foreground/30 hover:bg-muted-foreground/50"
-            }`}
-            aria-label={`Go to artwork ${index + 1}`}
-          />
-        ))}
       </div>
 
       {/* View all link */}
@@ -188,26 +148,6 @@ export const ArtExperienceSection = () => {
             <ArrowRight size={12} className="group-hover:translate-x-1 transition-transform" />
           </Link>
         </Button>
-      </div>
-
-      {/* Mobile nav arrows */}
-      <div className="flex md:hidden justify-center gap-4 mt-4">
-        <button
-          onClick={scrollPrev}
-          disabled={!canScrollPrev}
-          className="w-10 h-10 rounded-full border border-border flex items-center justify-center disabled:opacity-30"
-          aria-label="Previous"
-        >
-          <ArrowLeft size={16} />
-        </button>
-        <button
-          onClick={scrollNext}
-          disabled={!canScrollNext}
-          className="w-10 h-10 rounded-full border border-border flex items-center justify-center disabled:opacity-30"
-          aria-label="Next"
-        >
-          <ArrowRight size={16} />
-        </button>
       </div>
     </section>
   );
