@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useAdmin } from "@/hooks/useAdmin";
 import { supabase } from "@/integrations/supabase/client";
 import { Camera, Upload, RotateCcw, Check, X, ZoomIn, ZoomOut } from "lucide-react";
@@ -39,8 +39,24 @@ export const AdminEditableImage = ({
   const fileInputRef = useRef<HTMLInputElement>(null);
   const pendingFileRef = useRef<File | null>(null);
 
+  // Load saved override from site_assets on mount (for non-dbUpdate images)
+  useEffect(() => {
+    if (dbUpdate || !isAdmin) return;
+    const loadSavedAsset = async () => {
+      const { data } = await supabase
+        .from("site_assets" as any)
+        .select("image_url")
+        .eq("asset_key", assetKey)
+        .maybeSingle();
+      if (data && (data as any).image_url) {
+        setConfirmedUrl((data as any).image_url);
+      }
+    };
+    loadSavedAsset();
+  }, [assetKey, dbUpdate, isAdmin]);
+
   if (!isAdmin) {
-    return <img src={src} alt={alt} className={className} />;
+    return <img src={confirmedUrl || src} alt={alt} className={className} />;
   }
 
   const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
