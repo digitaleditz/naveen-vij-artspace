@@ -217,10 +217,6 @@ const Gallery = () => {
                     <span>{selectedArtwork.medium}</span>
                   </div>
                   <div className="flex justify-between text-sm font-sans">
-                    <span className="text-muted-foreground">Price</span>
-                    <span className="text-accent font-medium">{selectedArtwork.price}</span>
-                  </div>
-                  <div className="flex justify-between text-sm font-sans">
                     <span className="text-muted-foreground">Status</span>
                     <span className={selectedArtwork.available ? "text-green-600" : "text-muted-foreground"}>
                       {selectedArtwork.available ? "Available" : "Sold"}
