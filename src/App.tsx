@@ -46,7 +46,7 @@ const App = () => (
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/auth" element={<Auth />} />
                 <Route path="/profile" element={<Profile />} />
-                <Route path="/checkout" element={<Checkout />} />
+                
                 <Route path="/order/:orderId" element={<OrderTracking />} />
                 <Route path="/admin" element={<AdminDashboard />} />
                 <Route path="/admin/orders" element={<AdminOrders />} />
