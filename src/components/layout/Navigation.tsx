@@ -91,16 +91,6 @@ export const Navigation = () => {
         {/* Mobile Controls */}
         <div className="flex lg:hidden items-center gap-3">
           <ThemeToggle />
-          <CartSheet>
-            <button className="p-2 hover:text-accent transition-colors relative">
-              <ShoppingBag size={20} />
-              {items.length > 0 && (
-                <span className="absolute -top-1 -right-1 w-4 h-4 bg-accent text-accent-foreground text-[10px] rounded-full flex items-center justify-center">
-                  {items.length}
-                </span>
-              )}
-            </button>
-          </CartSheet>
           <button
             onClick={() => setIsOpen(!isOpen)}
             className="p-2 text-foreground hover:text-accent transition-colors"

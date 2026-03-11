@@ -144,8 +144,8 @@ const Collection = () => {
                     <p className="text-muted-foreground font-sans leading-relaxed mb-5 line-clamp-2">
                       {artwork.story.split('.')[0]}.
                     </p>
-                    <p className="font-sans text-accent text-lg tracking-wide">
-                      ₹{artwork.price.toLocaleString()}
+                    <p className="font-sans text-accent text-sm tracking-wide">
+                      {artwork.available ? "Available" : "Private Collection"}
                     </p>
                   </div>
                 </article>
