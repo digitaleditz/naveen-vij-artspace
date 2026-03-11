@@ -1,11 +1,9 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, User, ShoppingBag, Shield } from "lucide-react";
+import { Menu, X, User, Shield } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useAuth } from "@/contexts/AuthContext";
 import { ThemeToggle } from "@/components/ThemeToggle";
-import { CartSheet } from "@/components/cart/CartSheet";
-import { useCart } from "@/contexts/CartContext";
 import { useAdmin } from "@/hooks/useAdmin";
 
 const navLinks = [
@@ -20,7 +18,6 @@ export const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
   const { user } = useAuth();
-  const { items } = useCart();
   const { isAdmin } = useAdmin();
 
   useEffect(() => {
@@ -73,16 +70,6 @@ export const Navigation = () => {
           
           <div className="flex items-center gap-4 pl-4 border-l border-border">
             <ThemeToggle />
-            <CartSheet>
-              <button className="p-2.5 hover:text-accent transition-colors rounded-full hover:bg-secondary relative">
-                <ShoppingBag size={18} />
-                {items.length > 0 && (
-                  <span className="absolute -top-1 -right-1 w-5 h-5 bg-accent text-accent-foreground text-xs rounded-full flex items-center justify-center">
-                    {items.length}
-                  </span>
-                )}
-              </button>
-            </CartSheet>
             <Link
               to={user ? "/profile" : "/auth"}
               className="p-2.5 hover:text-accent transition-colors rounded-full hover:bg-secondary"
@@ -104,16 +91,6 @@ export const Navigation = () => {
         {/* Mobile Controls */}
         <div className="flex lg:hidden items-center gap-3">
           <ThemeToggle />
-          <CartSheet>
-            <button className="p-2 hover:text-accent transition-colors relative">
-              <ShoppingBag size={20} />
-              {items.length > 0 && (
-                <span className="absolute -top-1 -right-1 w-4 h-4 bg-accent text-accent-foreground text-[10px] rounded-full flex items-center justify-center">
-                  {items.length}
-                </span>
-              )}
-            </button>
-          </CartSheet>
           <button
             onClick={() => setIsOpen(!isOpen)}
             className="p-2 text-foreground hover:text-accent transition-colors"

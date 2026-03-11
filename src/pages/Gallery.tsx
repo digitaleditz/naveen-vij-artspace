@@ -167,7 +167,7 @@ const Gallery = () => {
                   {artwork.title}
                 </h3>
                 <p className="text-sm font-sans text-accent">
-                  {artwork.price}
+                  {artwork.available ? "Available" : "Private Collection"}
                 </p>
               </div>
             ))}
@@ -215,10 +215,6 @@ const Gallery = () => {
                   <div className="flex justify-between text-sm font-sans">
                     <span className="text-muted-foreground">Medium</span>
                     <span>{selectedArtwork.medium}</span>
-                  </div>
-                  <div className="flex justify-between text-sm font-sans">
-                    <span className="text-muted-foreground">Price</span>
-                    <span className="text-accent font-medium">{selectedArtwork.price}</span>
                   </div>
                   <div className="flex justify-between text-sm font-sans">
                     <span className="text-muted-foreground">Status</span>
