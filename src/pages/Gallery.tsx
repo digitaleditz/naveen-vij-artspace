@@ -167,7 +167,7 @@ const Gallery = () => {
                   {artwork.title}
                 </h3>
                 <p className="text-sm font-sans text-accent">
-                  {artwork.price}
+                  {artwork.available ? "Available" : "Private Collection"}
                 </p>
               </div>
             ))}
