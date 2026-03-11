@@ -1,11 +1,9 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, User, ShoppingBag, Shield } from "lucide-react";
+import { Menu, X, User, Shield } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useAuth } from "@/contexts/AuthContext";
 import { ThemeToggle } from "@/components/ThemeToggle";
-import { CartSheet } from "@/components/cart/CartSheet";
-import { useCart } from "@/contexts/CartContext";
 import { useAdmin } from "@/hooks/useAdmin";
 
 const navLinks = [
