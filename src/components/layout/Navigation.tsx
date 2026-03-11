@@ -18,7 +18,6 @@ export const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
   const { user } = useAuth();
-  const { items } = useCart();
   const { isAdmin } = useAdmin();
 
   useEffect(() => {
