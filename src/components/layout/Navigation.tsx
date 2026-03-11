@@ -70,16 +70,6 @@ export const Navigation = () => {
           
           <div className="flex items-center gap-4 pl-4 border-l border-border">
             <ThemeToggle />
-            <CartSheet>
-              <button className="p-2.5 hover:text-accent transition-colors rounded-full hover:bg-secondary relative">
-                <ShoppingBag size={18} />
-                {items.length > 0 && (
-                  <span className="absolute -top-1 -right-1 w-5 h-5 bg-accent text-accent-foreground text-xs rounded-full flex items-center justify-center">
-                    {items.length}
-                  </span>
-                )}
-              </button>
-            </CartSheet>
             <Link
               to={user ? "/profile" : "/auth"}
               className="p-2.5 hover:text-accent transition-colors rounded-full hover:bg-secondary"
