@@ -14,7 +14,7 @@ import TheArchitect from "./pages/TheArchitect";
 import Contact from "./pages/Contact";
 import Auth from "./pages/Auth";
 import Profile from "./pages/Profile";
-import Checkout from "./pages/Checkout";
+
 import OrderTracking from "./pages/OrderTracking";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import AdminOrders from "./pages/admin/AdminOrders";
