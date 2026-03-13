@@ -122,12 +122,9 @@ export const ArtExperienceSection = () => {
                   <h3 className="font-serif text-lg md:text-xl group-hover:text-accent transition-colors duration-300 leading-snug">
                     {artwork.title}
                   </h3>
-                  <div className="flex items-center justify-between pt-2">
-                    <p className="text-accent font-serif text-lg">
-                      ₹{artwork.price.toLocaleString("en-IN")}
-                    </p>
+                  <div className="flex items-center justify-end pt-2">
                     <span className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground group-hover:text-accent transition-colors flex items-center gap-1.5">
-                      View <ArrowRight size={10} />
+                      Inquire <ArrowRight size={10} />
                     </span>
                   </div>
                 </div>
