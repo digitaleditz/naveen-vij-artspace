@@ -13,10 +13,7 @@ import {
   MapPin,
   Phone,
 } from "lucide-react";
-import artwork1 from "@/assets/artwork-1.jpg";
-import artwork2 from "@/assets/artwork-2.jpg";
-import artwork3 from "@/assets/artwork-3.jpg";
-import paintingFeatured from "@/assets/painting-featured.jpg";
+import { getArtworkImage } from "@/lib/artwork-utils";
 
 interface OrderDetails {
   id: string;
@@ -34,19 +31,6 @@ interface OrderDetails {
     medium: string;
   } | null;
 }
-
-const getArtworkImage = (imageUrl: string | null) => {
-  if (imageUrl) {
-    const images: Record<string, string> = {
-      "/artwork-1.jpg": artwork1,
-      "/artwork-2.jpg": artwork2,
-      "/artwork-3.jpg": artwork3,
-      "/painting-featured.jpg": paintingFeatured,
-    };
-    return images[imageUrl] || artwork1;
-  }
-  return artwork1;
-};
 
 const OrderTracking = () => {
   const { orderId } = useParams();
