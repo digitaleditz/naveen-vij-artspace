@@ -65,9 +65,6 @@ export const CartSheet = ({ children }: CartSheetProps) => {
                       {item.artwork.collection}
                     </p>
                     <h3 className="font-serif text-sm truncate">{item.artwork.title}</h3>
-                    <p className="text-accent font-serif mt-1">
-                      ₹{item.artwork.price.toLocaleString()}
-                    </p>
                   </div>
                   <button
                     onClick={() => removeFromCart(item.artwork.id)}
