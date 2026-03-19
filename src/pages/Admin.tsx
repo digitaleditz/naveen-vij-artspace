@@ -182,7 +182,7 @@ const Admin = () => {
           collection: artworkForm.collection!,
           size: artworkForm.size || "24 x 30 inches",
           medium: artworkForm.medium || "Oil on Canvas",
-          price: artworkForm.price || 5000,
+          price: 0,
           available: artworkForm.available ?? true,
           story: artworkForm.story!,
           placement: artworkForm.placement || null,
