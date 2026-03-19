@@ -259,9 +259,6 @@ const AdminArtworks = () => {
                     {artwork.available ? "Available" : "Sold"}
                   </span>
                 </div>
-                <p className="text-accent font-serif mb-4">
-                  ₹{artwork.price.toLocaleString()}
-                </p>
                 <div className="flex gap-2">
                   <Button
                     variant="outline"
