@@ -3,6 +3,7 @@ import { Layout } from "@/components/layout/Layout";
 import { Link } from "react-router-dom";
 import { Heart } from "lucide-react";
 import { useArtworks } from "@/hooks/useArtworks";
+import { AdminEditableImage } from "@/components/AdminEditableImage";
 import { useWishlist } from "@/hooks/useWishlist";
 import artwork1 from "@/assets/artwork-1.jpg";
 import artwork2 from "@/assets/artwork-2.jpg";
@@ -11,19 +12,9 @@ import paintingFeatured from "@/assets/painting-featured.jpg";
 
 const collections = ["All", "Architecture Inspired", "Urban Stories", "Calm Interiors", "Abstract Emotions"];
 
-const getArtworkImage = (imageUrl: string | null, index: number) => {
-  if (imageUrl) {
-    const images: Record<string, string> = {
-      "/artwork-1.jpg": artwork1,
-      "/artwork-2.jpg": artwork2,
-      "/artwork-3.jpg": artwork3,
-      "/painting-featured.jpg": paintingFeatured,
-    };
-    return images[imageUrl] || artwork1;
-  }
-  const fallbacks = [artwork1, artwork2, artwork3, paintingFeatured];
-  return fallbacks[index % fallbacks.length];
-};
+const defaultImages = [artwork1, artwork2, artwork3, paintingFeatured];
+
+const getArtworkFallback = (index: number) => defaultImages[index % defaultImages.length];
 
 const Collection = () => {
   const [activeCollection, setActiveCollection] = useState("All");
@@ -98,13 +89,20 @@ const Collection = () => {
                 <article key={artwork.id} className="group">
                   <Link to={`/artwork/${artwork.id}`} className="block">
                     <div className="aspect-[3/4] overflow-hidden mb-8 bg-stone relative">
-                      <img
-                        src={getArtworkImage(artwork.image_url, index)}
+                      <AdminEditableImage
+                        src={artwork.image_url && !artwork.image_url.startsWith("/") ? artwork.image_url : getArtworkFallback(index)}
                         alt={artwork.title}
                         className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                        assetKey={`artwork-${artwork.id}`}
+                        dbUpdate={{
+                          table: "artworks",
+                          id: artwork.id,
+                          column: "image_url",
+                          storageBucket: "site-assets",
+                        }}
                       />
                       {!artwork.available && (
-                        <div className="absolute top-5 left-5 bg-primary text-primary-foreground px-4 py-2 text-[10px] uppercase tracking-[0.2em] font-sans">
+                        <div className="absolute top-5 left-5 bg-primary text-primary-foreground px-4 py-2 text-[10px] uppercase tracking-[0.2em] font-sans z-10">
                           Acquired
                         </div>
                       )}

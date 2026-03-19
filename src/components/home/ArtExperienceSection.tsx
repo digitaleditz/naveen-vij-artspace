@@ -4,6 +4,7 @@ import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useArtworks } from "@/hooks/useArtworks";
 import { Skeleton } from "@/components/ui/skeleton";
+import { AdminEditableImage } from "@/components/AdminEditableImage";
 import artwork1 from "@/assets/artwork-1.jpg";
 import artwork2 from "@/assets/artwork-2.jpg";
 import artwork3 from "@/assets/artwork-3.jpg";
@@ -105,11 +106,17 @@ export const ArtExperienceSection = () => {
               <Link to={`/artwork/${artwork.id}`} className="group block">
                 {/* Image */}
                 <div className="aspect-[3/4] overflow-hidden rounded-sm mb-4 relative">
-                  <img
+                  <AdminEditableImage
                     src={getArtworkImage(artwork.image_url, index % displayArtworks.length)}
                     alt={artwork.title}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                    draggable={false}
+                    assetKey={`artwork-${artwork.id}`}
+                    dbUpdate={{
+                      table: "artworks",
+                      id: artwork.id,
+                      column: "image_url",
+                      storageBucket: "site-assets",
+                    }}
                   />
                   <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/10 transition-colors duration-500" />
                 </div>
