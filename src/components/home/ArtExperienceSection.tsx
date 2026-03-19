@@ -4,6 +4,7 @@ import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useArtworks } from "@/hooks/useArtworks";
 import { Skeleton } from "@/components/ui/skeleton";
+import { AdminEditableImage } from "@/components/AdminEditableImage";
 import artwork1 from "@/assets/artwork-1.jpg";
 import artwork2 from "@/assets/artwork-2.jpg";
 import artwork3 from "@/assets/artwork-3.jpg";
