@@ -451,7 +451,7 @@ const Checkout = () => {
                   <div key={item.artwork.id} className="flex gap-4 mb-4 pb-4 border-b border-border last:border-0">
                     <div className="w-16 h-16 overflow-hidden">
                       <img
-                        src={getArtworkImage(item.artwork.image_url, index)}
+                        src={getArtworkImage(item.artwork.image_url)}
                         alt={item.artwork.title}
                         className="w-full h-full object-cover"
                       />
