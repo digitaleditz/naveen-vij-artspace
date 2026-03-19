@@ -4,17 +4,7 @@ import { Link } from "react-router-dom";
 import { Heart } from "lucide-react";
 import { useArtworks } from "@/hooks/useArtworks";
 import { AdminEditableImage } from "@/components/AdminEditableImage";
-import { useWishlist } from "@/hooks/useWishlist";
-import artwork1 from "@/assets/artwork-1.jpg";
-import artwork2 from "@/assets/artwork-2.jpg";
-import artwork3 from "@/assets/artwork-3.jpg";
-import paintingFeatured from "@/assets/painting-featured.jpg";
-
-const collections = ["All", "Architecture Inspired", "Urban Stories", "Calm Interiors", "Abstract Emotions"];
-
-const defaultImages = [artwork1, artwork2, artwork3, paintingFeatured];
-
-const getArtworkFallback = (index: number) => defaultImages[index % defaultImages.length];
+import { getArtworkImage } from "@/lib/artwork-utils";
 
 const Collection = () => {
   const [activeCollection, setActiveCollection] = useState("All");
