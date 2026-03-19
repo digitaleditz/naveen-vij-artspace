@@ -5,16 +5,9 @@ import { Heart } from "lucide-react";
 import { useArtworks } from "@/hooks/useArtworks";
 import { AdminEditableImage } from "@/components/AdminEditableImage";
 import { useWishlist } from "@/hooks/useWishlist";
-import artwork1 from "@/assets/artwork-1.jpg";
-import artwork2 from "@/assets/artwork-2.jpg";
-import artwork3 from "@/assets/artwork-3.jpg";
-import paintingFeatured from "@/assets/painting-featured.jpg";
+import { getArtworkImage } from "@/lib/artwork-utils";
 
 const collections = ["All", "Architecture Inspired", "Urban Stories", "Calm Interiors", "Abstract Emotions"];
-
-const defaultImages = [artwork1, artwork2, artwork3, paintingFeatured];
-
-const getArtworkFallback = (index: number) => defaultImages[index % defaultImages.length];
 
 const Collection = () => {
   const [activeCollection, setActiveCollection] = useState("All");
@@ -90,7 +83,7 @@ const Collection = () => {
                   <Link to={`/artwork/${artwork.id}`} className="block">
                     <div className="aspect-[3/4] overflow-hidden mb-8 bg-stone relative">
                       <AdminEditableImage
-                        src={artwork.image_url && !artwork.image_url.startsWith("/") ? artwork.image_url : getArtworkFallback(index)}
+                        src={getArtworkImage(artwork.image_url)}
                         alt={artwork.title}
                         className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                         assetKey={`artwork-${artwork.id}`}

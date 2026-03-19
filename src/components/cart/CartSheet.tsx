@@ -3,24 +3,7 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/co
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/contexts/CartContext";
 import { ShoppingBag, X, ArrowRight } from "lucide-react";
-import artwork1 from "@/assets/artwork-1.jpg";
-import artwork2 from "@/assets/artwork-2.jpg";
-import artwork3 from "@/assets/artwork-3.jpg";
-import paintingFeatured from "@/assets/painting-featured.jpg";
-
-const getArtworkImage = (imageUrl: string | null, index: number) => {
-  if (imageUrl) {
-    const images: Record<string, string> = {
-      "/artwork-1.jpg": artwork1,
-      "/artwork-2.jpg": artwork2,
-      "/artwork-3.jpg": artwork3,
-      "/painting-featured.jpg": paintingFeatured,
-    };
-    return images[imageUrl] || artwork1;
-  }
-  const fallbacks = [artwork1, artwork2, artwork3, paintingFeatured];
-  return fallbacks[index % fallbacks.length];
-};
+import { getArtworkImage } from "@/lib/artwork-utils";
 
 interface CartSheetProps {
   children?: React.ReactNode;
@@ -72,7 +55,7 @@ export const CartSheet = ({ children }: CartSheetProps) => {
                 >
                   <div className="w-20 h-20 flex-shrink-0 overflow-hidden">
                     <img
-                      src={getArtworkImage(item.artwork.image_url, index)}
+                      src={getArtworkImage(item.artwork.image_url)}
                       alt={item.artwork.title}
                       className="w-full h-full object-cover"
                     />

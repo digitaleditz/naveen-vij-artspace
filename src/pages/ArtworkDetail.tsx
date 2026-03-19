@@ -11,25 +11,8 @@ import { useAuth } from "@/contexts/AuthContext";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { z } from "zod";
-import artwork1 from "@/assets/artwork-1.jpg";
-import artwork2 from "@/assets/artwork-2.jpg";
-import artwork3 from "@/assets/artwork-3.jpg";
-import paintingFeatured from "@/assets/painting-featured.jpg";
+import { getArtworkImage } from "@/lib/artwork-utils";
 import naveenPortrait from "@/assets/naveen-portrait.jpg";
-
-const getArtworkImage = (imageUrl: string | null, index: number) => {
-  if (imageUrl) {
-    const images: Record<string, string> = {
-      "/artwork-1.jpg": artwork1,
-      "/artwork-2.jpg": artwork2,
-      "/artwork-3.jpg": artwork3,
-      "/painting-featured.jpg": paintingFeatured,
-    };
-    return images[imageUrl] || artwork1;
-  }
-  const fallbacks = [artwork1, artwork2, artwork3, paintingFeatured];
-  return fallbacks[index % fallbacks.length];
-};
 
 const inquirySchema = z.object({
   name: z.string().trim().min(2, "Name is required").max(100),
@@ -137,7 +120,7 @@ const ArtworkDetail = () => {
           <div className="relative">
             <div className="aspect-[3/4] bg-stone overflow-hidden">
               <img
-                src={getArtworkImage(artwork.image_url, artworkIndex)}
+                src={getArtworkImage(artwork.image_url)}
                 alt={artwork.title}
                 className="w-full h-full object-cover"
               />
