@@ -451,13 +451,8 @@ const Checkout = () => {
                       <h3 className="font-serif">{item.artwork.title}</h3>
                       <p className="text-sm text-muted-foreground">{item.artwork.size}</p>
                     </div>
-                    <p className="font-serif text-accent">₹{item.artwork.price.toLocaleString()}</p>
                   </div>
                 ))}
-                <div className="flex justify-between font-serif text-xl mt-4 pt-4 border-t border-border">
-                  <span>Total</span>
-                  <span className="text-accent">₹{total.toLocaleString()}</span>
-                </div>
               </div>
 
               <div className="p-8 bg-accent/5 border border-accent/20 mb-8">
