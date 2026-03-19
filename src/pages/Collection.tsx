@@ -4,7 +4,10 @@ import { Link } from "react-router-dom";
 import { Heart } from "lucide-react";
 import { useArtworks } from "@/hooks/useArtworks";
 import { AdminEditableImage } from "@/components/AdminEditableImage";
+import { useWishlist } from "@/hooks/useWishlist";
 import { getArtworkImage } from "@/lib/artwork-utils";
+
+const collections = ["All", "Architecture Inspired", "Urban Stories", "Calm Interiors", "Abstract Emotions"];
 
 const Collection = () => {
   const [activeCollection, setActiveCollection] = useState("All");
