@@ -55,7 +55,7 @@ export const CartSheet = ({ children }: CartSheetProps) => {
                 >
                   <div className="w-20 h-20 flex-shrink-0 overflow-hidden">
                     <img
-                      src={getArtworkImage(item.artwork.image_url, index)}
+                      src={getArtworkImage(item.artwork.image_url)}
                       alt={item.artwork.title}
                       className="w-full h-full object-cover"
                     />
