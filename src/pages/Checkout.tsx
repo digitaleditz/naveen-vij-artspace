@@ -231,7 +231,7 @@ const Checkout = () => {
                     >
                       <div className="w-32 h-32 flex-shrink-0 overflow-hidden">
                         <img
-                          src={getArtworkImage(item.artwork.image_url, index)}
+                          src={getArtworkImage(item.artwork.image_url)}
                           alt={item.artwork.title}
                           className="w-full h-full object-cover"
                         />
