@@ -310,9 +310,6 @@ const Profile = () => {
                         {item.artworks.collection}
                       </p>
                       <h3 className="font-serif text-lg mb-1">{item.artworks.title}</h3>
-                      <p className="text-accent font-sans text-sm">
-                        ₹{item.artworks.price.toLocaleString()}
-                      </p>
                     </div>
                   ))}
                 </div>
