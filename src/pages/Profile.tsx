@@ -84,7 +84,6 @@ const Profile = () => {
           id,
           title,
           collection,
-          price,
           image_url
         )
       `)
