@@ -20,7 +20,7 @@ interface WishlistItem {
     id: string;
     title: string;
     collection: string;
-    price: number;
+    
     image_url: string | null;
   };
 }
