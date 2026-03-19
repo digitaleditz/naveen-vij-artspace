@@ -126,7 +126,7 @@ const Checkout = () => {
           .insert({
             user_id: user.id,
             artwork_id: item.artwork.id,
-            total_amount: item.artwork.price,
+            total_amount: 0,
             shipping_address: shippingAddress,
             notes: form.notes || null,
             status: "confirmed",
