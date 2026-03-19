@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { AdminLayout } from "@/components/admin/AdminLayout";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/dialog";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
-import { Plus, Edit, Trash2, Search } from "lucide-react";
+import { Plus, Edit, Trash2, Search, Upload, Link } from "lucide-react";
 import { getArtworkImage } from "@/lib/artwork-utils";
 
 interface Artwork {
@@ -37,6 +37,37 @@ const AdminArtworks = () => {
   const [artworkForm, setArtworkForm] = useState<Partial<Artwork>>({});
   const [searchTerm, setSearchTerm] = useState("");
   const [loading, setLoading] = useState(true);
+  const [imageMode, setImageMode] = useState<"upload" | "url">("upload");
+  const [uploading, setUploading] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    setUploading(true);
+    const fileExt = file.name.split(".").pop();
+    const fileName = `${Date.now()}-${Math.random().toString(36).substring(7)}.${fileExt}`;
+    const filePath = `artworks/${fileName}`;
+
+    const { error: uploadError } = await supabase.storage
+      .from("artwork-images")
+      .upload(filePath, file);
+
+    if (uploadError) {
+      toast({ title: "Upload failed", description: uploadError.message, variant: "destructive" });
+      setUploading(false);
+      return;
+    }
+
+    const { data: urlData } = supabase.storage
+      .from("artwork-images")
+      .getPublicUrl(filePath);
+
+    setArtworkForm((prev) => ({ ...prev, image_url: urlData.publicUrl }));
+    setUploading(false);
+    toast({ title: "Uploaded", description: "Image uploaded successfully" });
+  };
 
   useEffect(() => {
     fetchArtworks();
@@ -357,6 +388,68 @@ const AdminArtworks = () => {
                   setArtworkForm({ ...artworkForm, design_inspiration: e.target.value })
                 }
               />
+            </div>
+            <div>
+              <label className="text-xs uppercase tracking-widest text-muted-foreground mb-2 block">
+                Artwork Image
+              </label>
+              {artworkForm.image_url && (
+                <div className="mb-3 rounded-lg overflow-hidden border border-border">
+                  <img
+                    src={getArtworkImage(artworkForm.image_url)}
+                    alt="Preview"
+                    className="w-full h-40 object-cover"
+                  />
+                </div>
+              )}
+              <div className="flex gap-2 mb-3">
+                <Button
+                  type="button"
+                  variant={imageMode === "upload" ? "default" : "outline"}
+                  size="sm"
+                  onClick={() => setImageMode("upload")}
+                >
+                  <Upload size={14} className="mr-1" />
+                  Upload
+                </Button>
+                <Button
+                  type="button"
+                  variant={imageMode === "url" ? "default" : "outline"}
+                  size="sm"
+                  onClick={() => setImageMode("url")}
+                >
+                  <Link size={14} className="mr-1" />
+                  URL
+                </Button>
+              </div>
+              {imageMode === "upload" ? (
+                <div>
+                  <input
+                    ref={fileInputRef}
+                    type="file"
+                    accept="image/*"
+                    onChange={handleImageUpload}
+                    className="hidden"
+                  />
+                  <Button
+                    type="button"
+                    variant="outline"
+                    className="w-full"
+                    onClick={() => fileInputRef.current?.click()}
+                    disabled={uploading}
+                  >
+                    {uploading ? "Uploading..." : "Choose Image File"}
+                  </Button>
+                </div>
+              ) : (
+                <Input
+                  value={artworkForm.image_url || ""}
+                  onChange={(e) =>
+                    setArtworkForm({ ...artworkForm, image_url: e.target.value })
+                  }
+                  placeholder="https://example.com/image.jpg"
+                />
+              )}
             </div>
             <div className="flex items-center gap-4">
               <label className="text-sm font-sans">
