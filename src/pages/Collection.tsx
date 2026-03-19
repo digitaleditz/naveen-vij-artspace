@@ -12,19 +12,9 @@ import paintingFeatured from "@/assets/painting-featured.jpg";
 
 const collections = ["All", "Architecture Inspired", "Urban Stories", "Calm Interiors", "Abstract Emotions"];
 
-const getArtworkImage = (imageUrl: string | null, index: number) => {
-  if (imageUrl) {
-    const images: Record<string, string> = {
-      "/artwork-1.jpg": artwork1,
-      "/artwork-2.jpg": artwork2,
-      "/artwork-3.jpg": artwork3,
-      "/painting-featured.jpg": paintingFeatured,
-    };
-    return images[imageUrl] || artwork1;
-  }
-  const fallbacks = [artwork1, artwork2, artwork3, paintingFeatured];
-  return fallbacks[index % fallbacks.length];
-};
+const defaultImages = [artwork1, artwork2, artwork3, paintingFeatured];
+
+const getArtworkFallback = (index: number) => defaultImages[index % defaultImages.length];
 
 const Collection = () => {
   const [activeCollection, setActiveCollection] = useState("All");
