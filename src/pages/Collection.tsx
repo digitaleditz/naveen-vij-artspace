@@ -53,7 +53,7 @@ const Collection = () => {
       {/* Filters */}
       <section className="pb-16 container-wide">
         <div className="flex flex-wrap gap-4">
-          {collections.map((collection) => (
+          {["All", ...collectionNames].map((collection) => (
             <button
               key={collection}
               onClick={() => setActiveCollection(collection)}
