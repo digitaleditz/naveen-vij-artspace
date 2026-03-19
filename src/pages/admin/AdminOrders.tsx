@@ -199,14 +199,6 @@ const AdminOrders = () => {
                   </p>
                 </div>
 
-                <div className="flex-1 min-w-[200px]">
-                  <p className="text-xs uppercase tracking-widest text-muted-foreground font-sans mb-1">
-                    Amount
-                  </p>
-                  <p className="font-serif text-lg text-accent">
-                    ₹{order.total_amount.toLocaleString()}
-                  </p>
-                </div>
 
                 <div className="flex-1 min-w-[200px]">
                   <p className="text-xs uppercase tracking-widest text-muted-foreground font-sans mb-1">

@@ -182,7 +182,7 @@ const Admin = () => {
           collection: artworkForm.collection!,
           size: artworkForm.size || "24 x 30 inches",
           medium: artworkForm.medium || "Oil on Canvas",
-          price: artworkForm.price || 5000,
+          price: 0,
           available: artworkForm.available ?? true,
           story: artworkForm.story!,
           placement: artworkForm.placement || null,
@@ -528,9 +528,6 @@ const Admin = () => {
                           {artwork.available ? "Available" : "Sold"}
                         </span>
                       </div>
-                      <p className="text-accent font-serif mb-4">
-                        ₹{artwork.price.toLocaleString()}
-                      </p>
                       <div className="flex gap-2">
                         <Button
                           variant="outline"
@@ -611,18 +608,6 @@ const Admin = () => {
                             setArtworkForm({ ...artworkForm, medium: e.target.value })
                           }
                           placeholder="Oil on Canvas"
-                        />
-                      </div>
-                      <div>
-                        <label className="text-xs uppercase tracking-widest text-muted-foreground mb-2 block">
-                          Price (₹)
-                        </label>
-                        <Input
-                          type="number"
-                          value={artworkForm.price || ""}
-                          onChange={(e) =>
-                            setArtworkForm({ ...artworkForm, price: Number(e.target.value) })
-                          }
                         />
                       </div>
                     </div>

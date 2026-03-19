@@ -65,9 +65,6 @@ export const CartSheet = ({ children }: CartSheetProps) => {
                       {item.artwork.collection}
                     </p>
                     <h3 className="font-serif text-sm truncate">{item.artwork.title}</h3>
-                    <p className="text-accent font-serif mt-1">
-                      ₹{item.artwork.price.toLocaleString()}
-                    </p>
                   </div>
                   <button
                     onClick={() => removeFromCart(item.artwork.id)}
@@ -81,16 +78,12 @@ export const CartSheet = ({ children }: CartSheetProps) => {
 
             <div className="border-t border-border pt-6 pb-4 space-y-4">
               <div className="flex justify-between items-center">
-                <span className="text-sm text-muted-foreground font-sans">Subtotal</span>
-                <span className="font-serif text-lg">₹{total.toLocaleString()}</span>
+                <span className="text-sm text-muted-foreground font-sans">Items</span>
+                <span className="font-serif text-lg">{items.length} artwork{items.length !== 1 ? "s" : ""}</span>
               </div>
               <div className="flex justify-between items-center">
                 <span className="text-sm text-muted-foreground font-sans">Shipping</span>
                 <span className="text-sm text-accent font-sans">Complimentary</span>
-              </div>
-              <div className="flex justify-between items-center border-t border-border pt-4">
-                <span className="font-serif">Total</span>
-                <span className="font-serif text-xl text-accent">₹{total.toLocaleString()}</span>
               </div>
               <Button variant="hero" size="lg" className="w-full" asChild>
                 <Link to="/checkout">

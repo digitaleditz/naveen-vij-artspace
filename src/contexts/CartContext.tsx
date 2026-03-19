@@ -46,7 +46,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     return items.some((item) => item.artwork.id === artworkId);
   };
 
-  const total = items.reduce((sum, item) => sum + item.artwork.price, 0);
+  const total = items.length;
 
   return (
     <CartContext.Provider

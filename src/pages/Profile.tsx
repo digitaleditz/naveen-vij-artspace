@@ -20,7 +20,7 @@ interface WishlistItem {
     id: string;
     title: string;
     collection: string;
-    price: number;
+    
     image_url: string | null;
   };
 }
@@ -84,7 +84,6 @@ const Profile = () => {
           id,
           title,
           collection,
-          price,
           image_url
         )
       `)
@@ -311,9 +310,6 @@ const Profile = () => {
                         {item.artworks.collection}
                       </p>
                       <h3 className="font-serif text-lg mb-1">{item.artworks.title}</h3>
-                      <p className="text-accent font-sans text-sm">
-                        ₹{item.artworks.price.toLocaleString()}
-                      </p>
                     </div>
                   ))}
                 </div>
@@ -368,9 +364,6 @@ const Profile = () => {
                           })}
                         </p>
                         <div className="flex gap-4 items-center">
-                          <span className="text-accent font-sans">
-                            ₹{order.total_amount.toLocaleString()}
-                          </span>
                           <span className={`text-xs uppercase tracking-wider px-2 py-1 ${
                             order.status === "completed" 
                               ? "bg-green-100 text-green-800" 
