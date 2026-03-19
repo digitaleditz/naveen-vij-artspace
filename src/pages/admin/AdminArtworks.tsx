@@ -48,6 +48,7 @@ const AdminArtworks = () => {
   const [imageMode, setImageMode] = useState<"upload" | "url">("upload");
   const [uploading, setUploading] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const [collections, setCollections] = useState<Collection[]>([]);
 
   const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
