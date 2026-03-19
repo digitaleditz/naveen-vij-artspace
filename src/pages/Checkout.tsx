@@ -261,18 +261,12 @@ const Checkout = () => {
                   <h2 className="font-serif text-xl mb-6">Order Summary</h2>
                   <div className="space-y-4 mb-8">
                     <div className="flex justify-between text-sm font-sans">
-                      <span className="text-muted-foreground">Subtotal</span>
-                      <span>₹{total.toLocaleString()}</span>
+                      <span className="text-muted-foreground">Items</span>
+                      <span>{items.length} artwork{items.length !== 1 ? "s" : ""}</span>
                     </div>
                     <div className="flex justify-between text-sm font-sans">
                       <span className="text-muted-foreground">Shipping</span>
                       <span className="text-accent">Complimentary</span>
-                    </div>
-                    <div className="border-t border-border pt-4">
-                      <div className="flex justify-between font-serif text-xl">
-                        <span>Total</span>
-                        <span className="text-accent">₹{total.toLocaleString()}</span>
-                      </div>
                     </div>
                   </div>
                   <Button
