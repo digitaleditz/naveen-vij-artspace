@@ -483,7 +483,7 @@ const Checkout = () => {
                 onClick={handleProcessPayment}
                 disabled={processing}
               >
-                {processing ? "Placing Order..." : `Place Order • ₹${total.toLocaleString()}`}
+                {processing ? "Placing Order..." : "Place Order"}
               </Button>
             </div>
           )}

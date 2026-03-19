@@ -282,17 +282,6 @@ const AdminCustomers = () => {
                               )}
                             </div>
 
-                            {/* Total Spent */}
-                            {customerOrders.length > 0 && (
-                              <div className="pt-4 border-t border-border">
-                                <div className="flex justify-between items-center">
-                                  <span className="text-muted-foreground">Total Spent</span>
-                                  <span className="font-serif text-xl text-accent">
-                                    ₹{customerOrders.reduce((sum, o) => sum + o.total_amount, 0).toLocaleString()}
-                                  </span>
-                                </div>
-                              </div>
-                            )}
                           </div>
                         )}
                       </DialogContent>

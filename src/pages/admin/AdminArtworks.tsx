@@ -353,18 +353,6 @@ const AdminArtworks = () => {
                   placeholder="Oil on Canvas"
                 />
               </div>
-              <div>
-                <label className="text-xs uppercase tracking-widest text-muted-foreground mb-2 block">
-                  Price (₹)
-                </label>
-                <Input
-                  type="number"
-                  value={artworkForm.price || ""}
-                  onChange={(e) =>
-                    setArtworkForm({ ...artworkForm, price: Number(e.target.value) })
-                  }
-                />
-              </div>
             </div>
             <div>
               <label className="text-xs uppercase tracking-widest text-muted-foreground mb-2 block">

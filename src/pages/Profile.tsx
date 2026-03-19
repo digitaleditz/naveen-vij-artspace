@@ -364,9 +364,6 @@ const Profile = () => {
                           })}
                         </p>
                         <div className="flex gap-4 items-center">
-                          <span className="text-accent font-sans">
-                            ₹{order.total_amount.toLocaleString()}
-                          </span>
                           <span className={`text-xs uppercase tracking-wider px-2 py-1 ${
                             order.status === "completed" 
                               ? "bg-green-100 text-green-800" 
