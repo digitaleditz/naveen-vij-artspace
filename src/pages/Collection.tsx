@@ -89,13 +89,20 @@ const Collection = () => {
                 <article key={artwork.id} className="group">
                   <Link to={`/artwork/${artwork.id}`} className="block">
                     <div className="aspect-[3/4] overflow-hidden mb-8 bg-stone relative">
-                      <img
-                        src={getArtworkImage(artwork.image_url, index)}
+                      <AdminEditableImage
+                        src={artwork.image_url && !artwork.image_url.startsWith("/") ? artwork.image_url : getArtworkFallback(index)}
                         alt={artwork.title}
                         className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                        assetKey={`artwork-${artwork.id}`}
+                        dbUpdate={{
+                          table: "artworks",
+                          id: artwork.id,
+                          column: "image_url",
+                          storageBucket: "site-assets",
+                        }}
                       />
                       {!artwork.available && (
-                        <div className="absolute top-5 left-5 bg-primary text-primary-foreground px-4 py-2 text-[10px] uppercase tracking-[0.2em] font-sans">
+                        <div className="absolute top-5 left-5 bg-primary text-primary-foreground px-4 py-2 text-[10px] uppercase tracking-[0.2em] font-sans z-10">
                           Acquired
                         </div>
                       )}
