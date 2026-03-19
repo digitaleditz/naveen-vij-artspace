@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Layout } from "@/components/layout/Layout";
 import { Link } from "react-router-dom";
 import { Heart } from "lucide-react";
@@ -6,13 +6,21 @@ import { useArtworks } from "@/hooks/useArtworks";
 import { AdminEditableImage } from "@/components/AdminEditableImage";
 import { useWishlist } from "@/hooks/useWishlist";
 import { getArtworkImage } from "@/lib/artwork-utils";
-
-const collections = ["All", "Architecture Inspired", "Urban Stories", "Calm Interiors", "Abstract Emotions"];
+import { supabase } from "@/integrations/supabase/client";
 
 const Collection = () => {
   const [activeCollection, setActiveCollection] = useState("All");
   const { artworks, loading } = useArtworks();
   const { toggleWishlist, isInWishlist } = useWishlist();
+  const [collectionNames, setCollectionNames] = useState<string[]>([]);
+
+  useEffect(() => {
+    const fetchCollections = async () => {
+      const { data } = await supabase.from("collections").select("name").order("name");
+      if (data) setCollectionNames(data.map((c: { name: string }) => c.name));
+    };
+    fetchCollections();
+  }, []);
 
   const filteredArtworks = activeCollection === "All"
     ? artworks
@@ -45,7 +53,7 @@ const Collection = () => {
       {/* Filters */}
       <section className="pb-16 container-wide">
         <div className="flex flex-wrap gap-4">
-          {collections.map((collection) => (
+          {["All", ...collectionNames].map((collection) => (
             <button
               key={collection}
               onClick={() => setActiveCollection(collection)}
