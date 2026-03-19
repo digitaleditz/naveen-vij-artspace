@@ -276,9 +276,6 @@ const AdminCustomers = () => {
                                           {order.status} • {formatDate(order.created_at)}
                                         </p>
                                       </div>
-                                      <p className="font-serif text-accent">
-                                        ₹{order.total_amount.toLocaleString()}
-                                      </p>
                                     </div>
                                   ))}
                                 </div>
