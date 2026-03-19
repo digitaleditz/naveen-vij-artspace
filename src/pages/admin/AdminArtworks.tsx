@@ -37,6 +37,37 @@ const AdminArtworks = () => {
   const [artworkForm, setArtworkForm] = useState<Partial<Artwork>>({});
   const [searchTerm, setSearchTerm] = useState("");
   const [loading, setLoading] = useState(true);
+  const [imageMode, setImageMode] = useState<"upload" | "url">("upload");
+  const [uploading, setUploading] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    setUploading(true);
+    const fileExt = file.name.split(".").pop();
+    const fileName = `${Date.now()}-${Math.random().toString(36).substring(7)}.${fileExt}`;
+    const filePath = `artworks/${fileName}`;
+
+    const { error: uploadError } = await supabase.storage
+      .from("artwork-images")
+      .upload(filePath, file);
+
+    if (uploadError) {
+      toast({ title: "Upload failed", description: uploadError.message, variant: "destructive" });
+      setUploading(false);
+      return;
+    }
+
+    const { data: urlData } = supabase.storage
+      .from("artwork-images")
+      .getPublicUrl(filePath);
+
+    setArtworkForm((prev) => ({ ...prev, image_url: urlData.publicUrl }));
+    setUploading(false);
+    toast({ title: "Uploaded", description: "Image uploaded successfully" });
+  };
 
   useEffect(() => {
     fetchArtworks();
