@@ -309,12 +309,23 @@ const AdminArtworks = () => {
                 <label className="text-xs uppercase tracking-widest text-muted-foreground mb-2 block">
                   Collection *
                 </label>
-                <Input
+                <Select
                   value={artworkForm.collection || ""}
-                  onChange={(e) =>
-                    setArtworkForm({ ...artworkForm, collection: e.target.value })
+                  onValueChange={(value) =>
+                    setArtworkForm({ ...artworkForm, collection: value })
                   }
-                />
+                >
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select collection" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {collections.map((col) => (
+                      <SelectItem key={col.id} value={col.name}>
+                        {col.name}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
               </div>
             </div>
             <div className="grid grid-cols-3 gap-4">
