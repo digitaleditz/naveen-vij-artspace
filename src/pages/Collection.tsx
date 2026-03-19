@@ -3,6 +3,7 @@ import { Layout } from "@/components/layout/Layout";
 import { Link } from "react-router-dom";
 import { Heart } from "lucide-react";
 import { useArtworks } from "@/hooks/useArtworks";
+import { AdminEditableImage } from "@/components/AdminEditableImage";
 import { useWishlist } from "@/hooks/useWishlist";
 import artwork1 from "@/assets/artwork-1.jpg";
 import artwork2 from "@/assets/artwork-2.jpg";
