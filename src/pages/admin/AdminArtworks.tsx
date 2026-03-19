@@ -4,6 +4,13 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import {
   Dialog,
   DialogContent,
   DialogHeader,
@@ -13,6 +20,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { Plus, Edit, Trash2, Search, Upload, Link } from "lucide-react";
 import { getArtworkImage } from "@/lib/artwork-utils";
+import CollectionsManager, { type Collection } from "@/components/admin/CollectionsManager";
 
 interface Artwork {
   id: string;
@@ -40,6 +48,7 @@ const AdminArtworks = () => {
   const [imageMode, setImageMode] = useState<"upload" | "url">("upload");
   const [uploading, setUploading] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const [collections, setCollections] = useState<Collection[]>([]);
 
   const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -69,8 +78,14 @@ const AdminArtworks = () => {
     toast({ title: "Uploaded", description: "Image uploaded successfully" });
   };
 
+  const fetchCollections = async () => {
+    const { data } = await supabase.from("collections").select("*").order("name");
+    if (data) setCollections(data as Collection[]);
+  };
+
   useEffect(() => {
     fetchArtworks();
+    fetchCollections();
   }, []);
 
   const fetchArtworks = async () => {
@@ -169,6 +184,9 @@ const AdminArtworks = () => {
 
   return (
     <AdminLayout title="Artworks" subtitle="Manage your art collection">
+      {/* Collections Manager */}
+      <CollectionsManager collections={collections} onCollectionsChange={fetchCollections} />
+
       {/* Actions */}
       <div className="flex flex-wrap gap-4 justify-between items-center mb-6">
         <div className="relative flex-1 max-w-md">
@@ -294,12 +312,23 @@ const AdminArtworks = () => {
                 <label className="text-xs uppercase tracking-widest text-muted-foreground mb-2 block">
                   Collection *
                 </label>
-                <Input
+                <Select
                   value={artworkForm.collection || ""}
-                  onChange={(e) =>
-                    setArtworkForm({ ...artworkForm, collection: e.target.value })
+                  onValueChange={(value) =>
+                    setArtworkForm({ ...artworkForm, collection: value })
                   }
-                />
+                >
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select collection" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {collections.map((col) => (
+                      <SelectItem key={col.id} value={col.name}>
+                        {col.name}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
               </div>
             </div>
             <div className="grid grid-cols-3 gap-4">
