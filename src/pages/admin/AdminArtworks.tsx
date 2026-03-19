@@ -184,6 +184,9 @@ const AdminArtworks = () => {
 
   return (
     <AdminLayout title="Artworks" subtitle="Manage your art collection">
+      {/* Collections Manager */}
+      <CollectionsManager collections={collections} onCollectionsChange={fetchCollections} />
+
       {/* Actions */}
       <div className="flex flex-wrap gap-4 justify-between items-center mb-6">
         <div className="relative flex-1 max-w-md">
