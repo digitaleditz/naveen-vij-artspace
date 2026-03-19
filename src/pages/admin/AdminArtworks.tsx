@@ -12,10 +12,7 @@ import {
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { Plus, Edit, Trash2, Search } from "lucide-react";
-import artwork1 from "@/assets/artwork-1.jpg";
-import artwork2 from "@/assets/artwork-2.jpg";
-import artwork3 from "@/assets/artwork-3.jpg";
-import paintingFeatured from "@/assets/painting-featured.jpg";
+import { getArtworkImage } from "@/lib/artwork-utils";
 
 interface Artwork {
   id: string;
@@ -31,20 +28,6 @@ interface Artwork {
   design_inspiration: string | null;
   mood: string | null;
 }
-
-const getArtworkImage = (imageUrl: string | null, index: number) => {
-  if (imageUrl) {
-    const images: Record<string, string> = {
-      "/artwork-1.jpg": artwork1,
-      "/artwork-2.jpg": artwork2,
-      "/artwork-3.jpg": artwork3,
-      "/painting-featured.jpg": paintingFeatured,
-    };
-    return images[imageUrl] || artwork1;
-  }
-  const fallbacks = [artwork1, artwork2, artwork3, paintingFeatured];
-  return fallbacks[index % fallbacks.length];
-};
 
 const AdminArtworks = () => {
   const { toast } = useToast();

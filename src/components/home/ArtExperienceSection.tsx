@@ -5,19 +5,7 @@ import { Button } from "@/components/ui/button";
 import { useArtworks } from "@/hooks/useArtworks";
 import { Skeleton } from "@/components/ui/skeleton";
 import { AdminEditableImage } from "@/components/AdminEditableImage";
-import artwork1 from "@/assets/artwork-1.jpg";
-import artwork2 from "@/assets/artwork-2.jpg";
-import artwork3 from "@/assets/artwork-3.jpg";
-import paintingFeatured from "@/assets/painting-featured.jpg";
-
-const defaultImages = [artwork1, artwork2, artwork3, paintingFeatured];
-
-const getArtworkImage = (imageUrl: string | null, index: number): string => {
-  if (!imageUrl || imageUrl.startsWith("/")) {
-    return defaultImages[index % defaultImages.length];
-  }
-  return imageUrl;
-};
+import { getArtworkImage } from "@/lib/artwork-utils";
 
 export const ArtExperienceSection = () => {
   const { artworks, loading } = useArtworks();
