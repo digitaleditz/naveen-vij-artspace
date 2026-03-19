@@ -389,6 +389,68 @@ const AdminArtworks = () => {
                 }
               />
             </div>
+            <div>
+              <label className="text-xs uppercase tracking-widest text-muted-foreground mb-2 block">
+                Artwork Image
+              </label>
+              {artworkForm.image_url && (
+                <div className="mb-3 rounded-lg overflow-hidden border border-border">
+                  <img
+                    src={getArtworkImage(artworkForm.image_url)}
+                    alt="Preview"
+                    className="w-full h-40 object-cover"
+                  />
+                </div>
+              )}
+              <div className="flex gap-2 mb-3">
+                <Button
+                  type="button"
+                  variant={imageMode === "upload" ? "default" : "outline"}
+                  size="sm"
+                  onClick={() => setImageMode("upload")}
+                >
+                  <Upload size={14} className="mr-1" />
+                  Upload
+                </Button>
+                <Button
+                  type="button"
+                  variant={imageMode === "url" ? "default" : "outline"}
+                  size="sm"
+                  onClick={() => setImageMode("url")}
+                >
+                  <Link size={14} className="mr-1" />
+                  URL
+                </Button>
+              </div>
+              {imageMode === "upload" ? (
+                <div>
+                  <input
+                    ref={fileInputRef}
+                    type="file"
+                    accept="image/*"
+                    onChange={handleImageUpload}
+                    className="hidden"
+                  />
+                  <Button
+                    type="button"
+                    variant="outline"
+                    className="w-full"
+                    onClick={() => fileInputRef.current?.click()}
+                    disabled={uploading}
+                  >
+                    {uploading ? "Uploading..." : "Choose Image File"}
+                  </Button>
+                </div>
+              ) : (
+                <Input
+                  value={artworkForm.image_url || ""}
+                  onChange={(e) =>
+                    setArtworkForm({ ...artworkForm, image_url: e.target.value })
+                  }
+                  placeholder="https://example.com/image.jpg"
+                />
+              )}
+            </div>
             <div className="flex items-center gap-4">
               <label className="text-sm font-sans">
                 <input
