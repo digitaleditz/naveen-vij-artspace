@@ -244,9 +244,6 @@ const Checkout = () => {
                         <p className="text-sm text-muted-foreground font-sans mb-2">
                           {item.artwork.size} • {item.artwork.medium}
                         </p>
-                        <p className="text-accent font-serif text-lg">
-                          ₹{item.artwork.price.toLocaleString()}
-                        </p>
                       </div>
                       <button
                         onClick={() => removeFromCart(item.artwork.id)}
