@@ -83,7 +83,7 @@ const Collection = () => {
                   <Link to={`/artwork/${artwork.id}`} className="block">
                     <div className="aspect-[3/4] overflow-hidden mb-8 bg-stone relative">
                       <AdminEditableImage
-                        src={artwork.image_url && !artwork.image_url.startsWith("/") ? artwork.image_url : getArtworkFallback(index)}
+                        src={getArtworkImage(artwork.image_url)}
                         alt={artwork.title}
                         className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                         assetKey={`artwork-${artwork.id}`}

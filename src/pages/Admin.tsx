@@ -505,7 +505,7 @@ const Admin = () => {
                   >
                     <div className="aspect-[3/4] overflow-hidden">
                       <img
-                        src={getArtworkImage(artwork.image_url, index)}
+                        src={getArtworkImage(artwork.image_url)}
                         alt={artwork.title}
                         className="w-full h-full object-cover"
                       />

@@ -95,7 +95,7 @@ export const ArtExperienceSection = () => {
                 {/* Image */}
                 <div className="aspect-[3/4] overflow-hidden rounded-sm mb-4 relative">
                   <AdminEditableImage
-                    src={getArtworkImage(artwork.image_url, index % displayArtworks.length)}
+                    src={getArtworkImage(artwork.image_url)}
                     alt={artwork.title}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                     assetKey={`artwork-${artwork.id}`}
