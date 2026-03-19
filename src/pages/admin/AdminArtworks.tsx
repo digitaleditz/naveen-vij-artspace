@@ -78,8 +78,14 @@ const AdminArtworks = () => {
     toast({ title: "Uploaded", description: "Image uploaded successfully" });
   };
 
+  const fetchCollections = async () => {
+    const { data } = await supabase.from("collections").select("*").order("name");
+    if (data) setCollections(data as Collection[]);
+  };
+
   useEffect(() => {
     fetchArtworks();
+    fetchCollections();
   }, []);
 
   const fetchArtworks = async () => {
