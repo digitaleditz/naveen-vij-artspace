@@ -58,7 +58,7 @@ export const Footer = () => {
                   className="flex items-center gap-3 text-sm font-sans text-cream/50 hover:text-cream transition-colors group"
                 >
                   <Mail size={14} className="text-gold/70 group-hover:text-gold transition-colors" />
-                  hello@naveenvij.com
+                  naveenvij.work@gmail.com
                 </a>
               </li>
               <li>
