@@ -198,6 +198,9 @@ const TheArchitect = () => {
         </div>
       </section>
 
+      {/* Architectural Projects */}
+      <ArchProjectsSection />
+
       {/* CTA */}
       <section className="section-padding bg-primary text-primary-foreground relative overflow-hidden">
         <div className="absolute top-0 left-0 w-96 h-96 bg-accent/5 rounded-full blur-3xl" />
