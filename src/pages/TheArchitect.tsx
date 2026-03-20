@@ -5,6 +5,7 @@ import { ArrowRight } from "lucide-react";
 import { AdminEditableImage } from "@/components/AdminEditableImage";
 import naveenPortrait from "@/assets/naveen-portrait.jpg";
 import heroInterior from "@/assets/hero-interior.jpg";
+import { ArchProjectsSection } from "@/components/architect/ArchProjectsSection";
 
 const milestones = [
   { year: "1982", title: "Architecture Graduate", description: "Graduated from Chandigarh College of Architecture" },
