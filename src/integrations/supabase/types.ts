@@ -46,6 +46,33 @@ export type Database = {
           },
         ]
       }
+      architectural_projects: {
+        Row: {
+          created_at: string
+          display_order: number
+          id: string
+          image_url: string
+          name: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          display_order?: number
+          id?: string
+          image_url: string
+          name: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          display_order?: number
+          id?: string
+          image_url?: string
+          name?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       artist_moments: {
         Row: {
           created_at: string
