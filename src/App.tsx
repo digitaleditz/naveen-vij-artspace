@@ -23,6 +23,7 @@ import AdminCustomers from "./pages/admin/AdminCustomers";
 import AdminAnalytics from "./pages/admin/AdminAnalytics";
 import AdminInquiries from "./pages/admin/AdminInquiries";
 import AdminMoments from "./pages/admin/AdminMoments";
+import AdminProjects from "./pages/admin/AdminProjects";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
