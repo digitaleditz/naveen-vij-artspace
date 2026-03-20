@@ -190,10 +190,10 @@ const Contact = () => {
               
               <div className="space-y-10 mb-16">
                 {[
-                  { icon: Mail, label: "Email", value: "hello@naveenvij.com", href: "mailto:hello@naveenvij.com" },
-                  { icon: Phone, label: "Phone", value: "+91 98765 43210", href: "tel:+919876543210" },
+                  { icon: Mail, label: "Email", value: "naveenvij.work@gmail.com", href: "mailto:naveenvij.work@gmail.com" },
+                  { icon: Phone, label: "Phone", value: "+91 98739 22056", href: "tel:+919873922056" },
                   { icon: MapPin, label: "Studio", value: "Bandra West, Mumbai\nMaharashtra, India", href: null },
-                  { icon: Instagram, label: "Instagram", value: "@naveenvij.studio", href: "https://instagram.com" },
+                  { icon: Instagram, label: "Instagram", value: "@architectnaveenvij", href: "https://instagram.com/architectnaveenvij" },
                 ].map((item) => (
                   <div key={item.label} className="flex gap-6 group">
                     <div className="w-14 h-14 bg-secondary border border-border flex items-center justify-center flex-shrink-0 group-hover:border-accent transition-colors">

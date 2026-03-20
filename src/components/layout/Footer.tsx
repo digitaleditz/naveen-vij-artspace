@@ -54,31 +54,31 @@ export const Footer = () => {
             <ul className="space-y-4">
               <li>
                 <a
-                  href="mailto:hello@naveenvij.com"
+                  href="mailto:naveenvij.work@gmail.com"
                   className="flex items-center gap-3 text-sm font-sans text-cream/50 hover:text-cream transition-colors group"
                 >
                   <Mail size={14} className="text-gold/70 group-hover:text-gold transition-colors" />
-                  hello@naveenvij.com
+                  naveenvij.work@gmail.com
                 </a>
               </li>
               <li>
                 <a
-                  href="tel:+919876543210"
+                  href="tel:+919873922056"
                   className="flex items-center gap-3 text-sm font-sans text-cream/50 hover:text-cream transition-colors group"
                 >
                   <Phone size={14} className="text-gold/70 group-hover:text-gold transition-colors" />
-                  +91 98765 43210
+                  +91 98739 22056
                 </a>
               </li>
               <li>
                 <a
-                  href="https://instagram.com"
+                  href="https://instagram.com/architectnaveenvij"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-3 text-sm font-sans text-cream/50 hover:text-cream transition-colors group"
                 >
                   <Instagram size={14} className="text-gold/70 group-hover:text-gold transition-colors" />
-                  @naveenvij.studio
+                  @architectnaveenvij
                 </a>
               </li>
             </ul>
