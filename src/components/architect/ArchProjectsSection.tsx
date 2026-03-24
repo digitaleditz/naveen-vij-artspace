@@ -29,6 +29,10 @@ export const ArchProjectsSection = () => {
     fetchProjects();
   }, []);
 
+  const selectedIndex = selectedProject
+    ? projects.findIndex((p) => p.id === selectedProject.id)
+    : -1;
+
   const openLightbox = useCallback((project: ArchProject) => {
     setImageLoaded(false);
     setSelectedProject(project);
@@ -39,9 +43,21 @@ export const ArchProjectsSection = () => {
     setImageLoaded(false);
   }, []);
 
+  const goTo = useCallback(
+    (dir: -1 | 1) => {
+      if (selectedIndex < 0) return;
+      const next = (selectedIndex + dir + projects.length) % projects.length;
+      setImageLoaded(false);
+      setSelectedProject(projects[next]);
+    },
+    [selectedIndex, projects]
+  );
+
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") closeLightbox();
+      if (e.key === "ArrowLeft") goTo(-1);
+      if (e.key === "ArrowRight") goTo(1);
     };
     window.addEventListener("keydown", handleKey);
     return () => window.removeEventListener("keydown", handleKey);
