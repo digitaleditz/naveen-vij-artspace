@@ -138,7 +138,7 @@ const ArtworkDetail = () => {
             <p className="text-[10px] uppercase tracking-[0.4em] text-accent font-sans mb-6">
               {artwork.collection}
             </p>
-            <h1 className="font-serif text-5xl md:text-6xl lg:text-7xl mb-8 leading-[1.05]">
+            <h1 className="font-serif text-3xl sm:text-5xl md:text-6xl lg:text-7xl mb-6 sm:mb-8 leading-[1.05]">
               {artwork.title}
             </h1>
 
