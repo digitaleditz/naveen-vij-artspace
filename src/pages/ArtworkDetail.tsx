@@ -232,7 +232,7 @@ const ArtworkDetail = () => {
                     </div>
                   </div>
                 )}
-                <div className="flex gap-4 mt-4">
+                <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mt-4">
                   <Button
                     variant="heroOutline"
                     size="lg"

@@ -51,13 +51,13 @@ const Collection = () => {
       </section>
 
       {/* Filters */}
-      <section className="pb-16 container-wide">
-        <div className="flex flex-wrap gap-4">
+      <section className="pb-10 sm:pb-16 container-wide">
+        <div className="flex flex-wrap gap-2 sm:gap-4">
           {["All", ...collectionNames].map((collection) => (
             <button
               key={collection}
               onClick={() => setActiveCollection(collection)}
-              className={`px-6 py-3 text-[10px] uppercase tracking-[0.2em] font-sans transition-all duration-300 border ${
+              className={`px-4 sm:px-6 py-2.5 sm:py-3 text-[10px] uppercase tracking-[0.2em] font-sans transition-all duration-300 border ${
                 activeCollection === collection
                   ? "bg-primary text-primary-foreground border-primary"
                   : "bg-transparent text-foreground border-border hover:border-accent hover:text-accent"

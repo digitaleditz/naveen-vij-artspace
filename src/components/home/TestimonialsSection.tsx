@@ -59,7 +59,7 @@ export const TestimonialsSection = () => {
                     : "opacity-0 translate-y-8 pointer-events-none"
                 }`}
               >
-                <p className="font-serif text-xl md:text-2xl lg:text-3xl leading-relaxed mb-8 italic font-light">
+                <p className="font-serif text-lg sm:text-xl md:text-2xl lg:text-3xl leading-relaxed mb-6 sm:mb-8 italic font-light">
                   "{testimonial.quote}"
                 </p>
                 

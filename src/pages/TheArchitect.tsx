@@ -158,11 +158,11 @@ const TheArchitect = () => {
       {/* Timeline */}
       <section className="section-padding">
         <div className="container-wide">
-          <div className="text-center mb-20">
+          <div className="text-center mb-12 sm:mb-20">
             <p className="text-[10px] uppercase tracking-[0.4em] text-accent font-sans mb-4">
               Evolution
             </p>
-            <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl">
+            <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl">
               Milestones
             </h2>
             <div className="section-divider mt-8" />
@@ -172,23 +172,23 @@ const TheArchitect = () => {
             {milestones.map((milestone, index) => (
               <div
                 key={milestone.year}
-                className="flex gap-12 pb-16 relative group"
+                className="flex gap-6 sm:gap-12 pb-12 sm:pb-16 relative group"
               >
                 {index < milestones.length - 1 && (
-                  <div className="absolute left-[80px] top-10 bottom-0 w-px bg-gradient-to-b from-accent/50 to-border" />
+                  <div className="absolute left-[48px] sm:left-[80px] top-10 bottom-0 w-px bg-gradient-to-b from-accent/50 to-border" />
                 )}
                 
-                <div className="w-[160px] flex-shrink-0 text-right">
-                  <span className="font-serif text-2xl text-accent group-hover:text-gold transition-colors">
+                <div className="w-[96px] sm:w-[160px] flex-shrink-0 text-right">
+                  <span className="font-serif text-lg sm:text-2xl text-accent group-hover:text-gold transition-colors">
                     {milestone.year}
                   </span>
                 </div>
                 
-                <div className="absolute left-[77px] top-2 w-2 h-2 rounded-full bg-accent group-hover:scale-150 transition-transform" />
+                <div className="absolute left-[45px] sm:left-[77px] top-2 w-2 h-2 rounded-full bg-accent group-hover:scale-150 transition-transform" />
                 
                 <div className="pt-0.5">
-                  <h3 className="font-serif text-xl mb-3">{milestone.title}</h3>
-                  <p className="text-muted-foreground font-sans">
+                  <h3 className="font-serif text-lg sm:text-xl mb-2 sm:mb-3">{milestone.title}</h3>
+                  <p className="text-muted-foreground font-sans text-sm sm:text-base">
                     {milestone.description}
                   </p>
                 </div>

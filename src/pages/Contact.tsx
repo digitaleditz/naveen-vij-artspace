@@ -102,7 +102,7 @@ const Contact = () => {
       {/* Contact Section */}
       <section className="section-padding pt-8">
         <div className="container-wide">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 lg:gap-32">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-32">
             {/* Form */}
             <div>
               <h2 className="font-serif text-3xl mb-10">Send a Message</h2>
