@@ -49,7 +49,7 @@ export const TestimonialsSection = () => {
         <div className="max-w-4xl mx-auto text-center">
           <Quote className="w-12 h-12 mx-auto mb-8 text-accent opacity-40" />
           
-          <div className="relative min-h-[220px] flex items-center justify-center">
+          <div className="relative min-h-[260px] sm:min-h-[220px] flex items-center justify-center">
             {testimonials.map((testimonial, index) => (
               <div
                 key={testimonial.id}
