@@ -70,11 +70,11 @@ export const ArchProjectsSection = () => {
     <>
       <section className="section-padding bg-secondary/50">
         <div className="container-wide">
-          <div className="text-center mb-20">
+          <div className="text-center mb-12 sm:mb-20">
             <p className="text-[10px] uppercase tracking-[0.4em] text-accent font-sans mb-4">
               Built Spaces
             </p>
-            <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl">
+            <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl">
               Architectural Projects
             </h2>
             <div className="section-divider mt-8" />
