@@ -113,12 +113,13 @@ export const ArchProjectsSection = () => {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
           >
-            {/* Blurred backdrop */}
+            {/* Blurred backdrop — clicking closes */}
             <motion.div
-              className="absolute inset-0 bg-background/80 backdrop-blur-xl"
+              className="absolute inset-0 bg-background/80 backdrop-blur-xl cursor-pointer"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
+              onClick={closeLightbox}
             />
 
             {/* Close button */}
