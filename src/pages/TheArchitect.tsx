@@ -96,7 +96,7 @@ const TheArchitect = () => {
       {/* The Journey */}
       <section className="section-padding">
         <div className="container-wide">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-24">
             <div className="relative">
               <div className="aspect-[4/3] overflow-hidden image-reveal">
                 <AdminEditableImage
@@ -106,11 +106,11 @@ const TheArchitect = () => {
                   assetKey="architect-journey"
                 />
               </div>
-              <div className="absolute -top-6 -left-6 w-full h-full border border-accent/20 -z-10" />
+              <div className="absolute -top-4 -left-4 sm:-top-6 sm:-left-6 w-full h-full border border-accent/20 -z-10" />
             </div>
             <div className="flex flex-col justify-center">
-              <h2 className="font-serif text-4xl md:text-5xl mb-10">The Journey</h2>
-              <div className="space-y-8 text-muted-foreground font-sans leading-relaxed text-lg">
+              <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl mb-8 sm:mb-10">The Journey</h2>
+              <div className="space-y-6 sm:space-y-8 text-muted-foreground font-sans leading-relaxed text-base sm:text-lg">
                 <p>
                   After graduating from the Chandigarh College of Architecture in 1982, 
                   Naveen established a design studio that evolved alongside his parallel 
