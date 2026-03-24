@@ -19,22 +19,22 @@ const TheArchitect = () => {
   return (
     <Layout>
       {/* Hero */}
-      <section className="pt-40 pb-24 container-wide">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+      <section className="pt-28 sm:pt-40 pb-16 sm:pb-24 container-wide">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-24 items-center">
           <div>
-            <div className="inline-block mb-8">
+            <div className="inline-block mb-6 sm:mb-8">
               <p className="text-[10px] uppercase tracking-[0.4em] text-accent font-sans">
                 The Artist
               </p>
               <div className="section-divider mt-4 mx-0" />
             </div>
-            <h1 className="font-serif text-5xl md:text-6xl lg:text-7xl mb-8 leading-[1.1]">
+            <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl mb-6 sm:mb-8 leading-[1.1]">
               Naveen Vij
             </h1>
-            <p className="text-xl text-muted-foreground font-sans leading-relaxed mb-6 font-light italic">
+            <p className="text-lg sm:text-xl text-muted-foreground font-sans leading-relaxed mb-4 sm:mb-6 font-light italic">
               "Each canvas becomes a new terrain of discovery."
             </p>
-            <p className="text-muted-foreground font-sans leading-relaxed text-lg">
+            <p className="text-muted-foreground font-sans leading-relaxed text-base sm:text-lg">
               An artist whose practice extends across painting, sculpture, murals, 
               product design, and architecture. At the core of his work lies a deeply 
               personal visual inquiry driven by curiosity, play, and an instinctive 
@@ -50,7 +50,7 @@ const TheArchitect = () => {
                 assetKey="architect-portrait"
               />
             </div>
-            <div className="absolute -bottom-6 -right-6 w-full h-full border border-accent/20 -z-10" />
+            <div className="absolute -bottom-4 -right-4 sm:-bottom-6 sm:-right-6 w-full h-full border border-accent/20 -z-10" />
           </div>
         </div>
       </section>
