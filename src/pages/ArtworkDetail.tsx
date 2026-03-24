@@ -103,7 +103,7 @@ const ArtworkDetail = () => {
   return (
     <Layout>
       {/* Back Navigation */}
-      <div className="pt-32 pb-10 container-wide">
+      <div className="pt-24 sm:pt-32 pb-6 sm:pb-10 container-wide">
         <Link
           to="/collection"
           className="inline-flex items-center gap-3 text-[10px] uppercase tracking-[0.3em] font-sans text-muted-foreground hover:text-foreground transition-colors group"
@@ -114,8 +114,8 @@ const ArtworkDetail = () => {
       </div>
 
       {/* Hero Section - Full Width Artwork */}
-      <section className="container-wide pb-24">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
+      <section className="container-wide pb-16 sm:pb-24">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-24">
           {/* Artwork Image */}
           <div className="relative">
             <div className="aspect-[3/4] bg-stone overflow-hidden">
