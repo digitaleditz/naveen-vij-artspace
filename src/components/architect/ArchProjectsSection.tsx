@@ -61,7 +61,7 @@ export const ArchProjectsSection = () => {
     };
     window.addEventListener("keydown", handleKey);
     return () => window.removeEventListener("keydown", handleKey);
-  }, [closeLightbox]);
+  }, [closeLightbox, goTo]);
 
   if (loading) return null;
   if (projects.length === 0) return null;
