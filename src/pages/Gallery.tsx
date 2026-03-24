@@ -21,16 +21,16 @@ const Gallery = () => {
   return (
     <Layout>
       {/* Hero */}
-      <section className="pt-32 pb-16 container-wide">
+      <section className="pt-24 sm:pt-32 pb-12 sm:pb-16 container-wide">
         <div className="max-w-3xl">
-          <p className="text-xs uppercase tracking-[0.3em] text-accent font-sans mb-6">
+          <p className="text-xs uppercase tracking-[0.3em] text-accent font-sans mb-4 sm:mb-6">
             Art Collection
           </p>
-          <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl mb-6 leading-tight">
+          <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-4 sm:mb-6 leading-tight">
             Original Paintings
             <span className="block text-accent">& Limited Editions</span>
           </h1>
-          <p className="text-lg text-muted-foreground font-sans leading-relaxed">
+          <p className="text-base sm:text-lg text-muted-foreground font-sans leading-relaxed">
             We don't just sell paintings—we sell stories. Each piece carries 
             the emotions, memories, and moments that inspired its creation. 
             When you bring one home, you're not just decorating a wall—you're 

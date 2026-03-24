@@ -80,19 +80,19 @@ const Contact = () => {
   return (
     <Layout>
       {/* Hero */}
-      <section className="pt-40 pb-16 container-wide">
+      <section className="pt-28 sm:pt-40 pb-12 sm:pb-16 container-wide">
         <div className="max-w-4xl">
-          <div className="inline-block mb-8">
+          <div className="inline-block mb-6 sm:mb-8">
             <p className="text-[10px] uppercase tracking-[0.4em] text-accent font-sans">
               Get in Touch
             </p>
             <div className="section-divider mt-4 mx-0" />
           </div>
-          <h1 className="font-serif text-5xl md:text-6xl lg:text-7xl mb-8 leading-[1.1]">
+          <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl mb-6 sm:mb-8 leading-[1.1]">
             Let's Start a
             <span className="block text-accent mt-2">Conversation</span>
           </h1>
-          <p className="text-xl text-muted-foreground font-sans leading-relaxed font-light">
+          <p className="text-lg sm:text-xl text-muted-foreground font-sans leading-relaxed font-light">
             Whether you're dreaming of a new interior, searching for the perfect artwork, 
             or simply want to connect—I'd love to hear from you.
           </p>
@@ -102,7 +102,7 @@ const Contact = () => {
       {/* Contact Section */}
       <section className="section-padding pt-8">
         <div className="container-wide">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 lg:gap-32">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-32">
             {/* Form */}
             <div>
               <h2 className="font-serif text-3xl mb-10">Send a Message</h2>

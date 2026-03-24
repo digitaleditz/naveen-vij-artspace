@@ -29,19 +29,19 @@ const Collection = () => {
   return (
     <Layout>
       {/* Hero */}
-      <section className="pt-40 pb-24 container-wide">
+      <section className="pt-28 sm:pt-40 pb-16 sm:pb-24 container-wide">
         <div className="max-w-5xl">
-          <div className="inline-block mb-8">
+          <div className="inline-block mb-6 sm:mb-8">
             <p className="text-[10px] uppercase tracking-[0.4em] text-accent font-sans">
               The Collection
             </p>
             <div className="section-divider mt-4 mx-0" />
           </div>
-          <h1 className="font-serif text-5xl md:text-6xl lg:text-7xl mb-10 leading-[1.05]">
+          <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl mb-8 sm:mb-10 leading-[1.05]">
             Visual Studies of
             <span className="block text-accent mt-2">a Restless Mind</span>
           </h1>
-          <p className="text-xl text-muted-foreground font-sans leading-relaxed max-w-3xl font-light">
+          <p className="text-lg sm:text-xl text-muted-foreground font-sans leading-relaxed max-w-3xl font-light">
             Each painting is what happens when an architect picks up a brush 
             instead of a blueprint. These aren't just decorative objects—they're 
             architectural emotions, spatial arguments, and occasionally, 
@@ -51,13 +51,13 @@ const Collection = () => {
       </section>
 
       {/* Filters */}
-      <section className="pb-16 container-wide">
-        <div className="flex flex-wrap gap-4">
+      <section className="pb-10 sm:pb-16 container-wide">
+        <div className="flex flex-wrap gap-2 sm:gap-4">
           {["All", ...collectionNames].map((collection) => (
             <button
               key={collection}
               onClick={() => setActiveCollection(collection)}
-              className={`px-6 py-3 text-[10px] uppercase tracking-[0.2em] font-sans transition-all duration-300 border ${
+              className={`px-4 sm:px-6 py-2.5 sm:py-3 text-[10px] uppercase tracking-[0.2em] font-sans transition-all duration-300 border ${
                 activeCollection === collection
                   ? "bg-primary text-primary-foreground border-primary"
                   : "bg-transparent text-foreground border-border hover:border-accent hover:text-accent"

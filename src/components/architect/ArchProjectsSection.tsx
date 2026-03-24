@@ -70,17 +70,17 @@ export const ArchProjectsSection = () => {
     <>
       <section className="section-padding bg-secondary/50">
         <div className="container-wide">
-          <div className="text-center mb-20">
+          <div className="text-center mb-12 sm:mb-20">
             <p className="text-[10px] uppercase tracking-[0.4em] text-accent font-sans mb-4">
               Built Spaces
             </p>
-            <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl">
+            <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl">
               Architectural Projects
             </h2>
             <div className="section-divider mt-8" />
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {projects.map((project) => (
               <div
                 key={project.id}
@@ -107,7 +107,7 @@ export const ArchProjectsSection = () => {
       <AnimatePresence>
         {selectedProject && (
           <motion.div
-            className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-8"
+            className="fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-8"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -125,9 +125,9 @@ export const ArchProjectsSection = () => {
             {/* Close button */}
             <button
               onClick={closeLightbox}
-              className="absolute top-6 right-6 z-10 p-2 rounded-full bg-background/50 backdrop-blur-sm border border-border/50 text-foreground/70 hover:text-foreground hover:bg-background/80 transition-all"
+              className="absolute top-4 right-4 sm:top-6 sm:right-6 z-10 p-2.5 rounded-full bg-background/50 backdrop-blur-sm border border-border/50 text-foreground/70 hover:text-foreground hover:bg-background/80 transition-all"
             >
-              <X size={20} />
+              <X size={18} />
             </button>
 
             {/* Prev / Next arrows */}
@@ -135,15 +135,15 @@ export const ArchProjectsSection = () => {
               <>
                 <button
                   onClick={(e) => { e.stopPropagation(); goTo(-1); }}
-                  className="absolute left-4 sm:left-8 top-1/2 -translate-y-1/2 z-10 p-2.5 rounded-full bg-background/50 backdrop-blur-sm border border-border/50 text-foreground/70 hover:text-foreground hover:bg-background/80 transition-all"
+                  className="absolute left-2 sm:left-8 top-1/2 -translate-y-1/2 z-10 p-2 sm:p-2.5 rounded-full bg-background/50 backdrop-blur-sm border border-border/50 text-foreground/70 hover:text-foreground hover:bg-background/80 transition-all"
                 >
-                  <ChevronLeft size={22} />
+                  <ChevronLeft size={20} />
                 </button>
                 <button
                   onClick={(e) => { e.stopPropagation(); goTo(1); }}
-                  className="absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 z-10 p-2.5 rounded-full bg-background/50 backdrop-blur-sm border border-border/50 text-foreground/70 hover:text-foreground hover:bg-background/80 transition-all"
+                  className="absolute right-2 sm:right-8 top-1/2 -translate-y-1/2 z-10 p-2 sm:p-2.5 rounded-full bg-background/50 backdrop-blur-sm border border-border/50 text-foreground/70 hover:text-foreground hover:bg-background/80 transition-all"
                 >
-                  <ChevronRight size={22} />
+                  <ChevronRight size={20} />
                 </button>
               </>
             )}
