@@ -130,6 +130,24 @@ export const ArchProjectsSection = () => {
               <X size={20} />
             </button>
 
+            {/* Prev / Next arrows */}
+            {projects.length > 1 && (
+              <>
+                <button
+                  onClick={(e) => { e.stopPropagation(); goTo(-1); }}
+                  className="absolute left-4 sm:left-8 top-1/2 -translate-y-1/2 z-10 p-2.5 rounded-full bg-background/50 backdrop-blur-sm border border-border/50 text-foreground/70 hover:text-foreground hover:bg-background/80 transition-all"
+                >
+                  <ChevronLeft size={22} />
+                </button>
+                <button
+                  onClick={(e) => { e.stopPropagation(); goTo(1); }}
+                  className="absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 z-10 p-2.5 rounded-full bg-background/50 backdrop-blur-sm border border-border/50 text-foreground/70 hover:text-foreground hover:bg-background/80 transition-all"
+                >
+                  <ChevronRight size={22} />
+                </button>
+              </>
+            )}
+
             {/* Content */}
             <motion.div
               className="relative z-10 max-w-5xl w-full max-h-[85vh] flex flex-col items-center"
