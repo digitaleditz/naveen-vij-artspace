@@ -125,9 +125,9 @@ export const ArchProjectsSection = () => {
             {/* Close button */}
             <button
               onClick={closeLightbox}
-              className="absolute top-6 right-6 z-10 p-2 rounded-full bg-background/50 backdrop-blur-sm border border-border/50 text-foreground/70 hover:text-foreground hover:bg-background/80 transition-all"
+              className="absolute top-4 right-4 sm:top-6 sm:right-6 z-10 p-2.5 rounded-full bg-background/50 backdrop-blur-sm border border-border/50 text-foreground/70 hover:text-foreground hover:bg-background/80 transition-all"
             >
-              <X size={20} />
+              <X size={18} />
             </button>
 
             {/* Prev / Next arrows */}
