@@ -52,12 +52,12 @@ export const HeroSection = () => {
           <div className="flex flex-col sm:flex-row gap-4 animate-fade-up opacity-0 stagger-4">
             <Button variant="hero" size="lg" asChild>
               <Link to="/collection">
-                Explore the Collection
+                Explore Artworks
                 <ArrowRight size={16} />
               </Link>
             </Button>
             <Button variant="heroOutline" size="lg" asChild>
-              <Link to="/the-architect">Meet the Artist</Link>
+              <Link to="/the-architect">Architecture</Link>
             </Button>
           </div>
         </div>
