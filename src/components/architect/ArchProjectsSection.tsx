@@ -173,7 +173,7 @@ export const ArchProjectsSection = () => {
                   imageLoaded ? "opacity-100" : "opacity-0"
                 }`}
                 onLoad={() => {
-                  setTimeout(() => setImageLoaded(true), 500);
+                  setImageLoaded(true);
                 }}
               />
 
