@@ -91,6 +91,8 @@ export const ArchProjectsSection = () => {
                   <img
                     src={project.image_url}
                     alt={project.name}
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                   />
                 </div>
@@ -171,7 +173,7 @@ export const ArchProjectsSection = () => {
                   imageLoaded ? "opacity-100" : "opacity-0"
                 }`}
                 onLoad={() => {
-                  setTimeout(() => setImageLoaded(true), 500);
+                  setImageLoaded(true);
                 }}
               />
 
