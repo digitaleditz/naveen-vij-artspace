@@ -10,6 +10,7 @@ import { supabase } from "@/integrations/supabase/client";
 
 const Collection = () => {
   const [activeCollection, setActiveCollection] = useState("All");
+  const [availability, setAvailability] = useState<"All" | "Available" | "Acquired">("All");
   const { artworks, loading } = useArtworks();
   const { toggleWishlist, isInWishlist } = useWishlist();
   const [collectionNames, setCollectionNames] = useState<string[]>([]);
@@ -22,9 +23,12 @@ const Collection = () => {
     fetchCollections();
   }, []);
 
-  const filteredArtworks = activeCollection === "All"
-    ? artworks
-    : artworks.filter((a) => a.collection === activeCollection);
+  const filteredArtworks = artworks
+    .filter((a) => activeCollection === "All" || a.collection === activeCollection)
+    .filter((a) =>
+      availability === "All" ? true : availability === "Available" ? a.available : !a.available
+    );
+
 
   return (
     <Layout>
@@ -67,7 +71,27 @@ const Collection = () => {
             </button>
           ))}
         </div>
+
+        <div className="mt-6 flex flex-wrap items-center gap-2 sm:gap-3">
+          <span className="text-[10px] uppercase tracking-[0.25em] text-muted-foreground font-sans mr-1">
+            Status
+          </span>
+          {(["All", "Available", "Acquired"] as const).map((status) => (
+            <button
+              key={status}
+              onClick={() => setAvailability(status)}
+              className={`px-4 sm:px-5 py-2 text-[10px] uppercase tracking-[0.2em] font-sans transition-all duration-300 border rounded-full ${
+                availability === status
+                  ? "bg-accent text-accent-foreground border-accent"
+                  : "bg-transparent text-muted-foreground border-border hover:border-accent hover:text-accent"
+              }`}
+            >
+              {status === "Acquired" ? "Sold Out" : status}
+            </button>
+          ))}
+        </div>
       </section>
+
 
       {/* Gallery Grid - Museum Style */}
       <section className="pb-32">
@@ -103,10 +127,11 @@ const Collection = () => {
                         }}
                       />
                       {!artwork.available && (
-                        <div className="absolute top-5 left-5 bg-primary text-primary-foreground px-4 py-2 text-[10px] uppercase tracking-[0.2em] font-sans z-10">
+                        <div className="badge-sold absolute top-5 left-5 px-4 py-2 text-[10px] uppercase tracking-[0.2em] font-sans z-10 rounded-sm">
                           Acquired
                         </div>
                       )}
+
                       {/* Hover Overlay */}
                       <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/20 transition-all duration-500 flex items-center justify-center">
                         <span className="text-primary-foreground text-[10px] uppercase tracking-[0.3em] font-sans opacity-0 group-hover:opacity-100 transition-opacity duration-500 border border-primary-foreground/60 px-8 py-4 backdrop-blur-sm bg-primary/20">
