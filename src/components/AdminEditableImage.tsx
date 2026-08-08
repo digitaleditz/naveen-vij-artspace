@@ -72,7 +72,7 @@ export const AdminEditableImage = ({
         className={className}
         loading={loadingAttr}
         decoding="async"
-        fetchPriority={priority ? "high" : "auto"}
+        {...(priority ? { fetchpriority: "high" } as any : {})}
         style={{ opacity: assetLoaded || priority ? 1 : 0, transition: "opacity 0.3s ease" }}
       />
     );
