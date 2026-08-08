@@ -10,6 +10,7 @@ import { supabase } from "@/integrations/supabase/client";
 
 const Collection = () => {
   const [activeCollection, setActiveCollection] = useState("All");
+  const [availability, setAvailability] = useState<"All" | "Available" | "Acquired">("All");
   const { artworks, loading } = useArtworks();
   const { toggleWishlist, isInWishlist } = useWishlist();
   const [collectionNames, setCollectionNames] = useState<string[]>([]);
@@ -22,9 +23,12 @@ const Collection = () => {
     fetchCollections();
   }, []);
 
-  const filteredArtworks = activeCollection === "All"
-    ? artworks
-    : artworks.filter((a) => a.collection === activeCollection);
+  const filteredArtworks = artworks
+    .filter((a) => activeCollection === "All" || a.collection === activeCollection)
+    .filter((a) =>
+      availability === "All" ? true : availability === "Available" ? a.available : !a.available
+    );
+
 
   return (
     <Layout>
