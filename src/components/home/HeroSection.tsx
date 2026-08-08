@@ -20,6 +20,7 @@ export const HeroSection = () => {
           src={heroInterior}
           alt="Artistic space"
           className="w-full h-full object-cover"
+          priority
           assetKey="hero-background"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-background via-background/85 to-background/40" />

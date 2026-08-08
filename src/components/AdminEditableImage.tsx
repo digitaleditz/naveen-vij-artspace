@@ -148,6 +148,7 @@ export const AdminEditableImage = ({
 
     onImageUpdate?.(publicUrl);
     setConfirmedUrl(publicUrl);
+    invalidateSiteAssetOverrides();
     toast({ title: "Image updated!", description: "Looking sharp ✨" });
     setPreviewUrl(null);
     setShowControls(false);
