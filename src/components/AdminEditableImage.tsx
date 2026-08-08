@@ -3,6 +3,7 @@ import { useAdmin } from "@/hooks/useAdmin";
 import { supabase } from "@/integrations/supabase/client";
 import { Camera, Upload, RotateCcw, Check, X, ZoomIn, ZoomOut } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { getSiteAssetOverrides, invalidateSiteAssetOverrides } from "@/lib/site-assets-cache";
 
 interface AdminEditableImageProps {
   src: string;
@@ -10,6 +11,8 @@ interface AdminEditableImageProps {
   className?: string;
   assetKey: string;
   onImageUpdate?: (newUrl: string) => void;
+  /** Load eagerly with high priority (use for above-the-fold / LCP images) */
+  priority?: boolean;
   /** For DB-driven images (artworks, moments) — updates a specific table/column */
   dbUpdate?: {
     table: string;
@@ -25,6 +28,7 @@ export const AdminEditableImage = ({
   className = "",
   assetKey,
   onImageUpdate,
+  priority = false,
   dbUpdate,
 }: AdminEditableImageProps) => {
   const { isAdmin } = useAdmin();
@@ -36,36 +40,44 @@ export const AdminEditableImage = ({
   const [objectPosition, setObjectPosition] = useState("center");
   const [scale, setScale] = useState(1);
   const [showControls, setShowControls] = useState(false);
-  const [assetLoaded, setAssetLoaded] = useState(false);
+  const [assetLoaded, setAssetLoaded] = useState(!!dbUpdate);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const pendingFileRef = useRef<File | null>(null);
 
-  // Load saved override from site_assets on mount (for ALL users, not just admin)
+  // Load saved override from the shared site_assets cache (one request per session)
   useEffect(() => {
-    if (dbUpdate) { setAssetLoaded(true); return; }
-    const loadSavedAsset = async () => {
-      const { data } = await supabase
-        .from("site_assets" as any)
-        .select("image_url")
-        .eq("asset_key", assetKey)
-        .maybeSingle();
-      if (data && (data as any).image_url) {
-        setConfirmedUrl((data as any).image_url);
-      }
+    if (dbUpdate) {
       setAssetLoaded(true);
+      return;
+    }
+    let active = true;
+    getSiteAssetOverrides().then((map) => {
+      if (!active) return;
+      if (map[assetKey]) setConfirmedUrl(map[assetKey]);
+      setAssetLoaded(true);
+    });
+    return () => {
+      active = false;
     };
-    loadSavedAsset();
   }, [assetKey, dbUpdate]);
 
-  // Don't render until we've checked the DB for overrides
   const displaySrcFinal = confirmedUrl || src;
+  const loadingAttr = priority ? "eager" : "lazy";
 
   if (!isAdmin) {
-    if (!assetLoaded) {
-      return <div className={className} style={{ background: 'transparent' }} />;
-    }
-    return <img src={displaySrcFinal} alt={alt} className={className} />;
+    return (
+      <img
+        src={displaySrcFinal}
+        alt={alt}
+        className={className}
+        loading={loadingAttr}
+        decoding="async"
+        fetchPriority={priority ? "high" : "auto"}
+        style={{ opacity: assetLoaded || priority ? 1 : 0, transition: "opacity 0.3s ease" }}
+      />
+    );
   }
+
 
   const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
