@@ -127,10 +127,11 @@ const Collection = () => {
                         }}
                       />
                       {!artwork.available && (
-                        <div className="absolute top-5 left-5 bg-primary text-primary-foreground px-4 py-2 text-[10px] uppercase tracking-[0.2em] font-sans z-10">
+                        <div className="badge-sold absolute top-5 left-5 px-4 py-2 text-[10px] uppercase tracking-[0.2em] font-sans z-10 rounded-sm">
                           Acquired
                         </div>
                       )}
+
                       {/* Hover Overlay */}
                       <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/20 transition-all duration-500 flex items-center justify-center">
                         <span className="text-primary-foreground text-[10px] uppercase tracking-[0.3em] font-sans opacity-0 group-hover:opacity-100 transition-opacity duration-500 border border-primary-foreground/60 px-8 py-4 backdrop-blur-sm bg-primary/20">
