@@ -71,7 +71,27 @@ const Collection = () => {
             </button>
           ))}
         </div>
+
+        <div className="mt-6 flex flex-wrap items-center gap-2 sm:gap-3">
+          <span className="text-[10px] uppercase tracking-[0.25em] text-muted-foreground font-sans mr-1">
+            Status
+          </span>
+          {(["All", "Available", "Acquired"] as const).map((status) => (
+            <button
+              key={status}
+              onClick={() => setAvailability(status)}
+              className={`px-4 sm:px-5 py-2 text-[10px] uppercase tracking-[0.2em] font-sans transition-all duration-300 border rounded-full ${
+                availability === status
+                  ? "bg-accent text-accent-foreground border-accent"
+                  : "bg-transparent text-muted-foreground border-border hover:border-accent hover:text-accent"
+              }`}
+            >
+              {status === "Acquired" ? "Sold Out" : status}
+            </button>
+          ))}
+        </div>
       </section>
+
 
       {/* Gallery Grid - Museum Style */}
       <section className="pb-32">
