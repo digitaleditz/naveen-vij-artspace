@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { MapPin, X, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import poster from "@/assets/art-grandeur-2026.png.asset.json";
+import poster from "@/assets/art-grandeur-2026.jpg";
 
 const MAPS_URL = "https://maps.app.goo.gl/5aW9ypndCjgPM9xf7";
 
@@ -75,7 +75,7 @@ export const ExhibitionPopup = () => {
           <div className="grid md:grid-cols-2">
             <div className="bg-secondary">
               <img
-                src={poster.url}
+                src={poster}
                 alt="Naveen Vij at Art Grandeur, Film Expo India 2026, Bharat Mandapam New Delhi"
                 className="w-full h-full object-contain md:object-cover max-h-[42vh] md:max-h-none"
                 loading="lazy"
