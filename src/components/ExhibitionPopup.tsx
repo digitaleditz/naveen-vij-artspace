@@ -29,20 +29,15 @@ export const ExhibitionPopup = () => {
 
   return (
     <>
-      {/* Sticky side button */}
+      {/* Sticky bottom button */}
       <button
         onClick={() => setOpen(true)}
         aria-label="View exhibition details"
-        className="fixed right-0 top-1/2 -translate-y-1/2 z-40 bg-accent text-accent-foreground shadow-gold px-2.5 py-4 rounded-l-md hover:pr-4 transition-all duration-300"
+        className="fixed bottom-6 left-1/2 -translate-x-1/2 z-40 bg-accent text-accent-foreground shadow-gold px-5 py-3 rounded-full hover:scale-105 hover:shadow-gold-lg transition-all duration-300 flex items-center gap-2"
       >
-        <span className="flex flex-col items-center gap-2">
-          <Sparkles size={15} />
-          <span
-            className="text-[10px] uppercase tracking-[0.25em] font-sans"
-            style={{ writingMode: "vertical-rl" }}
-          >
-            Exhibition
-          </span>
+        <Sparkles size={14} />
+        <span className="text-[10px] uppercase tracking-[0.25em] font-sans">
+          Exhibition
         </span>
       </button>
 
