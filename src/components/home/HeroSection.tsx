@@ -58,7 +58,7 @@ export const HeroSection = () => {
               </Link>
             </Button>
             <Button variant="heroOutline" size="lg" asChild>
-              <Link to="/the-architect">Architecture</Link>
+              <Link to="/the-architect">Review Architecture</Link>
             </Button>
           </div>
         </div>
