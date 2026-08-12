@@ -6,10 +6,15 @@ import poster from "@/assets/art-grandeur-2026.jpg";
 
 const MAPS_URL = "https://maps.app.goo.gl/5aW9ypndCjgPM9xf7";
 
+const SHOWN_KEY = "exhibition-popup-shown";
+
 export const ExhibitionPopup = () => {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
+    // Only auto-open once per browser session, regardless of route changes.
+    if (sessionStorage.getItem(SHOWN_KEY)) return;
+    sessionStorage.setItem(SHOWN_KEY, "1");
     const timer = setTimeout(() => setOpen(true), 2000);
     return () => clearTimeout(timer);
   }, []);
