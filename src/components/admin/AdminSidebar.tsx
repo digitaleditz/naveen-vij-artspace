@@ -8,6 +8,8 @@ import {
   MessageSquare,
   Camera,
   Building2,
+  Youtube,
+  Activity,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -17,10 +19,13 @@ const navItems = [
   { id: "artworks", label: "Artworks", icon: Palette, path: "/admin/artworks" },
   { id: "customers", label: "Customers", icon: Users, path: "/admin/customers" },
   { id: "analytics", label: "Analytics", icon: BarChart3, path: "/admin/analytics" },
+  { id: "visitors", label: "Visitors", icon: Activity, path: "/admin/visitors" },
   { id: "inquiries", label: "Inquiries", icon: MessageSquare, path: "/admin/inquiries" },
   { id: "moments", label: "Artist Moments", icon: Camera, path: "/admin/moments" },
   { id: "projects", label: "Arch. Projects", icon: Building2, path: "/admin/projects" },
+  { id: "videos", label: "Videos", icon: Youtube, path: "/admin/videos" },
 ];
+
 
 export const AdminSidebar = () => {
   const location = useLocation();
