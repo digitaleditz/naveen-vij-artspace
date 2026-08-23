@@ -24,6 +24,8 @@ import AdminAnalytics from "./pages/admin/AdminAnalytics";
 import AdminInquiries from "./pages/admin/AdminInquiries";
 import AdminMoments from "./pages/admin/AdminMoments";
 import AdminProjects from "./pages/admin/AdminProjects";
+import AdminVisitors from "./pages/admin/AdminVisitors";
+import AdminVideos from "./pages/admin/AdminVideos";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
