@@ -18,7 +18,9 @@ const Index = () => {
         <ArchExperienceSection />
       </div>
       <ArtistSection />
+      <VideosSection />
       <TestimonialsSection />
+
       <CTASection />
     </Layout>
   );
