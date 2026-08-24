@@ -278,36 +278,6 @@ const ArtworkDetail = () => {
         </div>
       </section>
 
-      {/* Video Section */}
-      <section className="section-padding bg-cream">
-        <div className="container-wide">
-          <div className="max-w-5xl mx-auto">
-            <div className="text-center mb-14">
-              <p className="text-[10px] uppercase tracking-[0.4em] text-accent font-sans mb-4">From the Artist</p>
-              <h2 className="font-serif text-3xl md:text-4xl">Hear Naveen Vij share the inspiration</h2>
-              <div className="section-divider mt-8" />
-            </div>
-            <div className="relative aspect-video bg-stone overflow-hidden group cursor-pointer">
-              <img
-                src={naveenPortrait}
-                alt="Naveen Vij discussing artwork"
-                className="w-full h-full object-cover opacity-80 group-hover:opacity-70 transition-opacity duration-500"
-              />
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-24 h-24 bg-background/95 rounded-full flex items-center justify-center group-hover:bg-accent group-hover:scale-110 transition-all duration-500 shadow-elevated">
-                  <Play size={36} className="text-foreground group-hover:text-accent-foreground ml-1" />
-                </div>
-              </div>
-              <div className="absolute bottom-0 left-0 right-0 p-10 bg-gradient-to-t from-primary/90 via-primary/50 to-transparent">
-                <p className="text-primary-foreground font-sans">
-                  Video coming soon — The story, the space it belongs to, what it represents
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Design Inspiration */}
       {artwork.design_inspiration && (
         <section className="section-padding">
