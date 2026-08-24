@@ -12,7 +12,7 @@ import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { z } from "zod";
 import { getArtworkImage } from "@/lib/artwork-utils";
-import naveenPortrait from "@/assets/naveen-portrait.jpg";
+
 
 const inquirySchema = z.object({
   name: z.string().trim().min(2, "Name is required").max(100),
