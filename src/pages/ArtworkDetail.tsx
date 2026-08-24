@@ -4,7 +4,7 @@ import { Layout } from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { ArrowLeft, Heart, MessageCircle, Play, Send, Check } from "lucide-react";
+import { ArrowLeft, Heart, MessageCircle, Send, Check } from "lucide-react";
 import { useArtworks } from "@/hooks/useArtworks";
 import { useWishlist } from "@/hooks/useWishlist";
 import { useAuth } from "@/contexts/AuthContext";
