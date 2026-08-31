@@ -1,7 +1,6 @@
 import { ReactNode } from "react";
 import { Navigation } from "./Navigation";
 import { Footer } from "./Footer";
-import { ExhibitionPopup } from "@/components/ExhibitionPopup";
 
 interface LayoutProps {
   children: ReactNode;
@@ -13,7 +12,6 @@ export const Layout = ({ children }: LayoutProps) => {
       <Navigation />
       <main className="flex-1">{children}</main>
       <Footer />
-      <ExhibitionPopup />
     </div>
   );
 };
