@@ -7,6 +7,7 @@ export interface Exhibition {
   subtitle: string | null;
   content: string;
   image_url: string | null;
+  images: string[];
   location: string | null;
   event_date: string | null;
   display_order: number;
@@ -26,7 +27,15 @@ export const useExhibitions = (adminMode = false) => {
       .order("display_order", { ascending: true })
       .order("created_at", { ascending: false });
 
-    const rows = ((data as any[]) || []) as Exhibition[];
+    const rows = (((data as any[]) || []) as Exhibition[]).map((e) => ({
+      ...e,
+      images:
+        e.images && e.images.length > 0
+          ? e.images
+          : e.image_url
+          ? [e.image_url]
+          : [],
+    }));
     setExhibitions(adminMode ? rows : rows.filter((e) => e.published));
     setLoading(false);
   }, [adminMode]);

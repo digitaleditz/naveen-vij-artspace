@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { MapPin, CalendarDays } from "lucide-react";
+import { MapPin, CalendarDays, ChevronLeft, ChevronRight } from "lucide-react";
 import { useExhibitions, type Exhibition } from "@/hooks/useExhibitions";
 import {
   Dialog,
@@ -7,6 +7,80 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+
+const ImageSlider = ({
+  images,
+  alt,
+  aspect = "aspect-[4/3]",
+  rounded = "",
+}: {
+  images: string[];
+  alt: string;
+  aspect?: string;
+  rounded?: string;
+}) => {
+  const [index, setIndex] = useState(0);
+  if (images.length === 0) return null;
+
+  const go = (e: React.MouseEvent, dir: number) => {
+    e.stopPropagation();
+    setIndex((i) => (i + dir + images.length) % images.length);
+  };
+
+  return (
+    <div className={`relative overflow-hidden bg-secondary ${aspect} ${rounded}`}>
+      {images.map((src, i) => (
+        <img
+          key={src + i}
+          src={src}
+          alt={`${alt} — image ${i + 1}`}
+          loading="lazy"
+          decoding="async"
+          className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ${
+            i === index ? "opacity-100" : "opacity-0"
+          }`}
+        />
+      ))}
+
+      {images.length > 1 && (
+        <>
+          <button
+            type="button"
+            aria-label="Previous image"
+            onClick={(e) => go(e, -1)}
+            className="absolute left-3 top-1/2 -translate-y-1/2 h-9 w-9 rounded-full bg-background/70 backdrop-blur-xl border border-border flex items-center justify-center text-foreground hover:bg-background transition-colors"
+          >
+            <ChevronLeft size={16} />
+          </button>
+          <button
+            type="button"
+            aria-label="Next image"
+            onClick={(e) => go(e, 1)}
+            className="absolute right-3 top-1/2 -translate-y-1/2 h-9 w-9 rounded-full bg-background/70 backdrop-blur-xl border border-border flex items-center justify-center text-foreground hover:bg-background transition-colors"
+          >
+            <ChevronRight size={16} />
+          </button>
+          <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5">
+            {images.map((_, i) => (
+              <button
+                key={i}
+                type="button"
+                aria-label={`Go to image ${i + 1}`}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setIndex(i);
+                }}
+                className={`h-1.5 rounded-full transition-all ${
+                  i === index ? "w-5 bg-accent" : "w-1.5 bg-background/70"
+                }`}
+              />
+            ))}
+          </div>
+        </>
+      )}
+    </div>
+  );
+};
 
 export const ExhibitionsSection = () => {
   const { exhibitions, loading } = useExhibitions();
@@ -35,16 +109,8 @@ export const ExhibitionsSection = () => {
               className="group cursor-pointer rounded-xl overflow-hidden border border-border bg-background/40 backdrop-blur-xl transition-shadow hover:shadow-lg"
               onClick={() => setActive(item)}
             >
-              {item.image_url && (
-                <div className="aspect-[4/3] overflow-hidden bg-secondary">
-                  <img
-                    src={item.image_url}
-                    alt={item.title}
-                    loading="lazy"
-                    decoding="async"
-                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
-                  />
-                </div>
+              {item.images.length > 0 && (
+                <ImageSlider images={item.images} alt={item.title} />
               )}
               <div className="p-6">
                 {(item.event_date || item.location) && (
@@ -109,11 +175,13 @@ export const ExhibitionsSection = () => {
                   )}
                 </div>
               )}
-              {active.image_url && (
-                <img
-                  src={active.image_url}
+              {active.images.length > 0 && (
+                <ImageSlider
+                  key={active.id}
+                  images={active.images}
                   alt={active.title}
-                  className="w-full rounded-lg border border-border"
+                  aspect="aspect-[16/10]"
+                  rounded="rounded-lg border border-border"
                 />
               )}
               {active.content && (

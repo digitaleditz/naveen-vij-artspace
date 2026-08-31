@@ -180,6 +180,7 @@ export type Database = {
           event_date: string | null
           id: string
           image_url: string | null
+          images: string[]
           location: string | null
           published: boolean
           subtitle: string | null
@@ -193,6 +194,7 @@ export type Database = {
           event_date?: string | null
           id?: string
           image_url?: string | null
+          images?: string[]
           location?: string | null
           published?: boolean
           subtitle?: string | null
@@ -206,6 +208,7 @@ export type Database = {
           event_date?: string | null
           id?: string
           image_url?: string | null
+          images?: string[]
           location?: string | null
           published?: boolean
           subtitle?: string | null
