@@ -13,13 +13,13 @@ import {
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { useExhibitions, type Exhibition } from "@/hooks/useExhibitions";
-import { Plus, Edit, Trash2, Upload, Eye, EyeOff } from "lucide-react";
+import { Plus, Edit, Trash2, Upload, Eye, EyeOff, X, ArrowLeft, ArrowRight } from "lucide-react";
 
 const emptyForm = {
   title: "",
   subtitle: "",
   content: "",
-  image_url: "",
+  images: [] as string[],
   location: "",
   event_date: "",
   display_order: 0,
@@ -48,7 +48,7 @@ const AdminExhibitions = () => {
       title: item.title,
       subtitle: item.subtitle || "",
       content: item.content || "",
-      image_url: item.image_url || "",
+      images: item.images || [],
       location: item.location || "",
       event_date: item.event_date || "",
       display_order: item.display_order,
@@ -58,23 +58,41 @@ const AdminExhibitions = () => {
   };
 
   const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
+    const files = Array.from(e.target.files || []);
+    if (files.length === 0) return;
     setUploading(true);
-    const ext = file.name.split(".").pop();
-    const path = `exhibitions/${Date.now()}.${ext}`;
 
-    const { error } = await supabase.storage.from("site-assets").upload(path, file);
-    if (error) {
-      toast({ title: "Upload failed", description: error.message, variant: "destructive" });
-      setUploading(false);
-      return;
+    const urls: string[] = [];
+    for (const file of files) {
+      const ext = file.name.split(".").pop();
+      const path = `exhibitions/${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${ext}`;
+      const { error } = await supabase.storage.from("site-assets").upload(path, file);
+      if (error) {
+        toast({ title: "Upload failed", description: error.message, variant: "destructive" });
+        continue;
+      }
+      urls.push(supabase.storage.from("site-assets").getPublicUrl(path).data.publicUrl);
     }
-    const { data } = supabase.storage.from("site-assets").getPublicUrl(path);
-    setForm((f) => ({ ...f, image_url: data.publicUrl }));
+
+    if (urls.length > 0) {
+      setForm((f) => ({ ...f, images: [...f.images, ...urls] }));
+      toast({ title: "Uploaded", description: `${urls.length} image(s) added` });
+    }
     setUploading(false);
-    toast({ title: "Uploaded", description: "Image ready to use" });
+    if (fileInputRef.current) fileInputRef.current.value = "";
   };
+
+  const removeImage = (url: string) =>
+    setForm((f) => ({ ...f, images: f.images.filter((i) => i !== url) }));
+
+  const moveImage = (index: number, dir: number) =>
+    setForm((f) => {
+      const next = [...f.images];
+      const target = index + dir;
+      if (target < 0 || target >= next.length) return f;
+      [next[index], next[target]] = [next[target], next[index]];
+      return { ...f, images: next };
+    });
 
   const save = async () => {
     if (!form.title.trim()) {
@@ -86,7 +104,8 @@ const AdminExhibitions = () => {
       title: form.title.trim(),
       subtitle: form.subtitle.trim() || null,
       content: form.content,
-      image_url: form.image_url || null,
+      images: form.images,
+      image_url: form.images[0] || null,
       location: form.location.trim() || null,
       event_date: form.event_date.trim() || null,
       display_order: Number(form.display_order) || 0,
@@ -146,8 +165,15 @@ const AdminExhibitions = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {exhibitions.map((item) => (
             <div key={item.id} className="border border-border rounded-lg overflow-hidden bg-secondary/20">
-              {item.image_url && (
-                <img src={item.image_url} alt={item.title} className="aspect-[4/3] w-full object-cover" />
+              {item.images.length > 0 && (
+                <div className="relative">
+                  <img src={item.images[0]} alt={item.title} className="aspect-[4/3] w-full object-cover" />
+                  {item.images.length > 1 && (
+                    <span className="absolute bottom-2 right-2 text-[10px] font-sans px-2 py-1 rounded-full bg-background/80 backdrop-blur-xl border border-border">
+                      {item.images.length} images
+                    </span>
+                  )}
+                </div>
               )}
               <div className="p-5">
                 <div className="flex items-start justify-between gap-3 mb-2">
@@ -219,16 +245,30 @@ const AdminExhibitions = () => {
             />
 
             <div className="space-y-3">
-              {form.image_url && (
-                <img
-                  src={form.image_url}
-                  alt="Preview"
-                  className="w-full rounded-md border border-border"
-                />
+              {form.images.length > 0 && (
+                <div className="grid grid-cols-3 gap-3">
+                  {form.images.map((url, i) => (
+                    <div key={url} className="relative group rounded-md overflow-hidden border border-border">
+                      <img src={url} alt={`Image ${i + 1}`} className="aspect-square w-full object-cover" />
+                      <div className="absolute inset-x-0 bottom-0 flex justify-between p-1 bg-background/80 backdrop-blur-xl opacity-0 group-hover:opacity-100 transition-opacity">
+                        <button type="button" aria-label="Move left" onClick={() => moveImage(i, -1)} className="p-1">
+                          <ArrowLeft size={14} />
+                        </button>
+                        <button type="button" aria-label="Remove image" onClick={() => removeImage(url)} className="p-1">
+                          <X size={14} />
+                        </button>
+                        <button type="button" aria-label="Move right" onClick={() => moveImage(i, 1)} className="p-1">
+                          <ArrowRight size={14} />
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
               )}
               <input
                 type="file"
                 accept="image/*"
+                multiple
                 ref={fileInputRef}
                 onChange={handleImageUpload}
                 className="hidden"
@@ -240,8 +280,11 @@ const AdminExhibitions = () => {
                 disabled={uploading}
               >
                 <Upload size={16} className="mr-2" />
-                {uploading ? "Uploading..." : form.image_url ? "Replace image" : "Upload image"}
+                {uploading ? "Uploading..." : "Upload images"}
               </Button>
+              <p className="text-xs text-muted-foreground font-sans">
+                Multiple images show as a slider on the home page. The first image is the cover.
+              </p>
             </div>
 
             <div className="flex items-center justify-between border border-border rounded-md p-4">
