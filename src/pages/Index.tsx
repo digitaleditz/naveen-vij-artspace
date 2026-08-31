@@ -5,6 +5,7 @@ import { ArchExperienceSection } from "@/components/home/ArchExperienceSection";
 import { ArtistSection } from "@/components/home/ArtistSection";
 import { TestimonialsSection } from "@/components/home/TestimonialsSection";
 import { VideosSection } from "@/components/home/VideosSection";
+import { ExhibitionsSection } from "@/components/home/ExhibitionsSection";
 import { CTASection } from "@/components/home/CTASection";
 
 const Index = () => {
@@ -18,6 +19,7 @@ const Index = () => {
         <ArchExperienceSection />
       </div>
       <ArtistSection />
+      <ExhibitionsSection />
       <VideosSection />
       <TestimonialsSection />
 

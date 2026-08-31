@@ -172,6 +172,48 @@ export type Database = {
         }
         Relationships: []
       }
+      exhibitions: {
+        Row: {
+          content: string
+          created_at: string
+          display_order: number
+          event_date: string | null
+          id: string
+          image_url: string | null
+          location: string | null
+          published: boolean
+          subtitle: string | null
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          content?: string
+          created_at?: string
+          display_order?: number
+          event_date?: string | null
+          id?: string
+          image_url?: string | null
+          location?: string | null
+          published?: boolean
+          subtitle?: string | null
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          content?: string
+          created_at?: string
+          display_order?: number
+          event_date?: string | null
+          id?: string
+          image_url?: string | null
+          location?: string | null
+          published?: boolean
+          subtitle?: string | null
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       inquiries: {
         Row: {
           artwork_id: string | null
