@@ -10,6 +10,7 @@ import {
   Building2,
   Youtube,
   Activity,
+  Landmark,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -24,6 +25,7 @@ const navItems = [
   { id: "moments", label: "Artist Moments", icon: Camera, path: "/admin/moments" },
   { id: "projects", label: "Arch. Projects", icon: Building2, path: "/admin/projects" },
   { id: "videos", label: "Videos", icon: Youtube, path: "/admin/videos" },
+  { id: "exhibitions", label: "Exhibitions", icon: Landmark, path: "/admin/exhibitions" },
 ];
 
 
