@@ -93,7 +93,7 @@ export const ArtExperienceSection = () => {
             >
               <Link to={`/artwork/${artwork.id}`} className="group block">
                 {/* Image */}
-                <div className="aspect-[3/4] overflow-hidden rounded-sm mb-4 relative">
+                <div className="aspect-[3/4] overflow-hidden rounded-sm mb-4 relative ring-1 ring-accent/15 group-hover:ring-accent/40 transition-all duration-500">
                   <AdminEditableImage
                     src={getArtworkImage(artwork.image_url)}
                     alt={artwork.title}
@@ -107,6 +107,11 @@ export const ArtExperienceSection = () => {
                     }}
                   />
                   <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/10 transition-colors duration-500" />
+                  {/* Golden corner brackets */}
+                  <span className="pointer-events-none absolute top-2 left-2 h-5 w-5 border-t border-l border-accent/70 group-hover:border-accent transition-colors duration-500" />
+                  <span className="pointer-events-none absolute top-2 right-2 h-5 w-5 border-t border-r border-accent/70 group-hover:border-accent transition-colors duration-500" />
+                  <span className="pointer-events-none absolute bottom-2 left-2 h-5 w-5 border-b border-l border-accent/70 group-hover:border-accent transition-colors duration-500" />
+                  <span className="pointer-events-none absolute bottom-2 right-2 h-5 w-5 border-b border-r border-accent/70 group-hover:border-accent transition-colors duration-500" />
                 </div>
 
                 {/* Info */}
