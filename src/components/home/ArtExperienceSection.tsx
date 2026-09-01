@@ -94,7 +94,7 @@ export const ArtExperienceSection = () => {
               <Link to={`/artwork/${artwork.id}`} className="group block">
                 {/* Image with outer gold corner brackets */}
                 <div className="relative mb-6">
-                  <div className="aspect-[3/4] overflow-hidden rounded-sm relative ring-1 ring-accent/15 group-hover:ring-accent/40 transition-all duration-500">
+                  <div className="aspect-[4/5] overflow-hidden rounded-sm relative ring-1 ring-accent/15 group-hover:ring-accent/40 transition-all duration-500">
                     <AdminEditableImage
                       src={getArtworkImage(artwork.image_url)}
                       alt={artwork.title}

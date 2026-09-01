@@ -175,7 +175,7 @@ export const AdminEditableImage = ({
 
   return (
     <div
-      className="relative group"
+      className="relative group w-full h-full"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => !showControls && setIsHovered(false)}
     >
