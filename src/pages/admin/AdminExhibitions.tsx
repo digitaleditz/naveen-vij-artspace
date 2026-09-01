@@ -12,7 +12,13 @@ import {
 } from "@/components/ui/dialog";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
-import { useExhibitions, type Exhibition } from "@/hooks/useExhibitions";
+import {
+  useExhibitions,
+  EXHIBITION_STATUSES,
+  statusLabel,
+  type Exhibition,
+  type ExhibitionStatus,
+} from "@/hooks/useExhibitions";
 import { Plus, Edit, Trash2, Upload, Eye, EyeOff, X, ArrowLeft, ArrowRight } from "lucide-react";
 
 const emptyForm = {
@@ -22,9 +28,11 @@ const emptyForm = {
   images: [] as string[],
   location: "",
   event_date: "",
+  status: "upcoming" as ExhibitionStatus,
   display_order: 0,
   published: true,
 };
+
 
 const AdminExhibitions = () => {
   const { toast } = useToast();
@@ -51,7 +59,9 @@ const AdminExhibitions = () => {
       images: item.images || [],
       location: item.location || "",
       event_date: item.event_date || "",
+      status: (item.status || "upcoming") as ExhibitionStatus,
       display_order: item.display_order,
+
       published: item.published,
     });
     setOpen(true);
@@ -108,7 +118,9 @@ const AdminExhibitions = () => {
       image_url: form.images[0] || null,
       location: form.location.trim() || null,
       event_date: form.event_date.trim() || null,
+      status: form.status,
       display_order: Number(form.display_order) || 0,
+
       published: form.published,
     };
 
@@ -173,6 +185,9 @@ const AdminExhibitions = () => {
                       {item.images.length} images
                     </span>
                   )}
+                  <span className="absolute left-2 top-2 text-[10px] uppercase tracking-wider font-sans px-2 py-1 rounded-full bg-background/85 backdrop-blur-xl border border-border">
+                    {statusLabel(item.status)}
+                  </span>
                 </div>
               )}
               <div className="p-5">
@@ -182,6 +197,7 @@ const AdminExhibitions = () => {
                     {item.published ? "Live" : "Hidden"}
                   </span>
                 </div>
+
                 {(item.event_date || item.location) && (
                   <p className="text-xs text-muted-foreground font-sans mb-2">
                     {[item.event_date, item.location].filter(Boolean).join(" · ")}
@@ -237,6 +253,29 @@ const AdminExhibitions = () => {
                 onChange={(e) => setForm({ ...form, location: e.target.value })}
               />
             </div>
+
+            <div>
+              <p className="text-xs uppercase tracking-wider font-sans text-muted-foreground mb-2">
+                Status tag
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {EXHIBITION_STATUSES.map((s) => (
+                  <button
+                    key={s.value}
+                    type="button"
+                    onClick={() => setForm({ ...form, status: s.value })}
+                    className={`px-4 py-2 rounded-full text-xs uppercase tracking-wider font-sans border transition-colors ${
+                      form.status === s.value
+                        ? "bg-accent text-accent-foreground border-accent"
+                        : "border-border text-muted-foreground hover:border-accent"
+                    }`}
+                  >
+                    {s.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+
             <Textarea
               placeholder="Write the post content..."
               rows={8}

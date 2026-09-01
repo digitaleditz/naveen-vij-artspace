@@ -183,6 +183,7 @@ export type Database = {
           images: string[]
           location: string | null
           published: boolean
+          status: string
           subtitle: string | null
           title: string
           updated_at: string
@@ -197,6 +198,7 @@ export type Database = {
           images?: string[]
           location?: string | null
           published?: boolean
+          status?: string
           subtitle?: string | null
           title: string
           updated_at?: string
@@ -211,6 +213,7 @@ export type Database = {
           images?: string[]
           location?: string | null
           published?: boolean
+          status?: string
           subtitle?: string | null
           title?: string
           updated_at?: string

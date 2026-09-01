@@ -1,12 +1,30 @@
 import { useState } from "react";
 import { MapPin, CalendarDays, ChevronLeft, ChevronRight } from "lucide-react";
-import { useExhibitions, type Exhibition } from "@/hooks/useExhibitions";
+import { useExhibitions, statusLabel, type Exhibition } from "@/hooks/useExhibitions";
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+
+const StatusTag = ({ status }: { status?: string | null }) => {
+  const s = status || "upcoming";
+  const tone =
+    s === "past"
+      ? "bg-muted text-muted-foreground border-border"
+      : s === "ongoing"
+      ? "bg-accent text-accent-foreground border-accent"
+      : "bg-accent/15 text-accent border-accent/40";
+  return (
+    <span
+      className={`inline-flex items-center rounded-full border px-3 py-1 text-[10px] uppercase tracking-[0.2em] font-sans ${tone}`}
+    >
+      {statusLabel(s)}
+    </span>
+  );
+};
+
 
 const ImageSlider = ({
   images,
@@ -110,9 +128,20 @@ export const ExhibitionsSection = () => {
               onClick={() => setActive(item)}
             >
               {item.images.length > 0 && (
-                <ImageSlider images={item.images} alt={item.title} />
+                <div className="relative">
+                  <ImageSlider images={item.images} alt={item.title} />
+                  <div className="absolute left-3 top-3 z-10">
+                    <StatusTag status={item.status} />
+                  </div>
+                </div>
               )}
               <div className="p-6">
+                {item.images.length === 0 && (
+                  <div className="mb-3">
+                    <StatusTag status={item.status} />
+                  </div>
+                )}
+
                 {(item.event_date || item.location) && (
                   <div className="flex flex-wrap gap-4 mb-3 text-xs font-sans text-muted-foreground">
                     {item.event_date && (
@@ -156,9 +185,13 @@ export const ExhibitionsSection = () => {
                   {active.title}
                 </DialogTitle>
               </DialogHeader>
-              {active.subtitle && (
-                <p className="text-sm text-accent font-sans">{active.subtitle}</p>
-              )}
+              <div className="flex items-center gap-3 flex-wrap">
+                <StatusTag status={active.status} />
+                {active.subtitle && (
+                  <p className="text-sm text-accent font-sans">{active.subtitle}</p>
+                )}
+              </div>
+
               {(active.event_date || active.location) && (
                 <div className="flex flex-wrap gap-4 text-xs font-sans text-muted-foreground">
                   {active.event_date && (
