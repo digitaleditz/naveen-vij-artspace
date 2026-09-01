@@ -185,6 +185,9 @@ const AdminExhibitions = () => {
                       {item.images.length} images
                     </span>
                   )}
+                  <span className="absolute left-2 top-2 text-[10px] uppercase tracking-wider font-sans px-2 py-1 rounded-full bg-background/85 backdrop-blur-xl border border-border">
+                    {statusLabel(item.status)}
+                  </span>
                 </div>
               )}
               <div className="p-5">
@@ -194,6 +197,7 @@ const AdminExhibitions = () => {
                     {item.published ? "Live" : "Hidden"}
                   </span>
                 </div>
+
                 {(item.event_date || item.location) && (
                   <p className="text-xs text-muted-foreground font-sans mb-2">
                     {[item.event_date, item.location].filter(Boolean).join(" · ")}
