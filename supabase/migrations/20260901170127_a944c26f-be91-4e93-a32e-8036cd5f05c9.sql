@@ -1,0 +1,1 @@
+ALTER TABLE public.exhibitions ADD COLUMN IF NOT EXISTS status text NOT NULL DEFAULT 'upcoming';
