@@ -95,130 +95,131 @@ export const ArchProjectsSection = () => {
         </div>
       </section>
 
-      {/* Lightbox */}
+      {/* Full-page popup */}
       <AnimatePresence>
         {selectedProject && (
           <motion.div
-            className="fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-8"
+            className="fixed inset-0 z-[100]"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
           >
             <motion.div
-              className="absolute inset-0 bg-background/80 backdrop-blur-xl cursor-pointer"
+              className="absolute inset-0 bg-background/90 backdrop-blur-xl"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              onClick={closeLightbox}
             />
 
             <button
               onClick={closeLightbox}
-              className="absolute top-4 right-4 sm:top-6 sm:right-6 z-20 p-2.5 rounded-full bg-background/50 backdrop-blur-sm border border-border/50 text-foreground/70 hover:text-foreground hover:bg-background/80 transition-all"
+              className="absolute top-6 right-6 sm:top-8 sm:right-10 z-30 p-2.5 rounded-full bg-background/50 backdrop-blur-sm border border-border/50 text-foreground/70 hover:text-foreground hover:bg-background/80 transition-all"
             >
-              <X size={18} />
+              <X size={20} />
             </button>
 
             {projects.length > 1 && (
               <>
                 <button
                   onClick={(e) => { e.stopPropagation(); goTo(-1); }}
-                  className="hidden lg:flex absolute left-2 top-1/2 -translate-y-1/2 z-20 p-2.5 rounded-full bg-background/50 backdrop-blur-sm border border-border/50 text-foreground/70 hover:text-foreground hover:bg-background/80 transition-all"
+                  className="hidden lg:flex absolute left-4 top-1/2 -translate-y-1/2 z-30 p-3 rounded-full bg-background/50 backdrop-blur-sm border border-border/50 text-foreground/70 hover:text-foreground hover:bg-background/80 transition-all"
                 >
-                  <ChevronLeft size={20} />
+                  <ChevronLeft size={22} />
                 </button>
                 <button
                   onClick={(e) => { e.stopPropagation(); goTo(1); }}
-                  className="hidden lg:flex absolute right-2 top-1/2 -translate-y-1/2 z-20 p-2.5 rounded-full bg-background/50 backdrop-blur-sm border border-border/50 text-foreground/70 hover:text-foreground hover:bg-background/80 transition-all"
+                  className="hidden lg:flex absolute right-4 top-1/2 -translate-y-1/2 z-30 p-3 rounded-full bg-background/50 backdrop-blur-sm border border-border/50 text-foreground/70 hover:text-foreground hover:bg-background/80 transition-all"
                 >
-                  <ChevronRight size={20} />
+                  <ChevronRight size={22} />
                 </button>
               </>
             )}
 
-            {/* Content: images left, details right */}
+            {/* Full-page content with generous padding */}
             <motion.div
-              className="relative z-10 w-full max-w-5xl max-h-[88vh] overflow-y-auto bg-background/70 backdrop-blur-xl border border-border/50 rounded-sm"
-              initial={{ scale: 0.95, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.95, opacity: 0 }}
-              transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+              className="relative z-20 h-full w-full overflow-y-auto"
+              initial={{ y: 30, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: 30, opacity: 0 }}
+              transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="grid grid-cols-1 md:grid-cols-2">
-                {/* Left: image slider */}
-                <div className="relative bg-secondary/40">
-                  <div className="relative aspect-[4/3] md:aspect-auto md:h-full md:min-h-[420px] overflow-hidden">
-                    <AnimatePresence mode="wait">
-                      <motion.img
-                        key={`${selectedProject.id}-${slide}`}
-                        src={images[slide]}
-                        alt={`${selectedProject.name} — image ${slide + 1}`}
-                        className="absolute inset-0 w-full h-full object-cover"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        transition={{ duration: 0.35 }}
-                      />
-                    </AnimatePresence>
+              <div className="min-h-full flex items-center justify-center px-6 py-10 sm:px-10 sm:py-12 lg:px-16 lg:py-16">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 w-full max-w-6xl">
+                  {/* Left: image slider */}
+                  <div className="relative bg-secondary/40 rounded-sm overflow-hidden">
+                    <div className="relative aspect-[4/3] md:aspect-auto md:h-full md:min-h-[460px] overflow-hidden">
+                      <AnimatePresence mode="wait">
+                        <motion.img
+                          key={`${selectedProject.id}-${slide}`}
+                          src={images[slide]}
+                          alt={`${selectedProject.name} — image ${slide + 1}`}
+                          className="absolute inset-0 w-full h-full object-cover"
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          exit={{ opacity: 0 }}
+                          transition={{ duration: 0.35 }}
+                        />
+                      </AnimatePresence>
 
+                      {images.length > 1 && (
+                        <>
+                          <button
+                            onClick={() => goSlide(-1)}
+                            className="absolute left-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-background/60 backdrop-blur-sm border border-border/50 text-foreground/80 hover:bg-background/90 transition-all"
+                            aria-label="Previous image"
+                          >
+                            <ChevronLeft size={16} />
+                          </button>
+                          <button
+                            onClick={() => goSlide(1)}
+                            className="absolute right-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-background/60 backdrop-blur-sm border border-border/50 text-foreground/80 hover:bg-background/90 transition-all"
+                            aria-label="Next image"
+                          >
+                            <ChevronRight size={16} />
+                          </button>
+                          <div className="absolute bottom-3 left-0 right-0 flex justify-center gap-1.5">
+                            {images.map((_, i) => (
+                              <button
+                                key={i}
+                                onClick={() => setSlide(i)}
+                                aria-label={`Go to image ${i + 1}`}
+                                className={`h-1.5 rounded-full transition-all ${
+                                  i === slide ? "w-5 bg-accent" : "w-1.5 bg-foreground/30"
+                                }`}
+                              />
+                            ))}
+                          </div>
+                        </>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Right: details */}
+                  <div className="flex flex-col justify-center py-2">
+                    <p className="text-[10px] uppercase tracking-[0.4em] text-accent font-sans mb-3">
+                      Architectural Project
+                    </p>
+                    <h3 className="font-serif text-2xl sm:text-3xl tracking-wide text-foreground">
+                      {selectedProject.name}
+                    </h3>
+                    <div className="w-12 h-px bg-accent/50 my-5" />
+                    {selectedProject.description ? (
+                      <p className="text-sm sm:text-base leading-relaxed text-muted-foreground whitespace-pre-line">
+                        {selectedProject.description}
+                      </p>
+                    ) : (
+                      <p className="text-sm text-muted-foreground/70 italic">
+                        Details coming soon.
+                      </p>
+                    )}
                     {images.length > 1 && (
-                      <>
-                        <button
-                          onClick={() => goSlide(-1)}
-                          className="absolute left-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-background/60 backdrop-blur-sm border border-border/50 text-foreground/80 hover:bg-background/90 transition-all"
-                          aria-label="Previous image"
-                        >
-                          <ChevronLeft size={16} />
-                        </button>
-                        <button
-                          onClick={() => goSlide(1)}
-                          className="absolute right-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-background/60 backdrop-blur-sm border border-border/50 text-foreground/80 hover:bg-background/90 transition-all"
-                          aria-label="Next image"
-                        >
-                          <ChevronRight size={16} />
-                        </button>
-                        <div className="absolute bottom-3 left-0 right-0 flex justify-center gap-1.5">
-                          {images.map((_, i) => (
-                            <button
-                              key={i}
-                              onClick={() => setSlide(i)}
-                              aria-label={`Go to image ${i + 1}`}
-                              className={`h-1.5 rounded-full transition-all ${
-                                i === slide ? "w-5 bg-accent" : "w-1.5 bg-foreground/30"
-                              }`}
-                            />
-                          ))}
-                        </div>
-                      </>
+                      <p className="mt-6 text-[10px] uppercase tracking-[0.3em] text-muted-foreground/70">
+                        {slide + 1} / {images.length}
+                      </p>
                     )}
                   </div>
-                </div>
-
-                {/* Right: details */}
-                <div className="p-6 sm:p-10 flex flex-col justify-center">
-                  <p className="text-[10px] uppercase tracking-[0.4em] text-accent font-sans mb-3">
-                    Architectural Project
-                  </p>
-                  <h3 className="font-serif text-2xl sm:text-3xl tracking-wide text-foreground">
-                    {selectedProject.name}
-                  </h3>
-                  <div className="w-12 h-px bg-accent/50 my-5" />
-                  {selectedProject.description ? (
-                    <p className="text-sm sm:text-base leading-relaxed text-muted-foreground whitespace-pre-line">
-                      {selectedProject.description}
-                    </p>
-                  ) : (
-                    <p className="text-sm text-muted-foreground/70 italic">
-                      Details coming soon.
-                    </p>
-                  )}
-                  {images.length > 1 && (
-                    <p className="mt-6 text-[10px] uppercase tracking-[0.3em] text-muted-foreground/70">
-                      {slide + 1} / {images.length}
-                    </p>
-                  )}
                 </div>
               </div>
             </motion.div>
