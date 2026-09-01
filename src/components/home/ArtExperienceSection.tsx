@@ -89,7 +89,7 @@ export const ArtExperienceSection = () => {
           {loopArtworks.map((artwork, index) => (
             <div
               key={`${artwork.id}-${index}`}
-              className="shrink-0 w-[75vw] sm:w-[50vw] md:w-[35vw] lg:w-[28vw] xl:w-[22vw]"
+              className="shrink-0 w-[75vw] sm:w-[50vw] md:w-[35vw] lg:w-[28vw] xl:w-[22vw] px-3 py-3"
             >
               <Link to={`/artwork/${artwork.id}`} className="group block">
                 {/* Image with outer gold corner brackets */}
