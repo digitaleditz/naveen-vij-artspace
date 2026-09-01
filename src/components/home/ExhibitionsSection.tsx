@@ -179,7 +179,7 @@ export const ExhibitionsSection = () => {
       <Dialog open={!!active} onOpenChange={(open) => !open && setActive(null)}>
         <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
           {active && (
-            <>
+            <div className="flex flex-col gap-4">
               <DialogHeader>
                 <DialogTitle className="font-serif text-2xl text-left">
                   {active.title}
@@ -222,8 +222,9 @@ export const ExhibitionsSection = () => {
                   {active.content}
                 </p>
               )}
-            </>
+            </div>
           )}
+
         </DialogContent>
       </Dialog>
     </section>
