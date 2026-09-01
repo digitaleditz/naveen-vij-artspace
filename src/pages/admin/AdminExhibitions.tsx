@@ -59,7 +59,9 @@ const AdminExhibitions = () => {
       images: item.images || [],
       location: item.location || "",
       event_date: item.event_date || "",
+      status: (item.status || "upcoming") as ExhibitionStatus,
       display_order: item.display_order,
+
       published: item.published,
     });
     setOpen(true);
