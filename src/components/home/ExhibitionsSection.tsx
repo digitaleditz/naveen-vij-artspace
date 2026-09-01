@@ -29,7 +29,7 @@ const StatusTag = ({ status }: { status?: string | null }) => {
 const ImageSlider = ({
   images,
   alt,
-  aspect = "aspect-[4/3]",
+  aspect = "aspect-[4/5]",
   rounded = "",
 }: {
   images: string[];
@@ -213,7 +213,7 @@ export const ExhibitionsSection = () => {
                   key={active.id}
                   images={active.images}
                   alt={active.title}
-                  aspect="aspect-[16/10]"
+                  aspect="aspect-[4/5]"
                   rounded="rounded-lg border border-border"
                 />
               )}
