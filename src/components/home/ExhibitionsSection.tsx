@@ -209,13 +209,15 @@ export const ExhibitionsSection = () => {
                 </div>
               )}
               {active.images.length > 0 && (
-                <ImageSlider
-                  key={active.id}
-                  images={active.images}
-                  alt={active.title}
-                  aspect="aspect-[4/5]"
-                  rounded="rounded-lg border border-border"
-                />
+                <div className="mx-auto max-w-sm w-full">
+                  <ImageSlider
+                    key={active.id}
+                    images={active.images}
+                    alt={active.title}
+                    aspect="aspect-[4/5]"
+                    rounded="rounded-lg border border-border"
+                  />
+                </div>
               )}
               {active.content && (
                 <p className="text-sm md:text-base text-muted-foreground font-sans whitespace-pre-line leading-relaxed">
