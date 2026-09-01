@@ -29,7 +29,7 @@ const StatusTag = ({ status }: { status?: string | null }) => {
 const ImageSlider = ({
   images,
   alt,
-  aspect = "aspect-[4/5]",
+  aspect = "aspect-[1/1]",
   rounded = "",
 }: {
   images: string[];
