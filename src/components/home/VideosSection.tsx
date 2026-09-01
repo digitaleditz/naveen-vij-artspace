@@ -82,7 +82,7 @@ export const VideosSection = () => {
         {videos.map((video) => (
           <article
             key={video.id}
-            className="group snap-start shrink-0 w-[80vw] sm:w-[55vw] md:w-[40vw] lg:w-[32vw] xl:w-[26vw] rounded-xl overflow-hidden border border-border bg-background/40 backdrop-blur-xl transition-all duration-500 hover:border-accent/40"
+            className="group snap-start shrink-0 w-[72vw] sm:w-[46vw] md:w-[33vw] lg:w-[26vw] xl:w-[22vw] rounded-xl overflow-hidden border border-border bg-background/40 backdrop-blur-xl transition-all duration-500 hover:border-accent/40"
           >
             <div className="relative aspect-video bg-secondary">
               {playing === video.id ? (
