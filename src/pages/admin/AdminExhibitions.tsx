@@ -12,7 +12,13 @@ import {
 } from "@/components/ui/dialog";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
-import { useExhibitions, type Exhibition } from "@/hooks/useExhibitions";
+import {
+  useExhibitions,
+  EXHIBITION_STATUSES,
+  statusLabel,
+  type Exhibition,
+  type ExhibitionStatus,
+} from "@/hooks/useExhibitions";
 import { Plus, Edit, Trash2, Upload, Eye, EyeOff, X, ArrowLeft, ArrowRight } from "lucide-react";
 
 const emptyForm = {
@@ -22,9 +28,11 @@ const emptyForm = {
   images: [] as string[],
   location: "",
   event_date: "",
+  status: "upcoming" as ExhibitionStatus,
   display_order: 0,
   published: true,
 };
+
 
 const AdminExhibitions = () => {
   const { toast } = useToast();
