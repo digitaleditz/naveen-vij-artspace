@@ -113,7 +113,7 @@ export const VideosSection = () => {
                       decoding="async"
                       className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
                     />
-                    <span className="absolute inset-0 flex items-center justify-center bg-foreground/20 transition-colors group-hover:bg-foreground/10">
+                    <span className="absolute inset-0 flex items-center justify-center">
                       <span className="h-14 w-14 rounded-full bg-background/70 backdrop-blur-xl border border-border flex items-center justify-center transition-transform duration-500 group-hover:scale-110">
                         <Play size={20} className="text-accent ml-0.5" />
                       </span>
