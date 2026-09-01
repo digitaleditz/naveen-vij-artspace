@@ -13,13 +13,13 @@ export const HeroSection = () => {
   };
 
   return (
-    <section className="relative h-[100svh] min-h-[100svh] flex items-center overflow-hidden">
+    <section className="relative h-screen flex items-center overflow-hidden">
       {/* Background Image */}
-      <div className="absolute inset-0 h-full w-full">
+      <div className="absolute inset-0">
         <AdminEditableImage
           src={heroInterior}
           alt="Artistic space"
-          className="absolute inset-0 h-full w-full object-cover"
+          className="w-full h-full object-cover"
           priority
           assetKey="hero-background"
         />
