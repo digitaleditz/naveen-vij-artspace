@@ -128,9 +128,20 @@ export const ExhibitionsSection = () => {
               onClick={() => setActive(item)}
             >
               {item.images.length > 0 && (
-                <ImageSlider images={item.images} alt={item.title} />
+                <div className="relative">
+                  <ImageSlider images={item.images} alt={item.title} />
+                  <div className="absolute left-3 top-3 z-10">
+                    <StatusTag status={item.status} />
+                  </div>
+                </div>
               )}
               <div className="p-6">
+                {item.images.length === 0 && (
+                  <div className="mb-3">
+                    <StatusTag status={item.status} />
+                  </div>
+                )}
+
                 {(item.event_date || item.location) && (
                   <div className="flex flex-wrap gap-4 mb-3 text-xs font-sans text-muted-foreground">
                     {item.event_date && (
