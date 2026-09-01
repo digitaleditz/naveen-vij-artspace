@@ -42,6 +42,7 @@ export const useExhibitions = (adminMode = false) => {
 
     const rows = (((data as any[]) || []) as Exhibition[]).map((e) => ({
       ...e,
+      status: (e.status || "upcoming") as ExhibitionStatus,
       images:
         e.images && e.images.length > 0
           ? e.images
@@ -49,6 +50,7 @@ export const useExhibitions = (adminMode = false) => {
           ? [e.image_url]
           : [],
     }));
+
     setExhibitions(adminMode ? rows : rows.filter((e) => e.published));
     setLoading(false);
   }, [adminMode]);
