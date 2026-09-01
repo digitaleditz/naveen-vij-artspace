@@ -5,8 +5,16 @@ export interface ArchProject {
   id: string;
   name: string;
   image_url: string;
+  images: string[];
+  description: string | null;
   display_order: number;
 }
+
+export const normalizeProjectImages = (p: any): string[] => {
+  const imgs: string[] = Array.isArray(p?.images) ? p.images.filter(Boolean) : [];
+  if (imgs.length > 0) return imgs;
+  return p?.image_url ? [p.image_url] : [];
+};
 
 export const useArchProjects = () => {
   const [projects, setProjects] = useState<ArchProject[]>([]);
@@ -20,7 +28,14 @@ export const useArchProjects = () => {
       .order("display_order", { ascending: true })
       .then(({ data }) => {
         if (!active) return;
-        if (data) setProjects(data as any);
+        if (data) {
+          setProjects(
+            (data as any[]).map((p) => ({
+              ...p,
+              images: normalizeProjectImages(p),
+            })) as ArchProject[]
+          );
+        }
         setLoading(false);
       });
     return () => {
