@@ -185,9 +185,13 @@ export const ExhibitionsSection = () => {
                   {active.title}
                 </DialogTitle>
               </DialogHeader>
-              {active.subtitle && (
-                <p className="text-sm text-accent font-sans">{active.subtitle}</p>
-              )}
+              <div className="flex items-center gap-3 flex-wrap">
+                <StatusTag status={active.status} />
+                {active.subtitle && (
+                  <p className="text-sm text-accent font-sans">{active.subtitle}</p>
+                )}
+              </div>
+
               {(active.event_date || active.location) && (
                 <div className="flex flex-wrap gap-4 text-xs font-sans text-muted-foreground">
                   {active.event_date && (
