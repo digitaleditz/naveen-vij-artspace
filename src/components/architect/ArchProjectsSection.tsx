@@ -53,6 +53,21 @@ export const ArchProjectsSection = () => {
     return () => window.removeEventListener("keydown", handleKey);
   }, [closeLightbox, goTo, goSlide, images.length, selectedProject]);
 
+  // Lock background scroll while the popup is open
+  useEffect(() => {
+    if (!selectedProject) return;
+    const { body } = document;
+    const prev = body.style.overflow;
+    const prevPadding = body.style.paddingRight;
+    const scrollbar = window.innerWidth - document.documentElement.clientWidth;
+    body.style.overflow = "hidden";
+    if (scrollbar > 0) body.style.paddingRight = `${scrollbar}px`;
+    return () => {
+      body.style.overflow = prev;
+      body.style.paddingRight = prevPadding;
+    };
+  }, [selectedProject]);
+
   if (loading) return null;
   if (projects.length === 0) return null;
 
