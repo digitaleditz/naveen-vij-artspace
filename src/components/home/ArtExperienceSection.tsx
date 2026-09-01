@@ -115,13 +115,6 @@ export const ArtExperienceSection = () => {
                   <span className="pointer-events-none absolute -bottom-2 -left-2 h-6 w-6 border-b-2 border-l-2 border-accent/80 group-hover:border-accent transition-colors duration-500" />
                   <span className="pointer-events-none absolute -bottom-2 -right-2 h-6 w-6 border-b-2 border-r-2 border-accent/80 group-hover:border-accent transition-colors duration-500" />
                 </div>
-                  <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/10 transition-colors duration-500" />
-                  {/* Golden corner brackets */}
-                  <span className="pointer-events-none absolute top-2 left-2 h-5 w-5 border-t border-l border-accent/70 group-hover:border-accent transition-colors duration-500" />
-                  <span className="pointer-events-none absolute top-2 right-2 h-5 w-5 border-t border-r border-accent/70 group-hover:border-accent transition-colors duration-500" />
-                  <span className="pointer-events-none absolute bottom-2 left-2 h-5 w-5 border-b border-l border-accent/70 group-hover:border-accent transition-colors duration-500" />
-                  <span className="pointer-events-none absolute bottom-2 right-2 h-5 w-5 border-b border-r border-accent/70 group-hover:border-accent transition-colors duration-500" />
-                </div>
 
                 {/* Info */}
                 <div className="space-y-1.5">
