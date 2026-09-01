@@ -49,25 +49,31 @@ export type Database = {
       architectural_projects: {
         Row: {
           created_at: string
+          description: string | null
           display_order: number
           id: string
           image_url: string
+          images: string[]
           name: string
           updated_at: string
         }
         Insert: {
           created_at?: string
+          description?: string | null
           display_order?: number
           id?: string
           image_url: string
+          images?: string[]
           name: string
           updated_at?: string
         }
         Update: {
           created_at?: string
+          description?: string | null
           display_order?: number
           id?: string
           image_url?: string
+          images?: string[]
           name?: string
           updated_at?: string
         }
