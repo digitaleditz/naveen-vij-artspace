@@ -118,7 +118,9 @@ const AdminExhibitions = () => {
       image_url: form.images[0] || null,
       location: form.location.trim() || null,
       event_date: form.event_date.trim() || null,
+      status: form.status,
       display_order: Number(form.display_order) || 0,
+
       published: form.published,
     };
 
