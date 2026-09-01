@@ -1,12 +1,30 @@
 import { useState } from "react";
 import { MapPin, CalendarDays, ChevronLeft, ChevronRight } from "lucide-react";
-import { useExhibitions, type Exhibition } from "@/hooks/useExhibitions";
+import { useExhibitions, statusLabel, type Exhibition } from "@/hooks/useExhibitions";
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+
+const StatusTag = ({ status }: { status?: string | null }) => {
+  const s = status || "upcoming";
+  const tone =
+    s === "past"
+      ? "bg-muted text-muted-foreground border-border"
+      : s === "ongoing"
+      ? "bg-accent text-accent-foreground border-accent"
+      : "bg-accent/15 text-accent border-accent/40";
+  return (
+    <span
+      className={`inline-flex items-center rounded-full border px-3 py-1 text-[10px] uppercase tracking-[0.2em] font-sans ${tone}`}
+    >
+      {statusLabel(s)}
+    </span>
+  );
+};
+
 
 const ImageSlider = ({
   images,
