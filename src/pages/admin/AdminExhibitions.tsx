@@ -253,6 +253,29 @@ const AdminExhibitions = () => {
                 onChange={(e) => setForm({ ...form, location: e.target.value })}
               />
             </div>
+
+            <div>
+              <p className="text-xs uppercase tracking-wider font-sans text-muted-foreground mb-2">
+                Status tag
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {EXHIBITION_STATUSES.map((s) => (
+                  <button
+                    key={s.value}
+                    type="button"
+                    onClick={() => setForm({ ...form, status: s.value })}
+                    className={`px-4 py-2 rounded-full text-xs uppercase tracking-wider font-sans border transition-colors ${
+                      form.status === s.value
+                        ? "bg-accent text-accent-foreground border-accent"
+                        : "border-border text-muted-foreground hover:border-accent"
+                    }`}
+                  >
+                    {s.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+
             <Textarea
               placeholder="Write the post content..."
               rows={8}
